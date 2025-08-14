@@ -62,3 +62,9 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 }
+
+@layer utilities {
+  .svg-white {
+    @apply invert brightness-0 saturate-100;
+  }
+}

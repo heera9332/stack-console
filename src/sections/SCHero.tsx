@@ -30,7 +30,7 @@ export default function SCHero(p: Props) {
           <div className="mt-6 flex gap-3">
             {p.requestADemoLabel && p.requestADemoLink && (
               <a
-                className="rounded px-5 py-3 bg-primary text-primary-foreground"
+                className="rounded px-5 py-3 bg-primary text-white"
                 href={p.requestADemoLink}
               >
                 {p.requestADemoLabel}
