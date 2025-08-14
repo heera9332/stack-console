@@ -84,7 +84,6 @@ export default function SCHeader({
           </div>
 
           <div className="flex items-center gap-2">
-            <BgSwitcher />
             {cta && (
               <Link
                 href={cta.href}
