@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -20,8 +20,8 @@ export default function NotFound() {
             Go to Home
           </Link>
           <Link
-            href="/contact"
-            className="inline-flex items-center rounded-md px-4 py-2 bg-primary text-primary-foreground"
+            href="/contact-us"
+            className="inline-flex items-center rounded-md px-4 py-2 bg-primary"
           >
             Contact support
           </Link>
