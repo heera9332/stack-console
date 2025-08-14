@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BgSwitcher } from "@/components/bg-switcher";
 
 type NavLink = { label: string; href: string; external?: boolean };
 type SCHeaderProps = {
@@ -19,6 +18,7 @@ export default function SCHeader({
     { label: "Contact us", href: "/contact-us" },
     { label: "Docs", href: "/docs" },
     { label: "Pricing", href: "/pricing" },
+    { label: "Testing", href: "/test" },
   ],
   cta,
 }: SCHeaderProps) {

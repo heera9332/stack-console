@@ -57,7 +57,7 @@ export default function Newsletter() {
           {/* If you have <Button color="yellow">, use that instead of this <button> */}
           <Button
             type="submit"
-            className="bg-yellow hover:bg-yellow hover:cursor-pointer text-foreground rounded-[4px] px-6"
+            className="bg-yellow hover:bg-yellow hover:cursor-pointer text-foreground rounded-[4px] px-6 w-32"
           >
             Subscribe
           </Button>
