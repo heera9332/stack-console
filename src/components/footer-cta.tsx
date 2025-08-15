@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 export default function CTASection() {
   return (
     <section className="relative min-h-[296px] w-full flex justify-center">
-      <div className="max-w-6xl mx-auto text-center text-white rounded-lg bg-[#2B59FF] px-20 py-16 sm:px-8 absolute top-[96px]">
-        <div className="cta-content px-28">
-          <h2 className="text-3xl sm:text-[56px] font-bold">
+      <div className="max-w-6xl mx-4 md:mx-auto text-center text-white rounded-lg bg-[#2B59FF] md:px-20 py-8 md:py-16 absolute top-[72px] md:top-[96px]">
+        <div className="cta-content px-4 md:px-16">
+          <h2 className="md:text-[56px] text-[42px] font-bold leading-[100%] md:leading-[68px]">
           Ready to experience the power of Stack Console?
         </h2>
 
@@ -21,7 +21,7 @@ export default function CTASection() {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             size="lg"
-            className="bg-foreground text-background hover:bg-foreground/90"
+            className="text-[18px] bg-foreground text-background hover:bg-foreground/90 px-10 w-56 py-6"
           >
             Talk to Our Team
           </Button>
@@ -29,7 +29,7 @@ export default function CTASection() {
           <Button
             variant="outline"
             size="lg"
-            className="border-none text-white hover:text-white !bg-transparent sha dow-none"
+            className="text-[18px] border-none text-white hover:text-white !bg-transparent shadow-none px-10 w-56 py-6"
           >
             <img className="svg-white"  src={'/assets/svg/play-circle.svg'} alt="try demo"/>
             Try the Live Demo
