@@ -5,23 +5,24 @@ import Newsletter from "./news-letter";
 
 const columns = [
   {
-    title: "Platform",
+    title: "PLATFORM",
     items: [
-      { label: "Architectural Principles", href: "#" },
-      { label: "Tachyon Processing", href: "#" },
-      { label: "Neutrino Digital Experiences", href: "#" },
-      { label: "Elena Conversational AI Suite", href: "#" },
-      { label: "Saturn Servicing", href: "#" },
-      { label: "Luminos Engagement", href: "#" },
-      { label: "Zeus Data Suite", href: "#" },
+      { label: "Overview", href: "#" },
+      { label: "Subscription & Billing", href: "#" },
+      { label: "Integrations", href: "#" },
+      { label: "Reseller Management", href: "#" },
+      { label: "Style Your Stack", href: "#" },
+      { label: "StackAI", href: "#" },
+      { label: "Migration Engine", href: "#" },
     ],
   },
   {
-    title: "SERVICES",
+    title: "SOLUTIONS",
     items: [
-      { label: "Servicing", href: "#" },
-      { label: "Fulfillment", href: "#" },
-      { label: "Zeta Studios", href: "#" },
+      { label: "Cloud & Hosting Providers", href: "#" },
+      { label: "Datacenters", href: "#" },
+      { label: "Managed Service Providers", href: "#" },
+      { label: "Telcos & ISPs", href: "#" },
     ],
   },
   {
@@ -29,9 +30,8 @@ const columns = [
     items: [
       { label: "Insights", href: "#" },
       { label: "Blogs", href: "#" },
-      { label: "Events", href: "#" },
-      { label: "Newsroom", href: "#" },
-      { label: "Trust Center", href: "#" },
+      { label: "Videos", href: "#" },
+      { label: "Events", href: "#" }
     ],
   },
   {
@@ -41,13 +41,15 @@ const columns = [
       { label: "About Us", href: "#" },
       // { label: "Leadership", href: "#" },
       { label: "Careers", href: "#" },
+      { label: "Contact Us", href: "#" },
     ],
   },
   {
     title: "LEGAL",
     items: [
       { label: "Privacy Policy", href: "#" },
-      { label: "Manage Cookies", href: "#", id: "menu-item-2079" },
+      { label: "Terms of Service", href: "#" },
+      { label: "Refund Policy", href: "#" },
     ],
   },
 ];
