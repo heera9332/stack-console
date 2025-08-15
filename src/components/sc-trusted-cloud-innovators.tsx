@@ -37,7 +37,7 @@ export default function ScTrustedCloudInnovators() {
         </p>
 
         {/* Logos grid */}
-        <div className="mt-10 md:mt-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 items-center">
+        <div className="mt-10 md:mt-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-4 md:gap-y-10 items-center">
           {data.logos.map((logo) => (
             <Logo key={logo.name} {...logo} />
           ))}
@@ -65,7 +65,7 @@ function Logo({
         width={260}
         height={100}
         className={clsx(
-          "h-10 sm:h-12 lg:h-12 w-auto object-contain",
+          "h-12 lg:h-12 w-auto object-contain",
           // for dark-on-light assets you want to appear white on the blue bg
           makeWhite && "invert brightness-0 saturate-100"
         )}
