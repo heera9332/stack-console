@@ -62,7 +62,7 @@ export default function SCFAQ() {
                 <AccordionTrigger
                   className={cn(
                     // layout
-                    "text-left w-full px-6 py-5 text-body1 font-semibold",
+                    "cursor-pointer text-left w-full px-6 py-5 text-body1 font-semibold",
                     // default (closed)
                     "bg-muted/40 hover:no-underline rounded-none",
                     // open state: black header with white text + rounded top
