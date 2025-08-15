@@ -39,15 +39,15 @@ const faqs = [
 
 export default function SCFAQ() {
   return (
-    <section className="bg-[#F3D431] py-14">
-      <div className="mx-auto max-w-4xl px-4 text-center">
-        <h2 className="text-[56px] font-semibold text-foreground">
+    <section className="bg-[#F3D431] py-8 md:py-14">
+      <div className="mx-auto max-w-5xl px-4 text-center">
+        <h2 className="text-[36px] md:text-[56px] font-semibold text-foreground">
           Frequently Asked 🤔 <br /> Questions 🙋🏻‍♂️
         </h2>
 
         <div
           className={cn(
-            "mt-8 rounded-xl border border-border shadow-sm overflow-hidden",
+            "mt-4 md:mt-8 rounded-sm md:rounded-xl border border-border shadow-sm overflow-hidden",
             "bg-card text-card-foreground"
           )}
         >
@@ -62,11 +62,13 @@ export default function SCFAQ() {
                 <AccordionTrigger
                   className={cn(
                     // layout
-                    "cursor-pointer text-left w-full px-6 py-5 text-body1 font-semibold",
+                    "cursor-pointer text-left w-full px-6 py-5 text-[20px] font-semibold",
+                    // hide shadcn's default chevron
+                    "[&>svg]:hidden",
                     // default (closed)
                     "bg-muted/40 hover:no-underline rounded-none",
                     // open state: black header with white text + rounded top
-                    "data-[state=open]:bg-foreground data-[state=open]:text-background data-[state=open]:rounded-t-lg",
+                    "data-[state=open]:bg-foreground data-[state=open]:text-background data-[state=open]:rounded-t-sm md:data-[state=open]:rounded-t-lg",
                     // plus/minus at right
                     "pr-12 relative after:absolute after:right-6 after:top-1/2 after:-translate-y-1/2",
                     'after:content-["+"] data-[state=open]:after:content-["–"]',
@@ -80,7 +82,7 @@ export default function SCFAQ() {
                 {/* Content (stays inside the dark panel when open) */}
                 <AccordionContent
                   className={cn(
-                    "px-6 pb-6 pt-0 text-left leading-relaxed text-body2",
+                    "px-6 pb-6 pt-6 md:pt-0 text-left leading-relaxed text-body2 md:text-body1",
                     "bg-foreground text-background"
                   )}
                 >
