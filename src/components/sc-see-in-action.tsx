@@ -95,7 +95,7 @@ export default function ScSeeInAction() {
               <Button
                 size="lg"
                 onClick={handleStart}
-                className="bg-foreground text-background hover:bg-foreground/90 rounded-[10px] px-6 py-6 w-56 absolute right-[20%] top-[120%] md:top-[42%] z-10"
+                className="bg-foreground text-background hover:bg-foreground/90 rounded-[10px] px-6 py-6 absolute right-[20%] top-[120%] md:top-[42%] z-10 w-56 transition-all delay-100 hover:shadow-[0_8px_0_#ef4444] hover:border-r-[2px] hover:border-[#ef4444] hover:border-l-0 hover:border-t-0"
               >
                 <img
                   className="svg-white"

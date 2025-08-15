@@ -21,7 +21,7 @@ export default function CTASection() {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             size="lg"
-            className="text-[18px] bg-foreground text-background hover:bg-foreground/90 px-10 w-56 py-6"
+            className="text-[18px] bg-foreground text-background hover:bg-foreground/90 px-10 w-56 py-6 w-56 transition-all delay-100 hover:shadow-[0_8px_0_#ef4444] hover:border-r-[2px] hover:border-[#ef4444] hover:border-l-0 hover:border-t-0" 
           >
             Talk to Our Team
           </Button>
