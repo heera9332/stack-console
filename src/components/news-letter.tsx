@@ -18,7 +18,7 @@ export default function Newsletter() {
   return (
     <section
       aria-labelledby="newsletter-title"
-      className="rounded-lg w-3/4 pt-4"
+      className="rounded-lg w-4/5 md:w-3/4 pt-4"
     >
       <h3 id="newsletter-title" className="text-body1 font-medium">
         Cloud tips, insights, and updates — in your inbox.
