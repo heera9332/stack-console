@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+* {
+  scroll-behavior: smooth;
+}
+
 /* Register ALL theme colors as Tailwind tokens */
 @theme inline {
   /* font var (used via next/font Inter -> --font-inter) */
@@ -58,6 +62,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
