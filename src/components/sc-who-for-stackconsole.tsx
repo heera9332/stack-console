@@ -51,16 +51,16 @@ const items: Item[] = [
 
 export default function ScWhoForStacKConsole() {
   return (
-    <section className="px-4 md:px-6 lg:px-8 py-10 md:py-14">
+    <section className="px-4 md:px-6 lg:px-8 py-10 md:py-20 md:bg-muted my-10 md:my-20">
       {/* Heading */}
       <header className="text-center max-w-4xl mx-auto">
-        <h2 className="text-h2 md:text-[56px] leading-tight font-semibold text-foreground">
+        <h2 className="text-[36px] md:text-[56px] leading-tight font-semibold text-foreground">
           <span role="img" aria-label="thinking">
             🤔
           </span>{" "}
           Who Is Stack Console For?
         </h2>
-        <p className="mt-3 text-body2 md:text-body1 text-muted-foreground">
+        <p className="mt-3 text-body1 md:text-[18px] text-muted-foreground">
           Built for the Ones Powering{" "}
           <span role="img" aria-label="fist">
             👊
@@ -70,10 +70,10 @@ export default function ScWhoForStacKConsole() {
       </header>
 
       {/* Tabs */}
-      <Tabs defaultValue={items[0].key} className="mt-8 max-w-6xl mx-auto">
+      <Tabs defaultValue={items[0].key} className="mt-8 max-w-6xl md:mx-auto rounded-md">
         <TabsList
           className="
-            w-full justify-start gap-2 overflow-x-auto rounded-none bg-transparent p-0 border-b border-border
+            flex flex-col md:flex-row w-full items-start md:items-center justify-start overflow-x-auto md:rounded-none md:bg-transparent p-4 md:p-0 border-b border-border bg-muted rounded-md shadow-md md:shadow-none
           "
         >
           {items.map((t) => (
@@ -82,13 +82,16 @@ export default function ScWhoForStacKConsole() {
               value={t.key}
               className="
                 rounded-none 
-    px-3 md:px-6 py-3 md:py-4
-    text-[16px] md:text-[20px] font-semibold text-muted-foreground
-    border-b-2 border-transparent
-    data-[state=active]:text-[#3B6EC6]
-    data-[state=active]:border-[#3B6EC6]
-    data-[state=active]:bg-none
-    bg-none
+                py-4 md:py-4
+                text-[16px] md:text-[20px] font-semibold text-muted-foreground
+                border-b-2 shadow-none bg-muted
+                data-[state=active]:text-[#3B6EC6]
+                data-[state=active]:border-b-[#3B6EC6]
+                data-[state=active]:shadow-none
+                data-[state=active]:bg-muted
+                bg-none
+                cursor-pointer
+                w-full justify-start md:justify-center
               "
             >
               {t.label}
@@ -100,15 +103,15 @@ export default function ScWhoForStacKConsole() {
           <TabsContent
             key={t.key}
             value={t.key}
-            className="mt-8 focus:outline-none"
+            className="mt-4 md:mt-8 focus:outline-none bg-muted rounded-md shadow-md md:shadow-none p-4 pb-8"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               {/* Copy */}
-              <div>
+              <div className="order-2 lg:order-1">
                 <h3 className="text-[32px] md:text-[36px] font-semibold text-foreground">
                   {t.h1}
                 </h3>
-                <p className="mt-4 text-body1 text-muted-foreground">{t.p}</p>
+                <p className="mt-4 text-[18px] text-muted-foreground">{t.p}</p>
 
                 {t.cta && (
                   <div className="mt-6">
@@ -117,9 +120,8 @@ export default function ScWhoForStacKConsole() {
                       variant="outline"
                       size="lg"
                       className="
-                        bg-transparent text-foreground
-                        border border-input hover:bg-accent hover:text-accent-foreground
-                        
+                        text-[18px] bg-transparent text-foreground border border-black
+                        py-6 w-56 hover:bg-white hover:border-none  hover:shadow-[2px_8px_0px_2px_#356EC3] hover:border-r-[2px] hover:border-[#356EC3] hover:border-l-0 hover:border-t-0 transition-all duration-300 ease-in-out
                       "
                       asChild
                     >
@@ -130,7 +132,7 @@ export default function ScWhoForStacKConsole() {
               </div>
 
               {/* Illustration */}
-              <div className="flex justify-center lg:justify-end">
+              <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
                 <div className="relative w-full max-w-[520px]">
                   <Image
                     src={t.img}
