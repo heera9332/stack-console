@@ -15,31 +15,33 @@ const cloudData = {
     { name: "Apache CloudStack", src: "/assets/website/home/eco-system-1.svg" },
     {
       name: "OpenStack / RedHat OpenStack",
-      src: "/assets/website/home/eco-system-2.svg",
+      src: "/assets/website/home/eco-system-9.svg",
     },
-    { name: "OpenNebula", src: "/assets/website/home/eco-system-3.svg" },
-    { name: "Ceph", src: "/assets/website/home/eco-system-4.svg" },
-    { name: "Veeam", src: "/assets/website/home/eco-system-5.svg" },
 
-    { name: "Virtuozzo", src: "/assets/website/home/eco-system-6.svg" },
-    { name: "VMware", src: "/assets/website/home/eco-system-7.svg" },
-    { name: "OpenShift", src: "/assets/website/home/eco-system-8.svg" },
-    { name: "AWS (coming soon)", src: "/assets/website/home/eco-system-9.svg" },
-    { name: "Cloudian", src: "/assets/website/home/eco-system-10.svg" },
+    { name: "OpenNebula", src: "/assets/website/home/eco-system-6.svg" },
+    { name: "Ceph", src: "/assets/website/home/eco-system-10.svg" },
+    { name: "Veeam", src: "/assets/website/home/eco-system-7.svg" },
 
-    { name: "Proxmox", src: "/assets/website/home/eco-system-11.svg" },
-    { name: "HostedAI", src: "/assets/website/home/eco-system-12.svg" },
+    { name: "Virtuozzo", src: "/assets/website/home/eco-system-8.svg" },
+    { name: "VMware", src: "/assets/website/home/eco-system-11.svg" },
+    { name: "HostedAI", src: "/assets/website/home/eco-system-5.svg" },
+
+    { name: "OpenShift", src: "/assets/website/home/eco-system-3.svg" },
+    { name: "Google Cloud Platform ", src: "/assets/website/home/eco-system-4.svg" },
     {
       name: "Coming Soon: AWS & Azure",
       src: "/assets/website/home/eco-system-13.svg",
     },
+
+    { name: "Proxmox", src: "/assets/website/home/eco-system-2.svg" },
+    { name: "Cloudian", src: "/assets/website/home/eco-system-12.svg" },
   ],
 };
 
 /** --------- SECTION --------- */
 export default function ScCloudEcosystem() {
   // FIXED PATTERN: 5, 4, 3
-  const pattern = [5, 4, 3];
+  const pattern = [5, 4, 3, 2];
   let start = 0;
   const rows: (typeof cloudData.items)[] = [];
   pattern.forEach((count) => {
@@ -55,25 +57,25 @@ export default function ScCloudEcosystem() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
         {/* Heading */}
         <header className="relative text-center flex flex-col items-center justify-center">
-          <h2 className="text-[32px] leading-tight font-semibold md:text-[44px] text-left md:text-center">
+          <h2 className="text-[32px] leading-tight font-semibold md:text-[44px] text-left md:text-center max-w-3xl">
             {cloudData.titleTop}
           </h2>
           <p className="my-3 text-body2 md:text-body1 text-muted-foreground/80 text-left md:text-center">
             {cloudData.subtitle}
           </p>
           {/* Decorative dotted connectors (top) */}
-          <TopDottedWires className="w-full mx-auto absolute top-20 hidden md:block" />
+          <TopDottedWires className="w-full mx-auto absolute top-24 hidden md:block" />
         </header>
 
         {/* Radar rings background */}
         <div className="relative mt-10 md:mt-14 min-h-[720px] hidden md:block">
           <img
             src={"/assets/images/radar.png"}
-            className="absolute w-full mt-16"
+            className="absolute w-full mt-18"
           />
 
           <svg
-            className="w-full absolute top-[16%]"
+            className="w-full absolute top-[10%]"
             width="1200"
             height="1"
             viewBox="0 0 1200 1"
@@ -132,7 +134,7 @@ export default function ScCloudEcosystem() {
           </svg>
 
           {/* Rows of integrations */}
-          <div className="absolute w-full z-10 space-y-10 md:space-y-12 lg:space-y-16 mt-[12%] mb-20 pt-4 px-10">
+          <div className="absolute w-full z-10 space-y-10 md:space-y-12 lg:space-y-16 mt-[8%] mb-20 pt-4 px-10">
             {rows.map((row, i) => (
               <div
                 key={i}
@@ -231,11 +233,13 @@ function TopDottedWires({ className = "" }: { className?: string }) {
 
 const Pill = ({ item }: { item: { src: string; name: string } }) => {
   return (
-    <div className="
+    <div
+      className="
       mb-4 rounded-md p-[1px]
       bg-[linear-gradient(150.58deg,#E52C2C_-2.27%,#F3D431_41.79%,#386CC5_82.09%)]
       overflow-hidden
-    ">
+    "
+    >
       <div className="flex items-center gap-2 rounded-[inherit] p-2 bg-foreground">
         <Image
           src={item.src}
@@ -249,4 +253,3 @@ const Pill = ({ item }: { item: { src: string; name: string } }) => {
     </div>
   );
 };
-
