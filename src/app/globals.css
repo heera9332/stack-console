@@ -73,3 +73,14 @@
     @apply invert brightness-0 saturate-100;
   }
 }
+
+.gradient-border {
+  border: 1px solid; /* required for border-image to work */
+  border-image-source: linear-gradient(
+    150.58deg,
+    #e52c2c -2.27%,
+    #f3d431 41.79%,
+    #386cc5 82.09%
+  );
+  border-image-slice: 1; /* important: use the whole gradient */
+}

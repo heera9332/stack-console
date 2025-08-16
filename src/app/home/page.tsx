@@ -1,6 +1,7 @@
 import SCFAQ from "@/components/sc-faq";
 import ScHero from "@/components/sc-hero";
 import ScSeeInAction from "@/components/sc-see-in-action";
+import ScStackConsoleFeatures from "@/components/sc-stack-console-features";
 import ScTransformIdeas from "@/components/sc-transforming-ideas";
 import ScTrustedCloudInnovators from "@/components/sc-trusted-cloud-innovators";
 import ScWhoForStacKConsole from "@/components/sc-who-for-stackconsole";
@@ -13,6 +14,7 @@ const Page = () => {
       <ScHero/>
       <ScTrustedCloudInnovators/>
       <ScCloudEcosystem/>
+      <ScStackConsoleFeatures/>
       <ScTransformIdeas/>
       <ScSeeInAction/>
       <ScWhoForStacKConsole/>
