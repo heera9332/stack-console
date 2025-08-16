@@ -51,19 +51,19 @@ const NAV: TopNav[] = [
           {
             id: "ovr",
             label: "Overview",
-            href: "/platform/overview",
+            href: "#",
             emoji: "/assets/svg/file.svg",
             description: "High-level overview and core concepts.",
             preview: {
               title: "Overview",
               blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "/platform/overview" },
+              cta: { label: "Explore More", href: "#" },
             },
           },
           {
             id: "billing",
             label: "Subscription & Billing",
-            href: "/platform/billing",
+            href: "#",
             emoji: "/assets/svg/file.svg",
             description: "Automated invoices, usage metering, multi-currency.",
             preview: {
@@ -75,7 +75,7 @@ const NAV: TopNav[] = [
           {
             id: "integration",
             label: "Integration",
-            href: "/platform/integration",
+            href: "#",
             emoji: "/assets/svg/file.svg",
             description: "Connect clouds, tools, identity and more.",
             preview: {
@@ -87,7 +87,7 @@ const NAV: TopNav[] = [
           {
             id: "reseller",
             label: "Reseller Management",
-            href: "/platform/reseller",
+            href: "#",
             emoji: "/assets/svg/file.svg",
             description: "Multi-tenant reseller workflows and controls.",
             preview: {
@@ -99,7 +99,7 @@ const NAV: TopNav[] = [
           {
             id: "style",
             label: "Style your Stack",
-            href: "/platform/white-label",
+            href: "#",
             emoji: "/assets/svg/file.svg",
             description: "White-label and brand controls.",
             preview: {
@@ -111,7 +111,7 @@ const NAV: TopNav[] = [
           {
             id: "ai",
             label: "Stack AI",
-            href: "/platform/ai",
+            href: "#",
             emoji: "/assets/svg/file.svg",
             description: "Natural-language operations for teams.",
             preview: {
@@ -123,7 +123,7 @@ const NAV: TopNav[] = [
           {
             id: "migration",
             label: "Migration Engine",
-            href: "/platform/migration",
+            href: "#",
             emoji: "/assets/svg/file.svg",
             description: "Move workloads with confidence.",
             preview: {
@@ -138,9 +138,9 @@ const NAV: TopNav[] = [
   },
 
   // SIMPLE LINKS
-  { label: "Solutions", type: "link", href: "/solutions" },
-  { label: "Resources", type: "link", href: "/resources" },
-  { label: "Company", type: "link", href: "/company" },
+  { label: "Solutions", type: "link", href: "#" },
+  { label: "Resources", type: "link", href: "#" },
+  { label: "Company", type: "link", href: "#" },
 ];
 
 /* =========================
