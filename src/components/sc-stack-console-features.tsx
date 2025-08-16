@@ -37,7 +37,7 @@ const features: Feature[] = [
     body: "Usage metering, automated invoices, and multi-currency support out of the box. Stop spreadsheets, start scaling.",
     cta: { label: "Explore Billing", href: "#" },
     video: {
-      src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design-6.mp4",
+      src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design-4.mp4",
       poster:
         "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/191f97ba4fa5c19ce234f226b81a9d4e1c8f82bc.png",
     },
@@ -51,7 +51,7 @@ const features: Feature[] = [
     body: "Templates, guardrails, and drift detection keep environments compliant without slowing teams down.",
     cta: { label: "See Policies", href: "#" },
     video: {
-      src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design-4.mp4",
+      src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design-5.mp4",
       poster:
         "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/191f97ba4fa5c19ce234f226b81a9d4e1c8f82bc.png",
     },
@@ -60,7 +60,7 @@ const features: Feature[] = [
     topFrameColor: "#8FD9F7"
   },
   {
-    id: "stackai",
+    id: "stackai1",
     title: "AI-Powered Operations with StackAI",
     body: "Let users perform everyday cloud tasks — from creating VMs to managing billing, setting alerts, and more — using simple natural language commands.",
     cta: { label: "Learn More", href: "#" },
@@ -177,7 +177,6 @@ export default function ScStackConsoleFeatures() {
                 <div className="mt-6 lg:hidden">
                   <VideoFrame
                     feature={f}
-                    playing
                     autoPlay
                     muted
                     loop

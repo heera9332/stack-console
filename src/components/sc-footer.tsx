@@ -83,8 +83,8 @@ export default function SCFooter() {
                   {col.title}
                 </h3>
                 <ul className="mt-3 space-y-2 text-sm">
-                  {col.items.map((item) => (
-                    <li key={item.label}>
+                  {col.items.map((item, idx: number) => (
+                    <li key={idx}>
                       <Link
                         href={item.href}
                         id={("id" in item && item.id) ? item.id : undefined}

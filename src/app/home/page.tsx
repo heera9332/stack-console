@@ -1,4 +1,4 @@
-import SCFAQ from "@/components/sc-faq";
+import ScFAQ from "@/components/sc-faq";
 import ScHero from "@/components/sc-hero";
 import ScSeeInAction from "@/components/sc-see-in-action";
 import ScStackConsoleFeatures from "@/components/sc-stack-console-features";
@@ -10,15 +10,14 @@ import ScCloudEcosystem from "@/components/ScCloudEcosystem";
 const Page = () => {
   return (
     <div>
-      <h1>Home Test page</h1>
-      <ScHero/>
-      <ScTrustedCloudInnovators/>
-      <ScCloudEcosystem/>
-      <ScStackConsoleFeatures/>
-      <ScTransformIdeas/>
-      <ScSeeInAction/>
-      <ScWhoForStacKConsole/>
-      <SCFAQ />
+      <ScHero />
+      <ScTrustedCloudInnovators />
+      <ScCloudEcosystem />
+      <ScStackConsoleFeatures />
+      <ScTransformIdeas />
+      <ScSeeInAction />
+      <ScWhoForStacKConsole />
+      <ScFAQ />
     </div>
   );
 };
