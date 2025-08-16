@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: 'headless-dev.local',
       },
+      {
+        protocol: 'https',
+        hostname: 'stack-console.zoro-dev.com',
+      },
     ],
     minimumCacheTTL: 60,
     formats: ['image/webp', 'image/avif'],

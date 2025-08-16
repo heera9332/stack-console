@@ -13,6 +13,7 @@ type Feature = {
   video: { src: string; poster?: string };
   surface?: "blue" | "yellow" | "red" | "muted";
   bgColor: string; // background color for the ENTIRE right column when active
+  topFrameColor: string; // background color for the ENTIRE right column when active
 };
 
 const features: Feature[] = [
@@ -27,7 +28,8 @@ const features: Feature[] = [
         "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/191f97ba4fa5c19ce234f226b81a9d4e1c8f82bc.png",
     },
     surface: "muted",
-    bgColor: "#83B6FF",
+    bgColor: "#83B6FF", 
+    topFrameColor: "#0B0D0F"
   },
   {
     id: "billing",
@@ -41,6 +43,7 @@ const features: Feature[] = [
     },
     surface: "blue",
     bgColor: "#FDE569",
+    topFrameColor: "#C4B0FF"
   },
   {
     id: "governance",
@@ -53,7 +56,8 @@ const features: Feature[] = [
         "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/191f97ba4fa5c19ce234f226b81a9d4e1c8f82bc.png",
     },
     surface: "yellow",
-    bgColor: "#FDE569",
+    bgColor: "#FFC1C3",
+    topFrameColor: "#8FD9F7"
   },
   {
     id: "stackai",
@@ -67,6 +71,7 @@ const features: Feature[] = [
     },
     surface: "muted",
     bgColor: "#83B6FF",
+    topFrameColor: "#C4B0FF"
   },
 ];
 
@@ -238,7 +243,6 @@ type VideoFrameProps = React.VideoHTMLAttributes<HTMLVideoElement> & {
 };
 
 // eslint-disable-next-line react/display-name
-// eslint-disable-next-line react/display-name
 const VideoFrame = (
   { feature, className, ...rest }: VideoFrameProps,
   ref?: React.Ref<HTMLVideoElement>
@@ -255,14 +259,103 @@ const VideoFrame = (
           poster={feature.video.poster}
           {...rest}
         />
-
-        {/* Frame top bar OVERLAY (doesn't change square ratio) */}
-        <img
-          src={"/video-frame-topbar.svg"}
-          alt="frame topbar"
-          className="absolute top-0 left-0 w-full h-auto block pointer-events-none select-none"
-        />
+        <TopVideoFrame color={feature.topFrameColor} />
       </div>
     </div>
+  );
+};
+
+const TopVideoFrame = ({ color = "#0B0D0F" }) => {
+  return (
+    <svg
+      width="580"
+      height="46"
+      viewBox="0 0 580 46"
+      fill={'none'}
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute top-0 left-0 w-full h-auto block pointer-events-none select-none"
+    >
+      <path
+        d="M20 0.5H560C570.77 0.5 579.5 9.23045 579.5 20V45.5H0.5V20C0.5 9.23045 9.23045 0.5 20 0.5Z"
+        fill={color}
+        stroke="#0B0D0F"
+      />
+      <path
+        d="M501.375 18.625L504 16L506.625 18.625"
+        stroke="#0B0D0F"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M504 23V16"
+        stroke="#0B0D0F"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M507 21H508.5C508.633 21 508.76 21.0527 508.854 21.1464C508.947 21.2402 509 21.3674 509 21.5V24.75V28C509 28.1326 508.947 28.2598 508.854 28.3536C508.76 28.4473 508.633 28.5 508.5 28.5H499.5C499.367 28.5 499.24 28.4473 499.146 28.3536C499.053 28.2598 499 28.1326 499 28V21.5C499 21.3674 499.053 21.2402 499.146 21.1464C499.24 21.0527 499.367 21 499.5 21H501"
+        stroke="#0B0D0F"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M522.5 23H533.5"
+        stroke="#0B0D0F"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M528 17.5V28.5"
+        stroke="#0B0D0F"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M549.5 25.5H547.5C546.948 25.5 546.5 25.0523 546.5 24.5V18.5C546.5 17.9477 546.948 17.5 547.5 17.5H553.5C554.052 17.5 554.5 17.9477 554.5 18.5V20.5"
+        stroke="#0B0D0F"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M550.5 20.5H556.5C557.052 20.5 557.5 20.9477 557.5 21.5V27.5C557.5 28.0523 557.052 28.5 556.5 28.5H550.5C549.948 28.5 549.5 28.0523 549.5 27.5V21.5C549.5 20.9477 549.948 20.5 550.5 20.5Z"
+        stroke="#0B0D0F"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle
+        cx="26"
+        cy="23"
+        r="5.5"
+        fill="black"
+        fill-opacity="0.1"
+        stroke="#0B0D0F"
+      />
+      <circle
+        cx="44"
+        cy="23"
+        r="5.5"
+        fill="black"
+        fill-opacity="0.1"
+        stroke="#0B0D0F"
+      />
+      <circle
+        cx="62"
+        cy="23"
+        r="5.5"
+        fill="black"
+        fill-opacity="0.1"
+        stroke="#0B0D0F"
+      />
+      <rect
+        x="149"
+        y="14"
+        width="281"
+        height="18"
+        rx="5"
+        fill="white"
+        fill-opacity="0.5"
+        stroke="#0B0D0F"
+      />
+    </svg>
   );
 };
