@@ -30,25 +30,19 @@ export default function ScSeeInAction() {
     setHasStarted(true);
   };
 
-  const { isMobile } = useMediaQuery();
-
   return (
     <section className="px-4 md:px-6 lg:px-8 py-12 pb-40 md:pb-16 md:py-16 bg-gray-100/50">
       {/* Heading */}
       <header className="text-center max-w-4xl mx-auto">
-        {!isMobile && (
-          <h2 className="text-[32px] md:text-[56px] leading-tight font-semibold text-foreground">
+          <h2 className="hidden md:block text-[32px] md:text-[56px] leading-tight font-semibold text-foreground">
             {data.titleTop}
             <br />
             {data.titleBottom}
           </h2>
-        )}
 
-        {isMobile && (
-          <h2 className="text-[32px] md:text-[56px] leading-tight font-semibold text-foreground">
+          <h2 className="block md:hidden text-[32px] md:text-[56px] leading-tight font-semibold text-foreground">
             {`${data.titleTop} ${data.titleBottom}`}
           </h2>
-        )}
         <p className="mt-3 text-body2 md:text-body1 text-muted-foreground">
           {data.description}
         </p>

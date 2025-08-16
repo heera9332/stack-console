@@ -3,7 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import Newsletter from "./news-letter";
 
-const columns = [
+type NavItem = {
+  label: string;
+  href: string;
+  id?: string; // optional string
+};
+
+type Column = {
+  title: string;
+  items: NavItem[];
+};
+
+const columns: Column[] = [
   {
     title: "PLATFORM",
     items: [
@@ -31,7 +42,7 @@ const columns = [
       { label: "Insights", href: "#" },
       { label: "Blogs", href: "#" },
       { label: "Videos", href: "#" },
-      { label: "Events", href: "#" }
+      { label: "Events", href: "#" },
     ],
   },
   {
@@ -65,13 +76,21 @@ export default function SCFooter() {
           {/* Brand / Address */}
           <div className="md:col-span-4">
             <Link href="#">
-              <Image className="w-1/2 object-cover" width={512} height={512} src={'/assets/images/brand/logo-dark.png'} alt="stack console logo"/>
+              <Image
+                className="w-1/2 object-cover"
+                width={512}
+                height={512}
+                src={"/assets/images/brand/logo-dark.png"}
+                alt="stack console logo"
+              />
             </Link>
 
-            <p className="mt-4 text-sm opacity-90">© Stack Console Cloud Solutions Pvt Ltd</p>
+            <p className="mt-4 text-sm opacity-90">
+              © Stack Console Cloud Solutions Pvt Ltd
+            </p>
 
             <div className="mt-4">
-              <Newsletter/>
+              <Newsletter />
             </div>
           </div>
 
@@ -83,22 +102,24 @@ export default function SCFooter() {
                   {col.title}
                 </h3>
                 <ul className="mt-3 space-y-2 text-sm">
-                  {col.items.map((item, idx: number) => (
-                    <li key={idx}>
-                      <Link
-                        href={item.href}
-                        id={("id" in item && item.id) ? item.id : undefined}
-                        className="
-                          nav-link
-                          text-white
-                          underline-offset-4 hover:underline
-                          transition-colors opacity-90
-                        "
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {col.items.map((item, idx: number) => {
+                    return (
+                      <li key={idx}>
+                        <Link
+                          href={item.href}
+                          id={typeof item.id === "string" ? item.id : undefined}
+                          className="
+                            nav-link
+                            text-white
+                            underline-offset-4 hover:underline
+                            transition-colors opacity-90
+                          "
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </nav>
             ))}

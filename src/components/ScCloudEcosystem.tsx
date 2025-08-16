@@ -2,8 +2,6 @@
 "use client";
 
 import Image from "next/image";
-import clsx from "clsx";
-import { useMediaQuery } from "@/hooks/use-media-query";
 
 /** --------- STATIC DATA (swap with API later) --------- */
 const cloudData = {
