@@ -11,9 +11,9 @@ const data = {
   description:
     "Explore how you can manage VMs, networks, billing, and users through one unified portal. Experience the interface, workflows, and automations before you even talk to us.",
   video: {
-    src: "http://headless-dev.local/wp-content/uploads/2025/08/Untitled-design.mp4",
+    src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design.mp4",
     poster:
-      "http://headless-dev.local/wp-content/uploads/2025/08/191f97ba4fa5c19ce234f226b81a9d4e1c8f82bc.png",
+      "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/191f97ba4fa5c19ce234f226b81a9d4e1c8f82bc.png",
   },
   cta: "Start the Tour",
 };
