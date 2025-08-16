@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css"; 
+import "./globals.css";
 import SCFooter from "@/components/sc-footer";
 import CTASection from "@/components/footer-cta";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -27,11 +27,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-        <ScHeader />
-        {children}
-        <CTASection/>
-        <SCFooter/>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+        >
+          <ScHeader />
+          {children}
+          <CTASection />
+          <SCFooter />
         </ThemeProvider>
       </body>
     </html>

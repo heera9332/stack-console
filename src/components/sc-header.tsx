@@ -52,7 +52,7 @@ const NAV: TopNav[] = [
             id: "ovr",
             label: "Overview",
             href: "/platform/overview",
-            emoji: "🧭",
+            emoji: "/assets/svg/file.svg",
             description: "High-level overview and core concepts.",
             preview: {
               title: "Overview",
@@ -64,7 +64,7 @@ const NAV: TopNav[] = [
             id: "billing",
             label: "Subscription & Billing",
             href: "/platform/billing",
-            emoji: "💳",
+            emoji: "/assets/svg/file.svg",
             description: "Automated invoices, usage metering, multi-currency.",
             preview: {
               title: "Billing",
@@ -76,7 +76,7 @@ const NAV: TopNav[] = [
             id: "integration",
             label: "Integration",
             href: "/platform/integration",
-            emoji: "🔗",
+            emoji: "/assets/svg/file.svg",
             description: "Connect clouds, tools, identity and more.",
             preview: {
               title: "Integration",
@@ -88,7 +88,7 @@ const NAV: TopNav[] = [
             id: "reseller",
             label: "Reseller Management",
             href: "/platform/reseller",
-            emoji: "👥",
+            emoji: "/assets/svg/file.svg",
             description: "Multi-tenant reseller workflows and controls.",
             preview: {
               title: "Reseller",
@@ -100,7 +100,7 @@ const NAV: TopNav[] = [
             id: "style",
             label: "Style your Stack",
             href: "/platform/white-label",
-            emoji: "🎨",
+            emoji: "/assets/svg/file.svg",
             description: "White-label and brand controls.",
             preview: {
               title: "White Label",
@@ -112,7 +112,7 @@ const NAV: TopNav[] = [
             id: "ai",
             label: "Stack AI",
             href: "/platform/ai",
-            emoji: "🤖",
+            emoji: "/assets/svg/file.svg",
             description: "Natural-language operations for teams.",
             preview: {
               title: "Stack AI",
@@ -124,7 +124,7 @@ const NAV: TopNav[] = [
             id: "migration",
             label: "Migration Engine",
             href: "/platform/migration",
-            emoji: "🚚",
+            emoji: "/assets/svg/file.svg",
             description: "Move workloads with confidence.",
             preview: {
               title: "Migration",
@@ -296,7 +296,9 @@ function MegaPanel({
                       "
                     >
                       <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-gray-100 group-hover:bg-white border border-black/10">
-                        <span className="text-lg">{it.emoji}</span>
+                        <span className="text-lg">
+                          <img className="text-white" src={it.emoji} alt="icon"/>
+                        </span>
                       </span>
                       <span className="flex-1">
                         <span className="block font-medium text-gray-900">
