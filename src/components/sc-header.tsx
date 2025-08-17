@@ -181,7 +181,7 @@ export default function ScHeader() {
             alt="stack console"
             width={512}
             height={512}
-            className="w-1/2"
+            className="w-[172px]"
           />
         </Link>
 

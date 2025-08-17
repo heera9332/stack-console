@@ -28,13 +28,13 @@ const features: Feature[] = [
         "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/191f97ba4fa5c19ce234f226b81a9d4e1c8f82bc.png",
     },
     surface: "muted",
-    bgColor: "#83B6FF", 
-    topFrameColor: "#0B0D0F"
+    bgColor: "#83B6FF",
+    topFrameColor: "#0B0D0F",
   },
   {
     id: "billing",
-    title: "Automated Billing & Invoicing",
-    body: "Usage metering, automated invoices, and multi-currency support out of the box. Stop spreadsheets, start scaling.",
+    title: "Multi-OrchestratorReady",
+    body: "Seamlessly manage Apache CloudStack, OpenStack, Virtuozzo, VMware, Proxmox, and more — all from a single dashboard.",
     cta: { label: "Explore Billing", href: "#" },
     video: {
       src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design-4.mp4",
@@ -43,12 +43,12 @@ const features: Feature[] = [
     },
     surface: "blue",
     bgColor: "#FDE569",
-    topFrameColor: "#C4B0FF"
+    topFrameColor: "#C4B0FF",
   },
   {
     id: "governance",
-    title: "Policy-Driven Governance",
-    body: "Templates, guardrails, and drift detection keep environments compliant without slowing teams down.",
+    title: "Fully White-Labeled",
+    body: "Launch your own branded cloud portal and mobile apps — your logo, your domain, your rules.",
     cta: { label: "See Policies", href: "#" },
     video: {
       src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design-5.mp4",
@@ -57,12 +57,12 @@ const features: Feature[] = [
     },
     surface: "yellow",
     bgColor: "#FFC1C3",
-    topFrameColor: "#8FD9F7"
+    topFrameColor: "#8FD9F7",
   },
   {
-    id: "stackai1",
-    title: "AI-Powered Operations with StackAI",
-    body: "Let users perform everyday cloud tasks — from creating VMs to managing billing, setting alerts, and more — using simple natural language commands.",
+    id: "stackai2",
+    title: "Modern & Responsive UI",
+    body: "Deliver a sleek, intuitive user experience across desktop and mobile — no training required, just instant usability.",
     cta: { label: "Learn More", href: "#" },
     video: {
       src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design-4.mp4",
@@ -71,7 +71,7 @@ const features: Feature[] = [
     },
     surface: "muted",
     bgColor: "#83B6FF",
-    topFrameColor: "#C4B0FF"
+    topFrameColor: "#C4B0FF",
   },
 ];
 
@@ -130,13 +130,20 @@ export default function ScStackConsoleFeatures() {
 
   return (
     <>
-      <section className="px-4 md:px-6 lg:px-8 py-14 md:py-20">
+      <section className="px-4 md:px-6 lg:px-8 pt-14 md:py-20">
         {/* Heading */}
         <header className="text-center max-w-4xl mx-auto">
-          <h2 className="text-h2 md:text-[56px] font-semibold leading-tight text-foreground">
-            What Makes Stack <br className="hidden md:block" />
-            Console a Game Changer?
-          </h2>
+          <div className="hidden md:block">
+            <h2 className="text-h2 md:text-[56px] font-semibold leading-tight text-foreground">
+              What Makes Stack <br className="hidden md:block" />
+              Console a Game Changer?
+            </h2>
+          </div>
+          <div className="block md:hidden">
+            <h2 className="text-[36px] md:text-[56px] font-semibold leading-tight text-foreground">
+              What Makes Stack Console a Game Changer?
+            </h2>
+          </div>
           <p className="mt-3 text-body2 md:text-body1 text-muted-foreground">
             Built for the Ones Powering the Internet
           </p>
@@ -147,41 +154,40 @@ export default function ScStackConsoleFeatures() {
           {/* LEFT: feature list */}
           <div
             ref={leftRef}
-            className="space-y-20 md:space-y-42 lg:py-32 pl-12"
+            className="space-y-20 md:space-y-42  px-4 lg:py-32 md:pl-12"
           >
             {features.map((f) => (
               <article
                 key={f.id}
                 data-feature={f.id}
-                className="max-w-xl min-h-[512px] flex justify-center flex-col"
+                className="max-w-xl min-h-[512px] flex justify-center flex-col order-2 md:order-1"
               >
-                <h3 className="text-[28px] md:text-[36px] font-semibold text-foreground">
-                  {f.title}
-                </h3>
-                <p className="mt-4 text-body1 text-muted-foreground">
-                  {f.body}
-                </p>
+                <div>
+                  <h3 className="text-[28px] md:text-[36px] font-semibold text-foreground">
+                    {f.title}
+                  </h3>
+                  <p className="mt-4 text-body1 text-muted-foreground">
+                    {f.body}
+                  </p>
 
-                {f.cta && (
-                  <div className="mt-6">
-                    <Link
-                      href={f.cta.href || "#"}
-                      className="text-center block cursor-pointer px-4 py-3 bg-white text-black rounded-[6px] w-56 border border-black transition-all delay-100 hover:shadow-[2px_8px_0px_2px_#356EC3] hover:border-r-[2px] hover:border-[#356EC3] hover:border-l-0 hover:border-t-0"
-                    >
-                      {f.cta.label}
-                    </Link>
-                  </div>
-                )}
+                  {f.cta && (
+                    <div className="mt-6">
+                      <Link
+                        href={f.cta.href || "#"}
+                        className="text-center block cursor-pointer px-4 py-3 bg-white text-black rounded-[6px] w-56 border border-black transition-all delay-100 hover:shadow-[2px_8px_0px_2px_#356EC3] hover:border-r-[2px] hover:border-[#356EC3] hover:border-l-0 hover:border-t-0"
+                      >
+                        {f.cta.label}
+                      </Link>
+                    </div>
+                  )}
+                </div>
 
                 {/* MOBILE/TABLET: inline video under its text (no sticky on small) */}
-                <div className="mt-6 lg:hidden">
-                  <VideoFrame
-                    feature={f}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
+                <div
+                  className={`my-6 py-16 px-10 lg:hidden bg-[${f.bgColor}]`}
+                  style={{ backgroundColor: f.bgColor }}
+                >
+                  <VideoFrame feature={f} autoPlay muted loop playsInline />
                 </div>
               </article>
             ))}
@@ -223,7 +229,6 @@ export default function ScStackConsoleFeatures() {
                     </div>
                   ))}
                 </div>
-
                 {/* soft drop shadow */}
                 <div className="absolute inset-0 -z-10 blur-2xl opacity-30 rounded-2xl bg-black/20" />
               </div>
@@ -249,7 +254,7 @@ const VideoFrame = (
   return (
     <div className="relative w-full h-full">
       {/* Square framed container */}
-      <div className="relative w-full h-full aspect-square rounded-2xl overflow-hidden border-2 border-black bg-white">
+      <div className="relative w-full h-full aspect-square rounded-xl md:rounded-2xl overflow-hidden border-2 border-black bg-white">
         {/* Video fills the square */}
         <video
           ref={ref}
@@ -270,7 +275,7 @@ const TopVideoFrame = ({ color = "#0B0D0F" }) => {
       width="580"
       height="46"
       viewBox="0 0 580 46"
-      fill={'none'}
+      fill={"none"}
       xmlns="http://www.w3.org/2000/svg"
       className="absolute top-0 left-0 w-full h-auto block pointer-events-none select-none"
     >

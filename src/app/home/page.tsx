@@ -12,10 +12,10 @@ const Page = () => {
     <div>
       <ScHero />
       <ScTrustedCloudInnovators />
-      <ScCloudEcosystem />
-      <ScStackConsoleFeatures />
       <ScTransformIdeas />
       <ScSeeInAction />
+      <ScCloudEcosystem />
+      <ScStackConsoleFeatures />
       <ScWhoForStacKConsole />
       <ScFAQ />
     </div>

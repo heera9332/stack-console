@@ -3,7 +3,7 @@
 
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import Image from "next/image";
 
 const data = {
   kicker: "Build a legacy",
@@ -39,7 +39,7 @@ export default function ScHero() {
       className="
         relative overflow-hidden
         bg-[#0B0B0F] text-white
-        px-4 md:px-6 lg:px-8 py-16 md:py-24 min-h-[820px]
+        px-4 md:px-6 lg:px-8 py-16 md:py-32 
         flex flex-col items-center justify-center
       "
     >
@@ -85,21 +85,29 @@ export default function ScHero() {
         </p>
 
         <div className="my-8">
-          {/* Title */}
-          <h1 className="font-semibold leading-tight text-[36px] md:text-[64px]">
-            {data.title1}
+          {/* Title 1 (plain white text with glow overlay) */}
+          <h1 className="font-semibold leading-tight text-[36px] md:text-[64px] text-white">
+            <span className="hero-text" data-text={data.title1}>
+              {data.title1}
+            </span>
           </h1>
 
-          {/* Gradient word line */}
+          {/* Title 2 (gradient text + glow overlay) */}
           <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight">
             <span className="align-middle mr-2">{data.title2Emoji}</span>
-            <span
-              className="
-              bg-clip-text text-transparent
-              [background-image:linear-gradient(90deg,#ff7a59,#ffd400,#78e08f,#3ba1ff)]
-            "
-            >
-              {data.title2}
+
+            {/* Wrap to position the overlay correctly */}
+            <span className="hero-text" data-text={data.title2}>
+              {/* Visible gradient text (base stays visible) */}
+              <span
+                className="
+                  bg-clip-text text-transparent
+                  [background-image:linear-gradient(90deg,#ff7a59,#ffd400,#78e08f,#3ba1ff)]
+                "
+              >
+                {data.title2}
+              </span>
+              {/* ::after from .hero-text draws the yellow spotlight clipped to glyphs */}
             </span>
           </p>
 
@@ -132,7 +140,9 @@ export default function ScHero() {
               href={data.ctas.secondary.href}
               className="inline-flex items-center gap-2"
             >
-              <img
+              <Image
+                width={100}
+                height={100}
                 className="svg-white"
                 src={"/assets/svg/play-circle.svg"}
                 alt="try demo"

@@ -84,3 +84,47 @@
   );
   border-image-slice: 1; /* important: use the whole gradient */
 }
+
+/* globals.css */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* track is duplicated, so -50% loops seamlessly */
+}
+
+.marquee {
+  animation: marquee-x var(--marquee-duration, 2s) linear infinite;
+  will-change: transform;
+}
+.marquee-reverse { animation-direction: reverse; }
+.marquee-pause:hover,
+.marquee-pause:focus-within { animation-play-state: paused; }
+
+
+/* hero section mouse hover effect */
+
+/* Base: visible text; overlay: cursor-follow glow clipped to letters */
+.hero-text { position: relative; display: inline-block; }
+
+/* Overlay version for any text (keeps base text visible) */
+.hero-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    220px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 212, 0, 0.95) 0%,
+    rgba(255, 212, 0, 0.65) 25%,
+    transparent 60%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;         /* only the overlay is transparent */
+  pointer-events: none;
+  mix-blend-mode: screen;     /* adds a “shine” instead of masking base text */
+  transition: background 120ms linear;
+}
+
+/* If you ever need a stronger effect on dark bg */
+@media (prefers-contrast: more) {
+  .hero-text::after { mix-blend-mode: lighten; }
+}
