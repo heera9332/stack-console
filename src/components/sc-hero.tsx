@@ -1,6 +1,6 @@
 // src/sections/ScHero.tsx
 "use client";
-
+import "./sc-hero.css";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -21,7 +21,6 @@ const data = {
 export default function ScHero() {
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  // move the glow with the cursor using CSS variables
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = wrapRef.current;
     if (!el) return;
@@ -47,58 +46,44 @@ export default function ScHero() {
       <div
         aria-hidden
         className="
-    pointer-events-none absolute inset-0
-    [background-image:linear-gradient(to_right,rgba(255,255,255,.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.2)_1px,transparent_1px)]
-    [background-size:40px_40px]
-    [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]
-  "
+          pointer-events-none absolute inset-0
+          [background-image:linear-gradient(to_right,rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.06)_1px,transparent_1px)]
+          [background-size:40px_40px]
+        "
       />
 
-      {/* HOVER GLOW (follows cursor) */}
+      {/* SOFT GRID LIFT SPOTLIGHT */}
+      <div
+        aria-hidden
+        className="bgSpot pointer-events-none absolute inset-0"
+      />
+
+      {/* (Kept) subtle ambient glow layer, now redundant but harmless; left intact */}
       <div
         aria-hidden
         className="
           pointer-events-none absolute inset-0 transition-opacity duration-300
-          [background:radial-gradient(400px_400px_at_var(--x,_50%)_var(--y,_50%),rgba(92,51,207,.30),transparent_60%)]
+          [background:radial-gradient(400px_400px_at_var(--x,_50%)_var(--y,_50%),rgba(92,51,207,.22),transparent_60%)]
         "
       />
 
-      <div
-        aria-hidden
-        className="
-    pointer-events-none absolute inset-0
-    transition-all duration-300
-    [background-image:
-      radial-gradient(400px_400px_at_var(--x,_50%)_var(--y,_50%),rgba(92,51,207,0.3),transparent_60%),
-      linear-gradient(to_right,rgba(255,255,255,.2)_1px,transparent_1px),
-      linear-gradient(to_bottom,rgba(255,255,255,.2)_1px,transparent_1px)
-    ]
-    [background-size:100%_100%,40px_40px,40px_40px]
-    [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]
-  "
-      />
-
       <div className="max-w-6xl mx-auto text-center relative">
-        {/* Kicker */}
         <p className="text-[20px] font-bold md:text-[24px] text-white">
           {data.kicker}
         </p>
 
         <div className="my-8">
-          {/* Title 1 (plain white text with glow overlay) */}
-          <h1 className="font-semibold leading-tight text-[36px] md:text-[64px] text-white">
-            <span className="hero-text" data-text={data.title1}>
+          {/* Title 1: white base + spotlight only on glyphs */}
+          <h1 className="font-semibold leading-tight text-[36px] md:text-[64px]">
+            <span className="heroText" data-text={data.title1}>
               {data.title1}
             </span>
           </h1>
 
-          {/* Title 2 (gradient text + glow overlay) */}
+          {/* Title 2: gradient base + spotlight layer */}
           <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight">
             <span className="align-middle mr-2">{data.title2Emoji}</span>
-
-            {/* Wrap to position the overlay correctly */}
-            <span className="hero-text" data-text={data.title2}>
-              {/* Visible gradient text (base stays visible) */}
+            <span className="heroText" data-text={data.title2}>
               <span
                 className="
                   bg-clip-text text-transparent
@@ -107,16 +92,14 @@ export default function ScHero() {
               >
                 {data.title2}
               </span>
-              {/* ::after from .hero-text draws the yellow spotlight clipped to glyphs */}
             </span>
           </p>
 
-          {/* Description */}
           <p className="mx-auto mt-5 max-w-3xl text-body2 md:text-body1 text-white/80">
             {data.description}
           </p>
         </div>
-        {/* CTAs */}
+
         <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
           <Button
             asChild
@@ -152,6 +135,8 @@ export default function ScHero() {
           </Button>
         </div>
       </div>
+
+
     </section>
   );
 }

@@ -1,0 +1,41 @@
+section {
+  --x: 50%;
+  --y: 50%;
+  --r: 290px;
+  --r-bg: 100px;
+  --hard: 150, 160, 0;
+}
+
+.bgSpot {
+  background: radial-gradient(
+    circle var(--r-bg) at var(--x) var(--y),
+    rgba(var(--hard), 0.28) 0%,
+    rgba(var(--hard), 0.18) 35%,
+    rgba(var(--hard), 0.1) 60%,
+    rgba(var(--hard), 0) 100%
+  );
+  mix-blend-mode: screen;
+}
+
+.heroText {
+  position: relative;
+  display: inline-block;
+}
+
+.heroText::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle var(--r) at var(--x) var(--y),
+    rgba(var(--hard), 1) 0%,
+    rgba(var(--hard), 0.85) 20%,
+    rgba(var(--hard), 0.55) 45%,
+    rgba(var(--hard), 0.25) 70%,
+    rgba(var(--hard), 0) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+}
