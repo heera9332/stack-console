@@ -128,3 +128,5 @@
 @media (prefers-contrast: more) {
   .hero-text::after { mix-blend-mode: lighten; }
 }
+
+/* * { outline: 1px dashed rgb(255, 0, 0); outline-offset: -1px; } */

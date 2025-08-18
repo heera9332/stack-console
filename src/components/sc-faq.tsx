@@ -14,70 +14,45 @@ const faqs = [
   // Beautiful Homes Service FAQs
   {
     category: "Beautiful Homes Service",
-    q: "Can I avail of the service if I want some very simple and minimal design?",
-    a: "Absolutely. Beautiful Homes Service offers personalised solutions for your interior design needs. Our designers talk to you in detail to understand your vision and help you design a space that is in sync.",
+    q: "How does Stack Console help me monetize my infrastructure?",
+    a: "Stack Console turns your infrastructure into a revenue-generating cloud platform by offering automated billing, subscription management, and reseller support — all white-labelled under your brand.",
   },
   {
     category: "Beautiful Homes Service",
-    q: "Do I have to get the entire house designed if I book this service?",
-    a: "No. You can do one room or the whole house—completely up to you.",
+    q: "Does Stack Console support multiple orchestrators (CloudStack, OpenStack, VMware, etc.)?",
+    a: "Yes. Stack Console integrates seamlessly with Apache CloudStack, OpenStack, VMware, OpenNebula, Virtuozzo, Proxmox, Ceph, and more — all managed from one console.",
   },
   {
     category: "Beautiful Homes Service",
-    q: "Who will supervise the work when I’m out of the house at work?",
-    a: "Our site manager coordinates daily progress and quality checks, sharing updates with you.",
+    q: "Can my customers manage their own services through Stack Console?",
+    a: "Absolutely. Your end-users get a modern self-service portal to provision, monitor, and manage VMs, storage, and networks — reducing support overhead.",
   },
   {
     category: "Beautiful Homes Service",
-    q: "Am I allowed to customise the designs for my house according to my taste?",
-    a: "Yes. Everything is customisable within the agreed scope and budget.",
+    q: "How does StackAI simplify cloud operations for end users?",
+    a: "StackAI enables natural language commands like “Create a VM with 2 cores and 4GB RAM” and provides intelligent alerts on usage thresholds — making cloud management effortless.",
   },
   {
     category: "Beautiful Homes Service",
-    q: "Can I opt for different themes for different rooms in my house?",
-    a: "Absolutely. We’ll keep a cohesive base while varying themes per room.",
+    q: "Does Stack Console include automated billing and subscription management?",
+    a: "Yes. From service activation to payment collection, Stack Console automates the entire billing lifecycle with prepaid, postpaid, and pay-as-you-go models.",
   },
   {
     category: "Beautiful Homes Service",
-    q: "When do I meet the interior designer to communicate my requirements?",
-    a: "Right at the start during discovery. We’ll also have milestone reviews.",
+    q: "Can I manage resellers and partners with Stack Console?",
+    a: "Yes. Our reseller management module allows you to create, track, and support reseller accounts with tiered pricing, white-labelling, and reporting.",
   },
 
   // Stack Console FAQs
   {
     category: "Stack Console",
-    q: "How does Stack Console help me monetize my infrastructure?",
-    a: "Stack Console turns your infrastructure into a revenue-generating cloud platform by offering automated billing, subscription management, and reseller support — all white-labelled under your brand.",
+    q: "What payment methods and currencies does the platform support?",
+    a: "Stack Console supports multiple payment gateways and global currencies, giving your customers the flexibility to pay how they want.",
   },
   {
     category: "Stack Console",
     q: "Does Stack Console support multiple orchestrators (CloudStack, OpenStack, VMware, etc.)?",
     a: "Yes. Stack Console integrates seamlessly with Apache CloudStack, OpenStack, VMware, OpenNebula, Virtuozzo, Proxmox, Ceph, and more — all managed from one console.",
-  },
-  {
-    category: "Stack Console",
-    q: "Can my customers manage their own services through Stack Console?",
-    a: "Absolutely. Your end-users get a modern self-service portal to provision, monitor, and manage VMs, storage, and networks — reducing support overhead.",
-  },
-  {
-    category: "Stack Console",
-    q: "How does StackAI simplify cloud operations for end users?",
-    a: "StackAI enables natural language commands like “Create a VM with 2 cores and 4GB RAM” and provides intelligent alerts on usage thresholds — making cloud management effortless.",
-  },
-  {
-    category: "Stack Console",
-    q: "Does Stack Console include automated billing and subscription management?",
-    a: "Yes. From service activation to payment collection, Stack Console automates the entire billing lifecycle with prepaid, postpaid, and pay-as-you-go models.",
-  },
-  {
-    category: "Stack Console",
-    q: "Can I manage resellers and partners with Stack Console?",
-    a: "Yes. Our reseller management module allows you to create, track, and support reseller accounts with tiered pricing, white-labelling, and reporting.",
-  },
-  {
-    category: "Stack Console",
-    q: "What payment methods and currencies does the platform support?",
-    a: "Stack Console supports multiple payment gateways and global currencies, giving your customers the flexibility to pay how they want.",
   },
   {
     category: "Stack Console",
@@ -98,7 +73,7 @@ const faqs = [
     category: "Stack Console",
     q: "How does Stack Console charge?",
     a: "Our pricing is flexible and depends on the integrations and modules you choose to enable. To get an accurate estimate tailored to your business needs, we recommend booking a meeting with our team.",
-  },
+  }
 ];
 
 

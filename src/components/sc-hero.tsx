@@ -8,10 +8,10 @@ import Image from "next/image";
 const data = {
   kicker: "Build a legacy",
   title1: "Empowering Cloud Providers",
-  title2Emoji: "🏆",
+  title2Emoji: "/assets/website/home/trophy.png",
   title2: "Winning the Race",
   description:
-    "Transform your data into actionable intelligence with our AI-driven SaaS, designed to optimize efficiency, automate workflows, and provide predictive insights for informed decision-making.",
+    "Stack Console is a white-label cloud management and billing platform for CloudStack, OpenStack, Proxmox, OpenNebula, OpenShift, VMware, Virtuozzo, and more — helping you launch cloud services under your brand, faster and more profitably.",
   ctas: {
     primary: { label: "Book a Demo", href: "#demo" },
     secondary: { label: "Self Guided Tour", href: "#tour" },
@@ -37,7 +37,7 @@ export default function ScHero() {
       onMouseMove={onMove}
       className="
         relative overflow-hidden
-        bg-[#0B0B0F] text-white
+        bg-[#12141D] text-white
         px-4 md:px-6 lg:px-8 py-16 md:py-32 
         flex flex-col items-center justify-center
       "
@@ -81,9 +81,15 @@ export default function ScHero() {
           </h1>
 
           {/* Title 2: gradient base + spotlight layer */}
-          <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight">
-            <span className="align-middle mr-2">{data.title2Emoji}</span>
-            <span className="heroText" data-text={data.title2}>
+          <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight ">
+            <span className="heroText relative" data-text={data.title2}>
+              <Image
+                src={data.title2Emoji}
+                alt="trophy"
+                width={512}
+                height={512}
+                className="h-10 md:h-18 w-10 md:w-18 object-cover absolute rotate-[-30deg] -left-10 md:-left-14"
+              />
               <span
                 className="
                   bg-clip-text text-transparent
@@ -95,7 +101,7 @@ export default function ScHero() {
             </span>
           </p>
 
-          <p className="mx-auto mt-5 max-w-3xl text-body2 md:text-body1 text-white/80">
+          <p className="mx-auto mt-5 md:px-62 text-body2 md:text-body1 text-white/80">
             {data.description}
           </p>
         </div>
@@ -135,8 +141,6 @@ export default function ScHero() {
           </Button>
         </div>
       </div>
-
-
     </section>
   );
 }

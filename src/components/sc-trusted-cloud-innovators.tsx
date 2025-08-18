@@ -112,7 +112,7 @@ function Lane({
     >
       <ul
         className={clsx(
-          "marquee marquee-pause flex gap-16 items-center",
+          "marquee marquee-pause flex gap-20 items-center",
           reverse && "marquee-reverse"
         )}
       >

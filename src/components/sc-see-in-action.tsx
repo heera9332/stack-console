@@ -2,14 +2,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useMediaQuery } from "@/hooks/use-media-query";
+import { Button } from "@/components/ui/button"; 
 
 const data = {
-  titleTop: "See Stack Console in 👉 Action",
-  titleBottom: "No Sales Call Required",
+  titleTop: "The Power⚡Behind",
+  titleBottom: "Your Cloud ☁️ Business",
   description:
-    "Explore how you can manage VMs, networks, billing, and users through one unified portal. Experience the interface, workflows, and automations before you even talk to us.",
+    "Learn how Stack Console empowers cloud providers to launch, manage, and automate cloud services with a white-label cloud management and billing platform — delivering efficiency, scalability, and profitability under their own brand.",
   video: {
     src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Untitled-design.mp4",
     poster:
@@ -33,7 +32,7 @@ export default function ScSeeInAction() {
   return (
     <section className="px-4 md:px-6 lg:px-8 py-12 pb-40 md:pb-16 md:py-16 bg-gray-100/50">
       {/* Heading */}
-      <header className="text-center max-w-4xl mx-auto">
+      <header className="text-center max-w-5xl mx-auto">
           <h2 className="hidden md:block text-[32px] md:text-[56px] leading-tight font-semibold text-foreground">
             {data.titleTop}
             <br />
@@ -43,7 +42,7 @@ export default function ScSeeInAction() {
           <h2 className="block md:hidden text-[32px] md:text-[56px] leading-tight font-semibold text-foreground">
             {`${data.titleTop} ${data.titleBottom}`}
           </h2>
-        <p className="mt-3 text-body2 md:text-body1 text-muted-foreground">
+        <p className="my-6 text-body2 md:text-body1 text-muted-foreground">
           {data.description}
         </p>
       </header>

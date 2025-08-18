@@ -5,7 +5,7 @@ import Image from "next/image";
 
 /** --------- STATIC DATA (swap with API later) --------- */
 const cloudData = {
-  titleTop: "Seamlessly Integrated with Your Cloud Ecosystem",
+  titleTop: "Seamlessly Integrated with Your ☁️ Cloud Ecosystem 💻",
 
   subtitle:
     "No plugins. No hacks. Just native, deep integrations with your core cloud infrastructure.",
@@ -32,7 +32,7 @@ const cloudData = {
     },
 
     { name: "Proxmox", src: "/assets/website/home/eco-system-2.svg" },
-    { name: "Cloudian", src: "/assets/website/home/eco-system-12.svg" },
+    // { name: "Cloudian", src: "/assets/website/home/eco-system-12.svg" },
   ],
 };
 
@@ -54,7 +54,7 @@ export default function ScCloudEcosystem() {
     <section className="relative overflow-hidden bg-foreground text-background">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
         {/* Heading */}
-        <header className="relative text-center flex flex-col items-center justify-center">
+        <header className="relative text-center flex flex-col items-center justify-center md:px-64">
           <h2 className="text-[32px] leading-tight font-semibold md:text-[44px] text-left md:text-center max-w-3xl">
             {cloudData.titleTop}
           </h2>

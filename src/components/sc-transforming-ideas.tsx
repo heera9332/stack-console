@@ -2,14 +2,15 @@
 "use client";
 
 const sectionData = {
-  heading: "Transforming 💡 Ideas Into Digital Reality",
-  description:
-    "Stack Console has completely transformed how we deliver cloud services. With its white-label flexibility, unified interface, and powerful automation, we were able to launch a modern cloud platform that truly reflects our brand — and our customers love the modern experience.",
+  heading: "Turning Big💡 Ideas Into Cloud Power",
+  description1:
+    "Deliver, manage, and scale cloud services under your own brand with Stack Console — the white-label cloud management and billing platform for CloudStack, OpenStack, Proxmox, OpenShift, VMware, Virtuozzo, and more.",
+    description2: 'Trusted by providers in 25+ countries, we combine automation, real-time insights, and multi-orchestrator support to help you grow faster and smarter.',
   author: "— Sarah Kim, CTO – Tech Innovators",
   stats: [
-    { value: "15+", label: "Countries Served" },
-    { value: "20+", label: "Availability Zones" },
-    { value: "10k+", label: "Managed Instances" },
+    { value: "25+", label: "Countries Served" },
+    { value: "45+", label: "Availability Zones" },
+    { value: "20k+", label: "Managed Instances" },
   ],
   image: "/assets/website/home/sun.png",
 };
@@ -39,11 +40,15 @@ export default function ScTransformIdeas() {
             {sectionData.heading.split("💡")[1].split(" ").slice(2).join(" ")}
           </h2>
 
-          <p className="mt-4 text-body1 text-muted-foreground">
-            {sectionData.description}
+          <p className="mt-6 text-body1 text-muted-foreground">
+            {sectionData.description1}
           </p>
 
-          <p className="mt-4 text-body2 font-semibold text-foreground">
+          <p className="mt-6 text-body1 text-muted-foreground">
+            {sectionData.description2}
+          </p>
+
+          <p className="mt-6 text-body2 font-semibold text-foreground">
             {sectionData.author}
           </p>
 
