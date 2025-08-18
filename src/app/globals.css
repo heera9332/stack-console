@@ -129,4 +129,9 @@
   .hero-text::after { mix-blend-mode: lighten; }
 }
 
+.img-primary {
+  filter: invert(39%) sepia(64%) saturate(446%) hue-rotate(187deg) brightness(92%) contrast(90%);
+}
+
+
 /* * { outline: 1px dashed rgb(255, 0, 0); outline-offset: -1px; } */

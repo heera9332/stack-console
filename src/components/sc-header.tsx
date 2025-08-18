@@ -29,6 +29,7 @@ type MegaSection = {
   id: string;
   title: string;
   items: NavItem[];
+  description: string;
 };
 
 type TopNav = {
@@ -47,17 +48,23 @@ const NAV: TopNav[] = [
       {
         id: "overview",
         title: "Overview",
+        description: "Everything You Need to Run Your Cloud",
+        
         items: [
           {
             id: "ovr",
             label: "Overview",
             href: "#",
-            emoji: "/assets/svg/file.svg",
+            emoji: "/assets/svg/overview.svg",
             description: "High-level overview and core concepts.",
             preview: {
               title: "Overview",
               blurb: "Designed in pursuit of high-speed performance.",
               cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: ""
+              }
             },
           },
           {
@@ -70,25 +77,30 @@ const NAV: TopNav[] = [
               title: "Billing",
               blurb: "Automate billing and focus on growth.",
               cta: { label: "Explore More", href: "/platform/billing" },
+                image: {
+                link: "/assets/nav-billing.svg",
+                alt: ""
+              }
             },
           },
           {
             id: "integration",
             label: "Integration",
             href: "#",
-            emoji: "/assets/svg/file.svg",
+            emoji: "/assets/svg/atom-01.svg",
             description: "Connect clouds, tools, identity and more.",
             preview: {
               title: "Integration",
               blurb: "Native, deep integrations with your stack.",
               cta: { label: "Explore More", href: "/platform/integration" },
+              
             },
           },
           {
             id: "reseller",
             label: "Reseller Management",
             href: "#",
-            emoji: "/assets/svg/file.svg",
+            emoji: "/assets/svg/users-03.svg",
             description: "Multi-tenant reseller workflows and controls.",
             preview: {
               title: "Reseller",
@@ -100,7 +112,7 @@ const NAV: TopNav[] = [
             id: "style",
             label: "Style your Stack",
             href: "#",
-            emoji: "/assets/svg/file.svg",
+            emoji: "/assets/svg/layers-three-02.svg",
             description: "White-label and brand controls.",
             preview: {
               title: "White Label",
@@ -112,7 +124,7 @@ const NAV: TopNav[] = [
             id: "ai",
             label: "Stack AI",
             href: "#",
-            emoji: "/assets/svg/file.svg",
+            emoji: "/assets/svg/stack-ai.svg",
             description: "Natural-language operations for teams.",
             preview: {
               title: "Stack AI",
@@ -124,7 +136,7 @@ const NAV: TopNav[] = [
             id: "migration",
             label: "Migration Engine",
             href: "#",
-            emoji: "/assets/svg/file.svg",
+            emoji: "/assets/svg/zap-fast.svg",
             description: "Move workloads with confidence.",
             preview: {
               title: "Migration",
@@ -281,8 +293,13 @@ function MegaPanel({
         <div className="col-span-8 p-4 md:p-6">
           {sections.map((sec) => (
             <div key={sec.id} className="mb-4">
-              <div className="px-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
-                {sec.title}
+              <div className="px-2 pb-6">
+                <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  {sec.title}
+                </div>
+                <div>
+                  <p className="">{sec.description}</p>
+                </div>
               </div>
               <ul className="mt-2">
                 {sec.items.map((it) => (
@@ -292,12 +309,18 @@ function MegaPanel({
                       onMouseEnter={() => setHoverItem(it)}
                       className="
                         group flex items-start gap-3 rounded-md px-2 py-2
-                        hover:bg-gray-100
+                        hover:bg-gray-100 my-4
                       "
                     >
-                      <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-gray-100 group-hover:bg-white border border-black/10">
-                        <span className="text-lg">
-                          <img className="text-white" src={it.emoji} alt="icon"/>
+                      <span className="p-2 flex size-10 mt-0.5 shrink-0 items-center justify-center rounded-[12px] bg-gray-100 group-hover:bg-white border border-[#AFB9CE]">
+                        <span className="">
+                          <Image
+                            className="text-white img-primary"
+                            src={it.emoji || "#"}
+                            alt="icon"
+                            width={100}
+                            height={100}
+                          />
                         </span>
                       </span>
                       <span className="flex-1">
@@ -342,7 +365,8 @@ function PreviewCard({ item }: { item: NavItem | null }) {
   return (
     <div className="rounded-xl bg-white overflow-hidden min-w-full flex flex-col justify-center items-center">
       <div className="w-full relative">
-        <div className="rounded-lg bg-gradient-to-b from-indigo-600 to-indigo-800 h-64" />
+        <div className="rounded-lg bg-gradient-to-b from-indigo-600 to-indigo-800 h-64 overflow-hidden" />
+          {item.preview && <Image className="absolute top-2" src={item?.preview?.image?.link || "/assets/overview-img.png"} width={512} height={512} alt={item?.preview.image?.alt}/>}
         <div className="absolute bottom-0 px-4 w-full">
           <div className="text-white font-semibold">{title}</div>
           <p title={blurb} className="h-20 mt-1 text-sm text-muted">
