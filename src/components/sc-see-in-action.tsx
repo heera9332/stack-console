@@ -53,9 +53,8 @@ export default function ScSeeInAction() {
         <div
           className="
             relative md:overflow-hidden
-            rounded-3xl border-[4px] md:border-[8px] border-black bg-background
-            shadow-[0_10px_40px_rgba(0,0,0,0.15)]
-            
+            rounded-3xl bg-background
+            shadow-[0_0_0_6px_black] md:shadow-[0_0_0_10px_black]
           "
         >
           {/* subtle device bezel */}

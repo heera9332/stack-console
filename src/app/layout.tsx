@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     "Stack Console's self-service cloud management platform designed for OpenStack, CloudStack, OpenNebula and VMware.",
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
+
 export default function RootLayout({
   children,
 }: {
