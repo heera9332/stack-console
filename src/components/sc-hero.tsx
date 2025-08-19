@@ -3,7 +3,6 @@ import "./sc-hero.css";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Script from "next/script";
 
 const data = {
   kicker: "Build a legacy",
@@ -145,7 +144,6 @@ export default function ScHero() {
         </div>
       </div>
       <div className="gradient-overlay"></div>
-      <Script src="./sc-hero.js"/>
     </section>
   );
 }
