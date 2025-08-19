@@ -1,9 +1,9 @@
-// src/sections/ScHero.tsx
 "use client";
 import "./sc-hero.css";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Script from "next/script";
 
 const data = {
   kicker: "Build a legacy",
@@ -31,17 +31,28 @@ export default function ScHero() {
     el.style.setProperty("--y", `${y}px`);
   };
 
+  const onLeave = () => {
+    const el = wrapRef.current;
+    if (!el) return;
+    // push spotlight off-screen
+    el.style.setProperty("--x", `-999px`);
+    el.style.setProperty("--y", `-999px`);
+  };
+
   return (
     <section
       ref={wrapRef}
       onMouseMove={onMove}
+      onMouseLeave={onLeave}
       className="
         relative overflow-hidden
         bg-[#12141D] text-white
-        px-4 md:px-6 lg:px-8 py-16 md:py-50 
-        flex flex-col items-center justify-center section
+        px-4 md:px-6 lg:px-8 py-16 md:py-40
+        flex flex-col items-center justify-center
+        grid-container 
       "
     >
+      <div id="glowSegments"></div>
       {/* GRID BACKGROUND */}
       <div
         aria-hidden
@@ -52,36 +63,28 @@ export default function ScHero() {
         "
       />
 
-      {/* SOFT GRID LIFT SPOTLIGHT */}
+      {/* SOFT SPOTLIGHT GLOW */}
       <div
         aria-hidden
         className="bgSpot pointer-events-none absolute inset-0"
       />
 
-      {/* (Kept) subtle ambient glow layer, now redundant but harmless; left intact */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none absolute inset-0 transition-opacity duration-300
-          [background:radial-gradient(400px_400px_at_var(--x,_50%)_var(--y,_50%),rgba(92,51,207,.22),transparent_60%)]
-        "
-      />
-
-      <div className="max-w-6xl mx-auto text-center relative">
+      {/* Text + spotlight */}
+      <div className="max-w-6xl mx-auto text-center relative z-10">
         <p className="text-[20px] font-bold md:text-[24px] text-white">
           {data.kicker}
         </p>
 
         <div className="my-8">
-          {/* Title 1: white base + spotlight only on glyphs */}
+          {/* Title 1 */}
           <h1 className="font-semibold leading-tight text-[36px] md:text-[64px]">
             <span className="heroText" data-text={data.title1}>
               {data.title1}
             </span>
           </h1>
 
-          {/* Title 2: gradient base + spotlight layer */}
-          <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight ">
+          {/* Title 2 */}
+          <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight">
             <span className="heroText relative" data-text={data.title2}>
               <Image
                 src={data.title2Emoji}
@@ -141,6 +144,8 @@ export default function ScHero() {
           </Button>
         </div>
       </div>
+      <div className="gradient-overlay"></div>
+      <Script src="./sc-hero.js"/>
     </section>
   );
 }
