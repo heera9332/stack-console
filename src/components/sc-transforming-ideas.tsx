@@ -48,10 +48,6 @@ export default function ScTransformIdeas() {
             {sectionData.description2}
           </p>
 
-          <p className="mt-6 text-body2 font-semibold text-foreground">
-            {sectionData.author}
-          </p>
-
           {/* KPIs */}
           <div className="mt-10 grid grid-cols-3 gap-6 sm:gap-8">
             {sectionData.stats.map((stat, idx) => (

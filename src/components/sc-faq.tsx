@@ -91,7 +91,7 @@ export default function ScFAQ() {
             "bg-card text-card-foreground"
           )}
         >
-          <Accordion type="single" collapsible defaultValue="item-1">
+          <Accordion type="single" collapsible>
             {faqs.map((f, i) => (
               <AccordionItem
                 key={i}

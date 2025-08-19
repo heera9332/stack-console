@@ -243,7 +243,7 @@ export default function ScHeader() {
               href="/demo"
               className="hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
             >
-              Book a Demo
+              Book a Meeting
             </Link>
 
             <button
@@ -458,7 +458,7 @@ function MobileMenu({ nav, onClose }: { nav: TopNav[]; onClose: () => void }) {
           onClick={onClose}
           className="block text-center px-4 py-3 bg-white text-black rounded-md border border-white/20"
         >
-          Book a Demo
+          Book a Meeting
         </Link>
       </div>
     </div>

@@ -74,7 +74,7 @@ const features: Feature[] = [
     topFrameColor: "#C4B0FF",
   },
   {
-    id: "stackai23",
+    id: "stackai234",
     title: "Fully White-Labeled",
     body: "Launch your own branded cloud portal and mobile apps — your logo, your domain, your rules.",
     cta: { label: "Learn More", href: "#" },
@@ -163,7 +163,7 @@ export default function ScStackConsoleFeatures() {
 
   return (
     <>
-      <section className="px-4 md:px-6 lg:px-8 pt-14 md:pt-20">
+      <section className="px-4 md:px-6 lg:px-8 pt-14 md:pt-24">
         {/* Heading */}
         <header className="text-center max-w-4xl mx-auto">
           <div className="hidden md:block">
@@ -232,7 +232,7 @@ export default function ScStackConsoleFeatures() {
               backgroundColor: features[active]?.bgColor || "transparent",
             }}
           >
-            <div className="sticky top-42 overflow-visible">
+            <div className="sticky top-46 overflow-visible">
               <div
                 className="relative w-full max-w-[560px] mx-auto rounded-2xl"
                 style={{ boxShadow: "16px 16px 0px 6px black" }}
@@ -363,7 +363,7 @@ const TopVideoFrame = ({ color = "#0B0D0F" }) => {
         cy="23"
         r="5.5"
         fill="black"
-        fill-opacity="0.1"
+        fillOpacity="0.1"
         stroke="#0B0D0F"
       />
       <circle
@@ -371,7 +371,7 @@ const TopVideoFrame = ({ color = "#0B0D0F" }) => {
         cy="23"
         r="5.5"
         fill="black"
-        fill-opacity="0.1"
+        fillOpacity="0.1"
         stroke="#0B0D0F"
       />
       <circle
@@ -379,7 +379,7 @@ const TopVideoFrame = ({ color = "#0B0D0F" }) => {
         cy="23"
         r="5.5"
         fill="black"
-        fill-opacity="0.1"
+        fillOpacity="0.1"
         stroke="#0B0D0F"
       />
       <rect
@@ -389,7 +389,7 @@ const TopVideoFrame = ({ color = "#0B0D0F" }) => {
         height="18"
         rx="5"
         fill="white"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
         stroke="#0B0D0F"
       />
     </svg>

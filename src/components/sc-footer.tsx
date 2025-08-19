@@ -85,8 +85,9 @@ export default function SCFooter() {
               />
             </Link>
 
-            <p className="mt-4 text-sm opacity-90">
-              © Stack Console Cloud Solutions Pvt Ltd
+            <p className="mt-4 text-sm opacity-90 w-4/5">
+              Copyright © 2025 All rights reserved Stack Console Cloud Solutions
+              Pvt. Ltd.
             </p>
 
             <div className="mt-4">

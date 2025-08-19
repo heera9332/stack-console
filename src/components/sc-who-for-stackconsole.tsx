@@ -51,7 +51,7 @@ const items: Item[] = [
 
 export default function ScWhoForStacKConsole() {
   return (
-    <section className="px-4 md:px-6 lg:px-8 py-10 md:py-20 md:bg-muted my-10 md:my-20">
+    <section className="px-4 md:px-6 lg:px-8 py-10 md:py-20 md:bg-muted">
       {/* Heading */}
       <header className="text-center max-w-4xl mx-auto">
         <h2 className="text-[36px] md:text-[56px] leading-tight font-semibold text-foreground">
@@ -103,15 +103,15 @@ export default function ScWhoForStacKConsole() {
           <TabsContent
             key={t.key}
             value={t.key}
-            className="mt-4 md:mt-8 focus:outline-none bg-muted rounded-md shadow-md md:shadow-none p-4 pb-8"
+            className="focus:outline-none bg-muted rounded-md shadow-md md:shadow-none p-4 pt-0 pb-8"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
               {/* Copy */}
-              <div className="order-2 lg:order-1">
-                <h3 className="text-[32px] md:text-[36px] font-semibold text-foreground">
+              <div className="order-2 lg:order-1 w-full md:w-3/5">
+                <h3 className="text-[32px] md:text-[36px] font-semibold text-foreground md:pr-16">
                   {t.h1}
                 </h3>
-                <p className="mt-4 text-[18px] text-muted-foreground">{t.p}</p>
+                <p className="mt-4 text-[18px] text-muted-foreground md:pr-2">{t.p}</p>
 
                 {t.cta && (
                   <div className="mt-6">
@@ -132,12 +132,12 @@ export default function ScWhoForStacKConsole() {
               </div>
 
               {/* Illustration */}
-              <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+              <div className="order-1 lg:order-2 flex justify-center lg:justify-end w-full md:w-2/5">
                 <div className="relative w-full max-w-[520px]">
                   <Image
                     src={t.img}
                     alt=""
-                    width={1040}
+                    width={800}
                     height={800}
                     className="w-full h-auto select-none"
                     priority
