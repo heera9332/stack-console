@@ -39,7 +39,7 @@ export default function ScHero() {
         relative overflow-hidden
         bg-[#12141D] text-white
         px-4 md:px-6 lg:px-8 py-16 md:py-50 
-        flex flex-col items-center justify-center
+        flex flex-col items-center justify-center section
       "
     >
       {/* GRID BACKGROUND */}

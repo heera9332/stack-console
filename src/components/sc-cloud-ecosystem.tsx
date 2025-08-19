@@ -17,10 +17,10 @@ const cloudData = {
     },
 
     { name: "OpenNebula", src: "/assets/website/home/eco-system-6.svg" },
-    { name: "Ceph", src: "/assets/website/home/eco-system-10.svg" },
-    { name: "Veeam", src: "/assets/website/home/eco-system-7.svg" },
+    { name: "Ceph", src: "/assets/svg/brands/ceph.svg" },
+    { name: "Veeam", src: "/assets/svg/brands/veeam.svg" },
 
-    { name: "Virtuozzo", src: "/assets/website/home/eco-system-8.svg" },
+    { name: "Virtuozzo", src: "/assets/svg/brands/virtuazzo.svg" },
     { name: "VMware", src: "/assets/website/home/eco-system-11.svg" },
     { name: "HostedAI", src: "/assets/website/home/eco-system-5.svg" },
 
@@ -51,7 +51,7 @@ export default function ScCloudEcosystem() {
   const offsets = ["ml-0", "ml-8 md:ml-16", "ml-16 md:ml-32"];
 
   return (
-    <section className="relative overflow-hidden bg-foreground text-background">
+    <section className="section relative overflow-hidden bg-foreground text-background">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
         {/* Heading */}
         <header className="relative text-center flex flex-col items-center justify-center md:px-64">

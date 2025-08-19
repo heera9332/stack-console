@@ -5,7 +5,7 @@ import ScStackConsoleFeatures from "@/components/sc-stack-console-features";
 import ScTransformIdeas from "@/components/sc-transforming-ideas";
 import ScTrustedCloudInnovators from "@/components/sc-trusted-cloud-innovators";
 import ScWhoForStacKConsole from "@/components/sc-who-for-stackconsole";
-import ScCloudEcosystem from "@/components/ScCloudEcosystem";
+import ScCloudEcosystem from "@/components/sc-cloud-ecosystem";
 
 const Page = () => {
   return (

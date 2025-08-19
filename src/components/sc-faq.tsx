@@ -79,7 +79,7 @@ const faqs = [
 
 export default function ScFAQ() {
   return (
-    <section className="bg-[#F3D431] py-8 md:py-14">
+    <section className="section bg-[#F3D431] py-8 md:py-14">
       <div className="mx-auto max-w-5xl px-4 text-center">
         <h2 className="text-[36px] md:text-[56px] font-semibold text-foreground">
           Frequently Asked 🤔 <br /> Questions 🙋🏻‍♂️

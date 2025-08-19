@@ -133,5 +133,17 @@
   filter: invert(39%) sepia(64%) saturate(446%) hue-rotate(187deg) brightness(92%) contrast(90%);
 }
 
+.section {
+  opacity: 0;
+  transform: translateY(40px); /* start slightly lower */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0); /* move up into place */
+}
+
+
 
 /* * { outline: 1px dashed rgb(255, 0, 0); outline-offset: -1px; } */

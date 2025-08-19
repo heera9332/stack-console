@@ -163,7 +163,7 @@ export default function ScStackConsoleFeatures() {
 
   return (
     <>
-      <section className="px-4 md:px-6 lg:px-8 pt-14 md:pt-24">
+      <section className="section px-4 md:px-6 lg:px-8 pt-14 md:pt-24">
         {/* Heading */}
         <header className="text-center max-w-4xl mx-auto">
           <div className="hidden md:block">
@@ -181,7 +181,7 @@ export default function ScStackConsoleFeatures() {
           </p>
         </header>
       </section>
-      <section>
+      <section className="section">
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 min-h-[720px]">
           {/* LEFT: feature list */}
           <div

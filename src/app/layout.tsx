@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -20,12 +21,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
 };
-
 
 export default function RootLayout({
   children,
@@ -45,6 +45,8 @@ export default function RootLayout({
           <CTASection />
           <SCFooter />
         </ThemeProvider>
+
+        <Script src="/fade-in.js" strategy="afterInteractive" />
       </body>
     </html>
   );

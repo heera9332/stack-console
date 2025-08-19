@@ -49,7 +49,7 @@ export default function ScTrustedCloudInnovators() {
   const lanes = splitIntoLanes(data.logos, 2);
 
   return (
-    <section className="bg-primary text-primary-foreground mx-auto flex justify-center flex-col items-center">
+    <section className="section bg-primary text-primary-foreground mx-auto flex justify-center flex-col items-center">
       <div className="w-full max-w-7xl pt-10 flex flex-col items-cener justify-center">
         {/* Heading */}
         <h2 className="text-center leading-tight text-[20px] md:text-[18px] opacity-90 px-4 sm:px-6 lg:px-8 w-full">
