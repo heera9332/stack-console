@@ -163,7 +163,7 @@ export default function ScStackConsoleFeatures() {
 
   return (
     <>
-      <section className="section px-4 md:px-6 lg:px-8 pt-14 md:pt-24">
+      <section data-aos="fade-up" className="section px-4 md:px-6 lg:px-8 pt-14 md:pt-24">
         {/* Heading */}
         <header className="text-center max-w-4xl mx-auto">
           <div className="hidden md:block">

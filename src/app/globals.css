@@ -133,15 +133,35 @@
   filter: invert(39%) sepia(64%) saturate(446%) hue-rotate(187deg) brightness(92%) contrast(90%);
 }
 
-.section {
+/* base hidden state */
+[data-aos] {
   opacity: 0;
-  transform: translateY(40px); /* start slightly lower */
+  transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.section.visible {
+/* variations */
+[data-aos].aos-animate[data-aos="fade-up"] {
   opacity: 1;
-  transform: translateY(0); /* move up into place */
+  transform: translateY(0);
+}
+
+[data-aos].aos-animate[data-aos="fade-down"] {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+
+[data-aos].aos-animate[data-aos="fade-left"] {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-aos="fade-left"] {
+  transform: translateX(20px);
+}
+
+[data-aos="fade-right"] {
+  transform: translateX(-20px);
 }
 
 

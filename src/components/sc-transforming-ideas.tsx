@@ -20,7 +20,7 @@ const sectionData = {
 
 export default function ScTransformIdeas() {
   return (
-    <section className="section px-4 md:px-12 py-12 md:py-16">
+    <section data-aos="fade-up" className="section px-4 md:px-12 py-12 md:py-16">
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         {/* Left visual */}
         <div className="flex justify-center lg:justify-start">
