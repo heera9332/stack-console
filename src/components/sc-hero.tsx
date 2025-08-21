@@ -1,6 +1,6 @@
 "use client";
 import "./sc-hero.css";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -38,6 +38,164 @@ export default function ScHero() {
     el.style.setProperty("--y", `-999px`);
   };
 
+    useEffect(() => {
+    const container = document.querySelector(".grid-container") as HTMLElement;
+    const glowSegments = document.getElementById("glowSegments");
+
+    if (!container || !glowSegments) return;
+
+    const gridSize = 36;
+    const glowRadius = 120;
+    let isPointerInside = false;
+    let activeSegments: HTMLElement[] = [];
+    let moveTimer: NodeJS.Timeout | null = null;
+    let lastX = 0,
+      lastY = 0;
+    const moveThreshold = 1;
+    const moveTimeout = 280;
+
+    const clamp = (v: number, a: number, b: number) =>
+      Math.max(a, Math.min(b, v));
+
+    function createGlowSegment(
+      isHorizontal: boolean,
+      x: number,
+      y: number,
+      length: number,
+      opacity: number
+    ) {
+      const seg = document.createElement("div");
+      seg.className = `grid-glow-segment ${
+        isHorizontal ? "horizontal-segment" : "vertical-segment"
+      }`;
+      if (isHorizontal) {
+        seg.style.left = x + "px";
+        seg.style.top = y + "px";
+        seg.style.width = length + "px";
+      } else {
+        seg.style.left = x + "px";
+        seg.style.top = y + "px";
+        seg.style.height = length + "px";
+      }
+      seg.style.opacity = opacity.toString();
+      seg.classList.add("segment-appear");
+      return seg;
+    }
+
+    function clearActiveSegments(immediate = false) {
+      activeSegments.forEach((seg) => {
+        if (immediate) {
+          seg.remove();
+        } else {
+          seg.classList.remove("segment-appear");
+          seg.classList.add("segment-disappear");
+          setTimeout(() => seg.remove(), 1300);
+        }
+      });
+      activeSegments = [];
+    }
+
+    function updateGlowSegments(mouseX: number, mouseY: number) {
+      clearActiveSegments(true);
+
+      const rect = container.getBoundingClientRect();
+      const r = glowRadius;
+
+      const xStart = Math.max(
+        0,
+        Math.floor((mouseX - r) / gridSize) * gridSize
+      );
+      const xEnd = Math.min(
+        rect.width,
+        Math.ceil((mouseX + r) / gridSize) * gridSize
+      );
+      const yStart = Math.max(
+        0,
+        Math.floor((mouseY - r) / gridSize) * gridSize
+      );
+      const yEnd = Math.min(
+        rect.height,
+        Math.ceil((mouseY + r) / gridSize) * gridSize
+      );
+
+      for (let x = xStart; x <= xEnd; x += gridSize) {
+        const dx = Math.abs(x - mouseX);
+        if (dx > r) continue;
+        const halfLen = Math.sqrt(r * r - dx * dx);
+        const y0 = clamp(mouseY - halfLen, 0, rect.height);
+        const y1 = clamp(mouseY + halfLen, 0, rect.height);
+        const len = Math.max(0, y1 - y0);
+        if (len > 0.5) {
+          const falloff = Math.max(0, 1 - dx / r) * 0.6;
+          const seg = createGlowSegment(false, x, y0, len, falloff);
+          glowSegments.appendChild(seg);
+          activeSegments.push(seg);
+        }
+      }
+
+      for (let y = yStart; y <= yEnd; y += gridSize) {
+        const dy = Math.abs(y - mouseY);
+        if (dy > r) continue;
+        const halfLen = Math.sqrt(r * r - dy * dy);
+        const x0 = clamp(mouseX - halfLen, 0, rect.width);
+        const x1 = clamp(mouseX + halfLen, 0, rect.width);
+        const len = Math.max(0, x1 - x0);
+        if (len > 0.5) {
+          const falloff = Math.max(0, 1 - dy / r) * 0.6;
+          const seg = createGlowSegment(true, x0, y, len, falloff);
+          glowSegments.appendChild(seg);
+          activeSegments.push(seg);
+        }
+      }
+    }
+
+    function handleMove(px: number, py: number) {
+      const dx = Math.abs(px - lastX);
+      const dy = Math.abs(py - lastY);
+      if (dx > moveThreshold || dy > moveThreshold) {
+        updateGlowSegments(px, py);
+        lastX = px;
+        lastY = py;
+      }
+
+      if (moveTimer) clearTimeout(moveTimer);
+      moveTimer = setTimeout(() => {
+        clearActiveSegments(false);
+      }, moveTimeout);
+    }
+
+    const onEnter = () => {
+      isPointerInside = true;
+    };
+
+    const onLeave = () => {
+      isPointerInside = false;
+      clearActiveSegments(true);
+      if (moveTimer) {
+        clearTimeout(moveTimer);
+        moveTimer = null;
+      }
+    };
+
+    const onMove = (e: PointerEvent) => {
+      if (!isPointerInside) return;
+      const rect = container.getBoundingClientRect();
+      handleMove(e.clientX - rect.left, e.clientY - rect.top);
+    };
+
+    container.addEventListener("pointerenter", onEnter);
+    container.addEventListener("pointerleave", onLeave);
+    container.addEventListener("pointermove", onMove);
+
+    return () => {
+      container.removeEventListener("pointerenter", onEnter);
+      container.removeEventListener("pointerleave", onLeave);
+      container.removeEventListener("pointermove", onMove);
+    };
+  }, []);
+
+
+
   return (
     <section
       ref={wrapRef}
@@ -46,27 +204,13 @@ export default function ScHero() {
       className="
         relative overflow-hidden
         bg-[#12141D] text-white
-        px-4 md:px-6 lg:px-8 py-16 md:py-40
+        px-4 md:px-6 lg:px-8 py-16 md:py-50
         flex flex-col items-center justify-center
         grid-container 
       "
     >
+      <div className="gradient-overlay"></div>
       <div id="glowSegments"></div>
-      {/* GRID BACKGROUND */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none absolute inset-0
-          [background-image:linear-gradient(to_right,rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.06)_1px,transparent_1px)]
-          [background-size:40px_40px]
-        "
-      />
-
-      {/* SOFT SPOTLIGHT GLOW */}
-      <div
-        aria-hidden
-        className="bgSpot pointer-events-none absolute inset-0"
-      />
 
       {/* Text + spotlight */}
       <div className="max-w-6xl mx-auto text-center relative z-10">
