@@ -12,7 +12,7 @@ const data = {
   description:
     "Stack Console is a white-label cloud management and billing platform for CloudStack, OpenStack, Proxmox, OpenNebula, OpenShift, VMware, Virtuozzo, and more — helping you launch cloud services under your brand, faster and more profitably.",
   ctas: {
-    primary: { label: "Book a Demo", href: "#demo" },
+    primary: { label: "Schedule a Meeting", href: "#demo" },
     secondary: { label: "Self Guided Tour", href: "#tour" },
   },
 };
@@ -202,13 +202,18 @@ export default function ScHero() {
       className="
         relative overflow-hidden
         bg-[#12141D] text-white
-        px-4 md:px-6 lg:px-8 py-16 md:py-50
+        px-4 md:px-6 lg:px-8 py-42 md:py-56
         flex flex-col items-center justify-center
         grid-container 
       "
     >
       <div className="gradient-overlay"></div>
       <div id="glowSegments"></div>
+
+      <div
+        className="absolute -bottom-80 md:-bottom-64 left-1/2 -translate-x-1/2 w-[950px] h-[550px] 
+      bg-[radial-gradient(ellipse_at_center,#5065d95e_0%,transparent_70%)]"
+      ></div>
 
       {/* Text + spotlight */}
       <div className="max-w-6xl mx-auto text-center relative z-10">
