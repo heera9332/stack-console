@@ -5,7 +5,7 @@ import "./globals.css";
 import SCFooter from "@/components/sc-footer";
 import CTASection from "@/components/footer-cta";
 import { ThemeProvider } from "@/components/theme-provider";
-import ScHeader from "@/components/sc-header";
+import ScHeader from "@/components/sc-header/sc-header";
 
 // Load Inter font
 const inter = Inter({

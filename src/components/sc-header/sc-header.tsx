@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState, useRef } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 /* =========================
    1) STATIC MENU DATA
@@ -23,6 +24,9 @@ type NavItem = {
     image?: { link: string; alt: string };
     bgImage?: { link: string; alt: string };
   };
+  iconHoverBgColor: string;
+  cardHoverBgColor: string;
+  textHoverColor: string;
 };
 
 type MegaSection = {
@@ -49,7 +53,7 @@ const NAV: TopNav[] = [
         id: "overview",
         title: "Overview",
         description: "Everything You Need to Run Your Cloud",
-        
+
         items: [
           {
             id: "ovr",
@@ -63,9 +67,12 @@ const NAV: TopNav[] = [
               cta: { label: "Explore More", href: "#" },
               image: {
                 link: "/assets/overview-img.png",
-                alt: ""
-              }
+                alt: "",
+              },
             },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
           },
           {
             id: "billing",
@@ -77,11 +84,14 @@ const NAV: TopNav[] = [
               title: "Billing",
               blurb: "Automate billing and focus on growth.",
               cta: { label: "Explore More", href: "/platform/billing" },
-                image: {
-                link: "/assets/nav-billing.svg",
-                alt: ""
-              }
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
             },
+            iconHoverBgColor: "#DDB458, #895924",
+            cardHoverBgColor: "#FFEFCA",
+            textHoverColor: "#000",
           },
           {
             id: "integration",
@@ -92,9 +102,15 @@ const NAV: TopNav[] = [
             preview: {
               title: "Integration",
               blurb: "Native, deep integrations with your stack.",
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
               cta: { label: "Explore More", href: "/platform/integration" },
-              
             },
+            iconHoverBgColor: "#F93333, #A10606",
+            cardHoverBgColor: "#FFD6D6",
+            textHoverColor: "#fff",
           },
           {
             id: "reseller",
@@ -105,8 +121,15 @@ const NAV: TopNav[] = [
             preview: {
               title: "Reseller",
               blurb: "Scale partners with guardrails.",
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
               cta: { label: "Explore More", href: "/platform/reseller" },
             },
+            iconHoverBgColor: "#356EC3, #0D3269",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
           },
           {
             id: "style",
@@ -117,8 +140,15 @@ const NAV: TopNav[] = [
             preview: {
               title: "White Label",
               blurb: "Make it truly yours.",
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
               cta: { label: "Explore More", href: "/platform/white-label" },
             },
+            iconHoverBgColor: "#DDB458, #895924",
+            cardHoverBgColor: "#FFEFCA",
+            textHoverColor: "#000",
           },
           {
             id: "ai",
@@ -129,8 +159,15 @@ const NAV: TopNav[] = [
             preview: {
               title: "Stack AI",
               blurb: "Ship faster with AI-powered operations.",
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
               cta: { label: "Explore More", href: "/platform/ai" },
             },
+            iconHoverBgColor: "#F93333, #A10606",
+            cardHoverBgColor: "#FFD6D6",
+            textHoverColor: "#fff",
           },
           {
             id: "migration",
@@ -141,8 +178,15 @@ const NAV: TopNav[] = [
             preview: {
               title: "Migration",
               blurb: "Bring everything together safely.",
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
               cta: { label: "Explore More", href: "/platform/migration" },
             },
+            iconHoverBgColor: "#356EC3, #0D3269",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
           },
         ],
       },
@@ -150,7 +194,96 @@ const NAV: TopNav[] = [
   },
 
   // SIMPLE LINKS
-  { label: "Solutions", type: "link", href: "#" },
+  {
+    label: "Solutions",
+    type: "mega",
+    sections: [
+      {
+        id: "solution-1",
+        title: "Who We Serve",
+        description: "Powering Every Cloud Journey",
+        items: [
+          {
+            id: "ovr",
+            label: "Cloud & Hosting Provider",
+            href: "#",
+            emoji: "/assets/svg/overview.svg",
+            description: "Launch, Manage, and scale with Ease",
+            preview: {
+              title: "Overview",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
+            },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
+          },
+
+          {
+            id: "data-centers2",
+            label: "Turn Infrastructure into Cloud Revenue",
+            href: "#",
+            emoji: "/assets/svg/overview.svg",
+            description: "Launch, Manage, and scale with Ease",
+            preview: {
+              title: "Overview",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
+            },
+            iconHoverBgColor: "#DDB458, #895924",
+            cardHoverBgColor: "#FFEFCA",
+            textHoverColor: "#000",
+          },
+          {
+            id: "Managed Service Providers",
+            label: "Deliver More, Manage Less",
+            href: "#",
+            emoji: "/assets/svg/overview.svg",
+            description: "Launch, Manage, and scale with Ease",
+            preview: {
+              title: "Overview",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
+            },
+            iconHoverBgColor: "#F93333, #A10606",
+            cardHoverBgColor: "#FFD6D6",
+            textHoverColor: "#fff",
+          },
+          {
+            id: "data-centers",
+            label: "Turn Infrastructure into Cloud Revenue",
+            href: "#",
+            emoji: "/assets/svg/overview.svg",
+            description: "Launch, Manage, and scale with Ease",
+            preview: {
+              title: "Overview",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
+            },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
+          },
+        ],
+      },
+    ],
+  },
   { label: "Resources", type: "link", href: "#" },
   { label: "Company", type: "link", href: "#" },
 ];
@@ -243,7 +376,7 @@ export default function ScHeader() {
               href="/demo"
               className="hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
             >
-              Book a Meeting
+              Schedule a Meeting
             </Link>
 
             <button
@@ -285,7 +418,7 @@ function MegaPanel({
     <div
       className="
         overflow-hidden absolute left-1/2 -translate-x-1/2 mt-6 w-[min(100vw-2rem,980px)]
-        rounded-xl border border-white/10 bg-white text-black shadow-2xl
+        rounded-xl border border-white/10 bg-white text-black shadow-2xl transition-colors
       "
     >
       <div className="grid grid-cols-12">
@@ -305,24 +438,19 @@ function MegaPanel({
                 {sec.items.map((it) => (
                   <li key={it.id}>
                     <Link
-                      href={it.href || "#"}
+                      href={it.href ?? "#"}
                       onMouseEnter={() => setHoverItem(it)}
-                      className="
-                        group flex items-start gap-3 rounded-md px-2 py-2
-                        hover:bg-gray-100 my-4
-                      "
+                      // inject the dynamic color into a CSS variable
+                      style={{ ["--hover-bg" as any]: it.cardHoverBgColor }}
+                      className={`
+                        group flex items-start gap-3 rounded-xl px-4 py-4
+                        hover:bg-[var(--hover-bg)]
+                      `}
                     >
-                      <span className="p-2 flex size-10 mt-0.5 shrink-0 items-center justify-center rounded-[12px] bg-gray-100 group-hover:bg-white border border-[#AFB9CE]">
-                        <span className="">
-                          <Image
-                            className="text-white img-primary"
-                            src={it.emoji || "#"}
-                            alt="icon"
-                            width={100}
-                            height={100}
-                          />
-                        </span>
-                      </span>
+                      <GetIcon
+                        iconHoverBgColor={it.iconHoverBgColor}
+                        textHoverColor={it.textHoverColor}
+                      />
                       <span className="flex-1">
                         <span className="block font-medium text-gray-900">
                           {it.label}
@@ -362,11 +490,26 @@ function PreviewCard({ item }: { item: NavItem | null }) {
     );
   }
   const { title, blurb, cta } = item.preview;
+
   return (
     <div className="rounded-xl bg-white overflow-hidden min-w-full flex flex-col justify-center items-center">
       <div className="w-full relative">
-        <div className="rounded-lg bg-gradient-to-b from-indigo-600 to-indigo-800 h-64 overflow-hidden" />
-          {item.preview && <Image className="absolute top-2" src={item?.preview?.image?.link || "/assets/overview-img.png"} width={512} height={512} alt={item?.preview.image?.alt}/>}
+        <div
+          style={{
+            ["--icon-gradient" as any]: `linear-gradient(135deg, ${item.iconHoverBgColor})`,
+            ["--icon-color" as any]: item.textHoverColor,
+          }}
+          className="rounded-lg bg-gradient-to-b h-64 overflow-hidden [background:var(--icon-gradient)]"
+        />
+        {item.preview && (
+          <Image
+            className="absolute top-2"
+            src={item?.preview?.image?.link || "/assets/overview-img.png"}
+            width={512}
+            height={512}
+            alt={item?.preview.image?.alt}
+          />
+        )}
         <div className="absolute bottom-0 px-4 w-full">
           <div className="text-white font-semibold">{title}</div>
           <p title={blurb} className="h-20 mt-1 text-sm text-muted">
@@ -390,7 +533,7 @@ function PreviewCard({ item }: { item: NavItem | null }) {
 }
 
 /* =========================
-   5) MOBILE MENU (drawer)
+  5) MOBILE MENU (drawer)
    ========================= */
 function MobileMenu({ nav, onClose }: { nav: TopNav[]; onClose: () => void }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -458,9 +601,44 @@ function MobileMenu({ nav, onClose }: { nav: TopNav[]; onClose: () => void }) {
           onClick={onClose}
           className="block text-center px-4 py-3 bg-white text-black rounded-md border border-white/20"
         >
-          Book a Meeting
+          Schedule a Meeting
         </Link>
       </div>
     </div>
   );
 }
+
+const GetIcon = ({
+  iconHoverBgColor = "#356EC3, #0D3269",
+  textHoverColor = "#fff",
+}) => {
+  return (
+    <div
+      style={{
+        ["--icon-gradient" as any]: `linear-gradient(135deg, ${iconHoverBgColor})`,
+        ["--icon-color" as any]: textHoverColor,
+      }}
+      className={`
+        rounded-[12px] size-12 flex items-center justify-center
+        border border-[#AFB9CE] group-hover:border-none
+        group-hover:[background:var(--icon-gradient)]
+        group-hover:text-[var(--icon-color)]
+      `}
+    >
+      <svg
+        width="24"
+        height="25"
+        viewBox="0 0 24 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14 2.76953V6.90007C14 7.46012 14 7.74015 14.109 7.95406C14.2049 8.14222 14.3578 8.2952 14.546 8.39108C14.7599 8.50007 15.0399 8.50007 15.6 8.50007H19.7305M14 17.5H8M16 13.5H8M20 10.4882V17.7C20 19.3802 20 20.2202 19.673 20.862C19.3854 21.4265 18.9265 21.8854 18.362 22.173C17.7202 22.5 16.8802 22.5 15.2 22.5H8.8C7.11984 22.5 6.27976 22.5 5.63803 22.173C5.07354 21.8854 4.6146 21.4265 4.32698 20.862C4 20.2202 4 19.3802 4 17.7V7.3C4 5.61984 4 4.77976 4.32698 4.13803C4.6146 3.57354 5.07354 3.1146 5.63803 2.82698C6.27976 2.5 7.11984 2.5 8.8 2.5H12.0118C12.7455 2.5 13.1124 2.5 13.4577 2.58289C13.7638 2.65638 14.0564 2.77759 14.3249 2.94208C14.6276 3.1276 14.887 3.38703 15.4059 3.90589L18.5941 7.09411C19.113 7.61297 19.3724 7.8724 19.5579 8.17515C19.7224 8.44356 19.8436 8.7362 19.9171 9.0423C20 9.38757 20 9.75445 20 10.4882Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  );
+};
