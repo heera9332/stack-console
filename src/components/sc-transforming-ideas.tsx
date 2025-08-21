@@ -1,6 +1,3 @@
-// src/sections/Transform.tsx
-"use client";
-
 import Counter from "./counter";
 
 const sectionData = {

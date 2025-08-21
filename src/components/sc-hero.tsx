@@ -19,6 +19,7 @@ const data = {
 
 export default function ScHero() {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const glowSegmentsRef = useRef<HTMLDivElement>(null);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = wrapRef.current;
@@ -33,16 +34,15 @@ export default function ScHero() {
   const onLeave = () => {
     const el = wrapRef.current;
     if (!el) return;
-    // push spotlight off-screen
     el.style.setProperty("--x", `-999px`);
     el.style.setProperty("--y", `-999px`);
   };
 
   useEffect(() => {
-    const container = document.querySelector(".grid-container") as HTMLElement;
-    const glowSegments = document.getElementById("glowSegments");
+    if (!wrapRef.current || !glowSegmentsRef.current) return;
 
-    if (!container || !glowSegments) return;
+    const container = wrapRef.current;
+    const glowSegments = glowSegmentsRef.current;
 
     const gridSize = 40;
     const glowRadius = 120;
@@ -64,6 +64,8 @@ export default function ScHero() {
       length: number,
       opacity: number
     ) {
+      if (typeof document === "undefined") return null;
+      
       const seg = document.createElement("div");
       seg.className = `grid-glow-segment ${
         isHorizontal ? "horizontal-segment" : "vertical-segment"
@@ -128,8 +130,10 @@ export default function ScHero() {
         if (len > 0.5) {
           const falloff = Math.max(0, 1 - dx / r) * 0.6;
           const seg = createGlowSegment(false, x, y0, len, falloff);
-          glowSegments.appendChild(seg);
-          activeSegments.push(seg);
+          if (seg) {
+            glowSegments.appendChild(seg);
+            activeSegments.push(seg);
+          }
         }
       }
 
@@ -143,8 +147,10 @@ export default function ScHero() {
         if (len > 0.5) {
           const falloff = Math.max(0, 1 - dy / r) * 0.6;
           const seg = createGlowSegment(true, x0, y, len, falloff);
-          glowSegments.appendChild(seg);
-          activeSegments.push(seg);
+          if (seg) {
+            glowSegments.appendChild(seg);
+            activeSegments.push(seg);
+          }
         }
       }
     }
@@ -202,16 +208,16 @@ export default function ScHero() {
       className="
         relative overflow-hidden
         bg-[#12141D] text-white
-        px-4 md:px-6 lg:px-8 py-42 md:py-56
+        px-4 md:px-6 lg:px-8 py-42 md:py-50
         flex flex-col items-center justify-center
         grid-container 
       "
     >
       <div className="gradient-overlay"></div>
-      <div id="glowSegments"></div>
+      <div id="glowSegments" ref={glowSegmentsRef}></div>
 
       <div
-        className="absolute -bottom-80 md:-bottom-64 left-1/2 -translate-x-1/2 w-[950px] h-[550px] 
+        className="absolute -bottom-100 md:-bottom-64 left-1/2 -translate-x-1/2 w-[950px] h-[550px] 
       bg-[radial-gradient(ellipse_at_center,#5065d95e_0%,transparent_70%)]"
       ></div>
 
@@ -290,7 +296,6 @@ export default function ScHero() {
           </Button>
         </div>
       </div>
-      {/* <div className="gradient-overlay"></div> */}
     </section>
   );
 }

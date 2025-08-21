@@ -1,6 +1,3 @@
-// src/sections/ScTrustedCloudInnovators.tsx
-"use client";
-
 import Image from "next/image";
 import clsx from "clsx";
 
