@@ -38,6 +38,7 @@ section {
   --r-bg: 100px;
   --hard: 255, 247, 0; /* bright yellow spotlight */
 }
+
 .grid-container {
   position: relative;
   background-color: #121319;
@@ -46,7 +47,7 @@ section {
       transparent 1px
     ),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 36px 36px;
+  background-size: 40px 40px;
   overflow: hidden;
 }
 
@@ -70,9 +71,9 @@ section {
   pointer-events: none;
   z-index: 1;
   /* fast pop-in when shown, smooth fade when removed */
-  transition: opacity 0.12s ease-out, transform 0.12s ease-out;
+  transition: opacity 0.12s ease-out, transform 0 ease-out;
   opacity: 0;
-  transform: scale(0.98);
+  /* transform: translate(-12px, 12px); */
 }
 
 .content {
@@ -88,23 +89,23 @@ section {
 
 /* optional: slightly stronger glow trail */
 .horizontal-segment {
-  height: 1px;
+  height: 2px;
   background: linear-gradient(
     90deg,
     transparent 0%,
 
-    rgba(52, 43, 226, 0.4) 50%,
+    rgba(52, 43, 226, 0.754) 50%,
 
     /* purple */ transparent 100%
   );
   box-shadow: 0 0 6px rgba(100, 149, 237, 0.25);
 }
 .vertical-segment {
-  width: 1px;
+  width: 2px;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(52, 43, 226, 0.4) 50%,
+    rgba(52, 43, 226, 0.757) 50%,
     /* purple */ transparent 100%
   );
   box-shadow: 0 0 6px rgba(100, 149, 237, 0.25);

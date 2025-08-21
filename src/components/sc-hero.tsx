@@ -38,13 +38,13 @@ export default function ScHero() {
     el.style.setProperty("--y", `-999px`);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const container = document.querySelector(".grid-container") as HTMLElement;
     const glowSegments = document.getElementById("glowSegments");
 
     if (!container || !glowSegments) return;
 
-    const gridSize = 36;
+    const gridSize = 40;
     const glowRadius = 120;
     let isPointerInside = false;
     let activeSegments: HTMLElement[] = [];
@@ -89,7 +89,7 @@ export default function ScHero() {
         } else {
           seg.classList.remove("segment-appear");
           seg.classList.add("segment-disappear");
-          setTimeout(() => seg.remove(), 1300);
+          setTimeout(() => seg.remove(), 100);
         }
       });
       activeSegments = [];
@@ -194,8 +194,6 @@ export default function ScHero() {
     };
   }, []);
 
-
-
   return (
     <section
       ref={wrapRef}
@@ -287,7 +285,7 @@ export default function ScHero() {
           </Button>
         </div>
       </div>
-      <div className="gradient-overlay"></div>
+      {/* <div className="gradient-overlay"></div> */}
     </section>
   );
 }
