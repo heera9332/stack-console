@@ -58,7 +58,7 @@ const NAV: TopNav[] = [
           {
             id: "ovr",
             label: "Overview",
-            href: "#",
+            href: "/overview",
             emoji: "/assets/svg/overview.svg",
             description: "High-level overview and core concepts.",
             preview: {
@@ -492,7 +492,7 @@ function PreviewCard({ item }: { item: NavItem | null }) {
   const { title, blurb, cta } = item.preview;
 
   return (
-    <div className="rounded-xl bg-white overflow-hidden min-w-full flex flex-col justify-center items-center">
+    <div className="rounded-xl overflow-hidden min-w-full flex flex-col justify-center items-center">
       <div className="w-full relative">
         <div
           style={{
@@ -507,7 +507,7 @@ function PreviewCard({ item }: { item: NavItem | null }) {
             src={item?.preview?.image?.link || "/assets/overview-img.png"}
             width={512}
             height={512}
-            alt={item?.preview.image?.alt}
+            alt={item?.preview.image?.alt || ""}
           />
         )}
         <div className="absolute bottom-0 px-4 w-full">
@@ -635,8 +635,8 @@ const GetIcon = ({
         <path
           d="M14 2.76953V6.90007C14 7.46012 14 7.74015 14.109 7.95406C14.2049 8.14222 14.3578 8.2952 14.546 8.39108C14.7599 8.50007 15.0399 8.50007 15.6 8.50007H19.7305M14 17.5H8M16 13.5H8M20 10.4882V17.7C20 19.3802 20 20.2202 19.673 20.862C19.3854 21.4265 18.9265 21.8854 18.362 22.173C17.7202 22.5 16.8802 22.5 15.2 22.5H8.8C7.11984 22.5 6.27976 22.5 5.63803 22.173C5.07354 21.8854 4.6146 21.4265 4.32698 20.862C4 20.2202 4 19.3802 4 17.7V7.3C4 5.61984 4 4.77976 4.32698 4.13803C4.6146 3.57354 5.07354 3.1146 5.63803 2.82698C6.27976 2.5 7.11984 2.5 8.8 2.5H12.0118C12.7455 2.5 13.1124 2.5 13.4577 2.58289C13.7638 2.65638 14.0564 2.77759 14.3249 2.94208C14.6276 3.1276 14.887 3.38703 15.4059 3.90589L18.5941 7.09411C19.113 7.61297 19.3724 7.8724 19.5579 8.17515C19.7224 8.44356 19.8436 8.7362 19.9171 9.0423C20 9.38757 20 9.75445 20 10.4882Z"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>
