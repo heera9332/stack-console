@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Newsletter from "./news-letter";
+import { headers } from "next/headers";
 
 type NavItem = {
   label: string;
@@ -65,11 +66,20 @@ const columns: Column[] = [
   },
 ];
 
-export default function SCFooter() {
+export default async function SCFooter() {
+  const h = headers(); // sync
+  const fullUrl = h.get("x-url") || ""; // added custom url from middleware
+  const pathname = fullUrl ? new URL(fullUrl).pathname : "/";
+
+  const isHome =
+    pathname === "/" || pathname === "/index" || pathname === "/home";
+
   return (
     <footer
       id="footerSection"
-      className="border-t border-border bg-foreground text-white pt-64"
+      className={`bg-foreground text-white ${
+        isHome ? "pt-64" : "pt-0"
+      }`}
     >
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">

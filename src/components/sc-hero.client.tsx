@@ -1,9 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
+import ScHeroSkeleton from "./sections/skelatons/sc-hero-skeleton";
 
 const ScHero = dynamic(() => import("./sc-hero"), {
   ssr: false, // allowed here (client file)
-  // loading: () => <div style={{height: 560}} /> // optional placeholder
+  loading: () => <ScHeroSkeleton/>
 });
 
 export const ScHeroClient = () => {

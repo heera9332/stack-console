@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useState, useRef } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 /* =========================
    1) STATIC MENU DATA

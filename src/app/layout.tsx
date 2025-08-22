@@ -1,11 +1,10 @@
 import Script from "next/script";
+import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import SCFooter from "@/components/sc-footer";
-import CTASection from "@/components/footer-cta";
-import { ThemeProvider } from "@/components/theme-provider";
 import ScHeader from "@/components/sc-header/sc-header";
+import "./globals.css";
 
 // Load Inter font
 const inter = Inter({
@@ -42,7 +41,6 @@ export default function RootLayout({
         >
           <ScHeader />
           {children}
-          <CTASection />
           <SCFooter />
         </ThemeProvider>
 

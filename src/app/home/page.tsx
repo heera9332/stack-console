@@ -6,6 +6,7 @@ import ScTrustedCloudInnovators from "@/components/sc-trusted-cloud-innovators";
 import ScWhoForStacKConsole from "@/components/sc-who-for-stackconsole";
 import ScCloudEcosystem from "@/components/sc-cloud-ecosystem";
 import { ScHeroClient } from "@/components/sc-hero.client";
+import CTASection from "@/components/footer-cta";
 
 const Page = () => {
   return (
@@ -18,6 +19,7 @@ const Page = () => {
       <ScStackConsoleFeatures />
       <ScWhoForStacKConsole />
       <ScFAQ />
+      <CTASection />
     </div>
   );
 };
