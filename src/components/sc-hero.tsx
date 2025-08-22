@@ -208,7 +208,7 @@ export default function ScHero() {
       className="
         relative overflow-hidden
         bg-[#12141D] text-white
-        px-4 md:px-6 lg:px-8 py-42 md:py-50
+        px-4 md:px-6 lg:px-8 py-36 md:py-50
         flex flex-col items-center justify-center
         grid-container 
       "
