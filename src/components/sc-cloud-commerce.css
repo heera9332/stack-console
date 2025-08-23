@@ -1,0 +1,22 @@
+
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(
+    to top,
+    rgba(18, 19, 25, 1) 0%,
+    rgba(162, 165, 182, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+ 
+.segment-appear {
+  /* instant-ish pop */
+  opacity: 1;
+  transform: scale(1);
+}
