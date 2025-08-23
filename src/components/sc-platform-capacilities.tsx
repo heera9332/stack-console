@@ -306,7 +306,7 @@ export default function CapabilitiesMasonry(props: { data?: MasonryData }) {
   const d = props.data ?? DATA;
 
   return (
-    <section className="bg-[#121219] text-white">
+    <section id="platform-capcabilities-grid" className="bg-[#121219] text-white px-4 md:px-0">
       {d.heading && (
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
           <h2 className="text-center text-4xl md:text-[56px] font-semibold tracking-tight">

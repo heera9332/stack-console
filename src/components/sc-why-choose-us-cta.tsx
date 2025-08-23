@@ -77,10 +77,10 @@ export default function ScWhyChooseAndCTA(props: { data?: SectionData }) {
   const d = props.data ?? DATA;
 
   return (
-    <section className="w-full relative overflow-hidden">
+    <section id="sc-why-choose-us-cta" className="w-full relative overflow-hidden">
       {/* ---------- Why Choose ---------- */}
       <div className="bg-gray-50">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:pt-28 md:pb-36">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:pt-28 pb-92 md:pb-36">
           <h2 className="text-center text-4xl tracking-tight md:text-[56px] font-semibold">
             {d.heading}
           </h2>
@@ -88,16 +88,16 @@ export default function ScWhyChooseAndCTA(props: { data?: SectionData }) {
       </div>
 
       {/* ---------- CTA band ---------- */}
-      <div className="relative mt-0 w-full bg-[#4E2FFF] pb-36">
+      <div className="relative mt-0 w-full bg-[#4E2FFF] pb-16 md:pb-36">
         {/* Cards on top edge of CTA (overlap with the purple band) */}
         <div
-          className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-8 px-10 sm:grid-cols-2 lg:grid-cols-3 pb-16"
+          className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-8 px-10 sm:grid-cols-2 lg:grid-cols-3 pb-16 md:mt-0"
           aria-hidden="false"
         >
           {d.reasons.map((r, i) => (
             <div
               key={i}
-              className="relative rounded-[20px] bg-white p-8 py-4 shadow-[0_10px_30px_rgba(17,24,39,0.08)] ring-1 ring-black/5 pb-12 -mt-20"
+              className={`relative rounded-[20px] bg-white p-8 py-4 shadow-[0_10px_30px_rgba(17,24,39,0.08)] ring-1 ring-black/5 pb-12 md:-mt-20 ${i === 0 ? "-mt-76" : ""}`}
             >
               {/* Number in corner */}
               <span className="pointer-events-none absolute right-5 top-0 select-none text-[90px] font-bold text-gray-200">
@@ -128,12 +128,19 @@ export default function ScWhyChooseAndCTA(props: { data?: SectionData }) {
           ))}
         </div>
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center px-6 pt-16 sm:pt-20 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center px-6 pt-0 sm:pt-20 lg:grid-cols-2">
           {/* Left: copy + actions */}
-          <div>
-            <h3 className="text-4xl font-medium leading-tight text-white md:text-[56px]">
+          <div className="order-1 md:order-0">
+            <h3 className="hidden md:block text-4xl font-medium leading-tight text-white md:text-[56px]">
               {d.cta.title.map((line, idx) => (
                 <span key={idx} className="block">
+                  {line}
+                </span>
+              ))}
+            </h3>
+            <h3 className="block md:hidden text-4xl font-medium leading-tight text-white md:text-[56px]">
+              {d.cta.title.map((line, idx) => (
+                <span key={idx} className="mr-2">
                   {line}
                 </span>
               ))}
@@ -152,7 +159,7 @@ export default function ScWhyChooseAndCTA(props: { data?: SectionData }) {
 
               <Link
                 href={d.cta.secondary.href}
-                className="inline-flex items-center gap-2 text-xl font-semibold text-white/95 transition focus-visible:outline-offset-2 focus-visible:outline-white px-6 py-3"
+                className="inline-flex items-center gap-2 text-xl font-semibold text-white/95 transition focus-visible:outline-offset-2 focus-visible:outline-white pl-0 md:px-6 py-3"
               >
                 <svg
                   width="39"
@@ -181,7 +188,7 @@ export default function ScWhyChooseAndCTA(props: { data?: SectionData }) {
 
           {/* Right: art */}
           <div className="relative">
-            <div className="relative mx-auto w-full max-w-[560px]">
+            <div className="relative mx-auto w-full max-w-[560px] mb-0 md:mb-10">
               <div className="relative aspect-[16/10] w-full">
                 <Image
                   src={d.cta.art.src}
