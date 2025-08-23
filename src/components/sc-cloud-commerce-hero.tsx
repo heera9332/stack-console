@@ -14,7 +14,7 @@ const data = {
     "Stack Console is a white-label cloud management and billing platform for CloudStack, OpenStack, Proxmox, OpenNebula, OpenShift, VMware, Virtuozzo, and more — helping you launch cloud services under your brand, faster and more profitably.",
   ctas: {
     primary: { label: "Schedule a Meeting", href: "#demo" },
-    secondary: { label: "Self Guided Tour", href: "#tour" },
+    secondary: { label: "Try the Live Demo", href: "#tour" },
   },
 };
 

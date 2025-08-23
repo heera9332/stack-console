@@ -283,8 +283,187 @@ const NAV: TopNav[] = [
       },
     ],
   },
-  { label: "Resources", type: "link", href: "#" },
-  { label: "Company", type: "link", href: "#" },
+  {
+    label: "Resources",
+    type: "mega",
+    sections: [
+      {
+        id: "knowledge-hub",
+        title: "Knowledge Hub",
+        description: "Content That Powers Your Cloud Journey",
+        items: [
+          {
+            id: "insights",
+            label: "Insights",
+            href: "/insights",
+            emoji: "/assets/svg/overview.svg",
+            description: "Case Studies, eBooks, Reports & Whitepapers",
+            preview: {
+              title: "Insight",
+              blurb: "Case Studies, eBooks, Reports & Whitepapers",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "Insight",
+              },
+            },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
+          },
+          {
+            id: "blogs",
+            label: "Blogs",
+            href: "/blogs",
+            emoji: "/assets/svg/overview.svg",
+            description: "Expert Tips, Product Updates & Stories",
+            preview: {
+              title: "Blogs",
+              blurb: "Keep everyone informed about the current state of your projects",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "Blogs",
+              },
+            },
+            iconHoverBgColor: "#966F18, #160E02",
+            cardHoverBgColor: "#966F18",
+            textHoverColor: "#fff",
+          },
+          {
+            id: "videos",
+            label: "Videos",
+            href: "/videos",
+            emoji: "/assets/svg/overview.svg",
+            description: "Product Demos, Tutorials & Feature Highlights",
+            preview: {
+              title: "Vidoes",
+              blurb:
+                "Keep everyone informed about the current state of your projects",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "Videos",
+              },
+            },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
+          },
+          {
+            id: "events",
+            label: "Events",
+            href: "/events",
+            emoji: "/assets/svg/overview.svg",
+            description: "Meet Us at Industry Shows & Conferences",
+            preview: {
+              title: "Events",
+              blurb:
+                "Keep everyone informed about the current state of your projects",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "Videos",
+              },
+            },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Company",
+    type: "mega",
+    sections: [
+      {
+        id: "the-company",
+        title: "The Company",
+        description: "Our Purpose, Team & Future",
+        items: [
+          {
+            id: "manifesto",
+            label: "Manifesto",
+            href: "/manifesto",
+            emoji: "/assets/svg/overview.svg",
+            description: "Driven by Innovation, Guided by Purpose",
+            preview: {
+              title: "Manifesto",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
+            },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
+          },
+          {
+            id: "about-us",
+            label: "About us",
+            href: "/manifesto",
+            emoji: "/assets/svg/overview.svg",
+            description: "Passion, People & the Cloud We Build",
+            preview: {
+              title: "About us",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
+            },
+            iconHoverBgColor: "#921314, #921314",
+            cardHoverBgColor: "#921314",
+            textHoverColor: "#fff",
+          },
+          {
+            id: "careers",
+            label: "Careers",
+            href: "/manifesto",
+            emoji: "/assets/svg/overview.svg",
+            description: "Build the Future of Cloud With Us",
+            preview: {
+              title: "Careers",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "",
+              },
+            },
+
+            iconHoverBgColor: "#921314, #921314",
+            cardHoverBgColor: "#921314",
+            textHoverColor: "#fff",
+          },
+          {
+            id: "contact-us",
+            label: "Contact us",
+            href: "/manifesto",
+            emoji: "/assets/svg/overview.svg",
+            description: "We’re Just a Message Away",
+            preview: {
+              title: "Contact us",
+              blurb: "Designed in pursuit of high-speed performance.",
+              cta: { label: "Explore More", href: "#" },
+              image: {
+                link: "/assets/overview-img.png",
+                alt: "contact us",
+              },
+            },
+            iconHoverBgColor: "#356EC5, #000052",
+            cardHoverBgColor: "#E1F1FF",
+            textHoverColor: "#fff",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 /* =========================
