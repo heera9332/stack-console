@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 /** Helpers */
@@ -302,7 +300,7 @@ const DATA: MasonryData = {
 };
 
 /** COMPONENT */
-export default function CapabilitiesMasonry(props: { data?: MasonryData }) {
+export default function ScPlatformCapabilitiesGrid(props: { data?: MasonryData }) {
   const d = props.data ?? DATA;
 
   return (

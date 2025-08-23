@@ -68,7 +68,7 @@ const columns: Column[] = [
 
 export default async function SCFooter() {
   const h = headers(); // sync
-  const fullUrl = h.get("x-url") || ""; // added custom url from middleware
+  const fullUrl = (await h).get("x-url") || ""; // added custom url from middleware
   const pathname = fullUrl ? new URL(fullUrl).pathname : "/";
 
   const isHome =

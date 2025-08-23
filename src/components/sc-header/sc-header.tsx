@@ -319,7 +319,8 @@ const NAV: TopNav[] = [
             description: "Expert Tips, Product Updates & Stories",
             preview: {
               title: "Blogs",
-              blurb: "Keep everyone informed about the current state of your projects",
+              blurb:
+                "Keep everyone informed about the current state of your projects",
               cta: { label: "Explore More", href: "#" },
               image: {
                 link: "/assets/overview-img.png",
@@ -595,8 +596,9 @@ function MegaPanel({
   return (
     <div
       className="
-        overflow-hidden absolute left-1/2 -translate-x-1/2 mt-6 w-[min(100vw-2rem,980px)]
+        overflow-hidden left-[62%] -translate-x-1/2 mt-6 w-[min(100vw-2rem,980px)]
         rounded-xl border border-white/10 bg-white text-black shadow-2xl transition-colors
+        fixed
       "
     >
       <div className="grid grid-cols-12">

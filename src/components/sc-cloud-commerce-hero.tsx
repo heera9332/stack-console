@@ -39,14 +39,14 @@ export default function ScCloudCommerceHero() {
           <div className="my-8">
             {/* Title 1 */}
             <h1 className="font-semibold leading-tight text-[36px] md:text-[64px] text-center md:text-left">
-              <span className="heroText" data-text={data.title1}>
+              <span className="" data-text={data.title1}>
                 {data.title1}
               </span>
             </h1>
 
             {/* Title 2 */}
             <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight text-center md:text-left">
-              <span className="heroText relative" data-text={data.title2}>
+              <span className="relative" data-text={data.title2}>
                 <span
                   className="
                   bg-clip-text text-transparent
