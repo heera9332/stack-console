@@ -77,7 +77,7 @@ export default function ScWhyChooseAndCTA(props: { data?: SectionData }) {
   const d = props.data ?? DATA;
 
   return (
-    <section id="sc-why-choose-us-cta" className="w-full relative overflow-hidden bg-light">
+    <section id="sc-why-choose-us-cta" className="w-full relative overflow-hidden bg-light section">
       {/* ---------- Why Choose ---------- */}
       <div className="bg-gray-50">
         <div className="mx-auto max-w-7xl px-6 py-16 md:pt-28 pb-92 md:pb-36">

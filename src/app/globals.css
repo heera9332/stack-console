@@ -148,16 +148,43 @@
 .text-rainbow {
   background: linear-gradient(
     90deg,
-    #df2d2e 0%,   /* red starts */
-  
-    #f1d530 30%,  /* yellow runs until 70% */
-    #f1d530 70%,  /* yellow runs until 70% */
-    #3c68b9 100%  /* blue takes last 30% */
+    #df2d2e 0%,
+
+    /* red starts */ #f1d530 30%,
+    /* yellow runs until 70% */ #f1d530 70%,
+    /* yellow runs until 70% */ #3c68b9 100% /* blue takes last 30% */
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.rainbow-gradient-border-hover {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden; /* ensures the pseudo-element follows rounded corners */
+  z-index: 0;       /* keep card content above */
+}
+
+.rainbow-gradient-border-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  border-radius: inherit;
+  padding: 4px; /* border thickness */
+  background: linear-gradient(90deg, red, yellow, blue);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.rainbow-gradient-border-hover:hover::before {
+  opacity: 1;
+}
 
 
 /* * { outline: 1px dashed rgb(255, 0, 0); outline-offset: -1px; } */

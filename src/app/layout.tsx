@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import SCFooter from "@/components/sc-footer";
 import ScHeader from "@/components/sc-header/sc-header";
 import "./globals.css";
+import HeaderWatcher from "@/components/sc-header/HeaderWatcher";
 
 // Load Inter font
 const inter = Inter({
@@ -41,6 +42,7 @@ export default function RootLayout({
         >
           <ScHeader />
           {children}
+          <HeaderWatcher />
           <SCFooter />
         </ThemeProvider>
 

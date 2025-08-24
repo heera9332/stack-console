@@ -1,4 +1,6 @@
+"use client"
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 /** Helpers */
 const alignToObjectPos = (a?: Align) => {
@@ -299,12 +301,49 @@ const DATA: MasonryData = {
   ],
 };
 
+function TorchOverlay() {
+  return (
+    <>
+      <div className="__torch" />
+      <style jsx global>{`
+        :root {
+          --torch-x: 50vw;
+          --torch-y: 50vh;
+        }
+        .__torch {
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          background: radial-gradient(
+            280px at var(--torch-x) var(--torch-y),
+            rgba(255, 255, 255, 0.18) 0%,
+            rgba(255, 255, 255, 0.1) 35%,
+            rgba(255, 255, 255, 0) 75%
+          );
+          mix-blend-mode: screen;
+          opacity: 0;
+          transition: opacity 0.15s ease;
+          z-index: 50;
+        }
+        .__torch-on .__torch {
+          opacity: 1;
+        }
+      `}</style>
+    </>
+  );
+}
+
 /** COMPONENT */
-export default function ScPlatformCapabilitiesGrid(props: { data?: MasonryData }) {
+export default function ScPlatformCapabilitiesGrid(props: {
+  data?: MasonryData;
+}) {
   const d = props.data ?? DATA;
 
   return (
-    <section id="platform-capcabilities-grid" className="bg-[#121219] bg-dark text-white px-4 md:px-0">
+    <section
+      id="platform-capcabilities-grid"
+      className="bg-[#121219] bg-dark text-white px-4 md:px-0 section"
+    >
       {d.heading && (
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
           <h2 className="text-center text-4xl md:text-[56px] font-semibold tracking-tight">
@@ -321,11 +360,15 @@ export default function ScPlatformCapabilitiesGrid(props: { data?: MasonryData }
           ))}
         </div>
       </div>
+
+      <TorchOverlay />
     </section>
   );
 }
 
 /** Single card */
+
+
 function MasonryCard({ item }: { item: MasonryItem }) {
   const ratio = `${item.width} / ${item.height}`;
   const textDark = item.textOn === "dark";
@@ -342,9 +385,43 @@ function MasonryCard({ item }: { item: MasonryItem }) {
 
   const contentAlignClasses = alignToFlex(item.contentAlign);
 
+  const cardRef = useRef<HTMLElement | null>(null);
+
+  // keep torch centered on the hovered card even if window resizes
+  useEffect(() => {
+    function recenterIfHover() {
+      const hovered = document.querySelector("article[data-hover='1']") as HTMLElement | null;
+      if (!hovered) return;
+      const r = hovered.getBoundingClientRect();
+      document.documentElement.style.setProperty("--torch-x", `${r.left + r.width / 2}px`);
+      document.documentElement.style.setProperty("--torch-y", `${r.top + r.height / 2}px`);
+    }
+    window.addEventListener("resize", recenterIfHover);
+    return () => window.removeEventListener("resize", recenterIfHover);
+  }, []);
+
+  function handleEnter() {
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    document.documentElement.style.setProperty("--torch-x", `${r.left + r.width / 2}px`);
+    document.documentElement.style.setProperty("--torch-y", `${r.top + r.height / 2}px`);
+    el.setAttribute("data-hover", "1");
+    document.body.classList.add("__torch-on");
+  }
+
+  function handleLeave() {
+    const el = cardRef.current;
+    if (el) el.removeAttribute("data-hover");
+    document.body.classList.remove("__torch-on");
+  }
+
   return (
     <article
-      className="mb-4 break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-white/5 shadow-[0_10px_30px_rgba(0,0,0,.35)] relative"
+      ref={cardRef}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      className={`mb-4 break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-white/5 shadow-[0_10px_30px_rgba(0,0,0,.35)] relative ${item.textOn === "dark" ? "rainbow-gradient-border-hover" : ""}`}
       style={{
         background: item.bg ?? "#181822",
         boxShadow:
@@ -354,22 +431,16 @@ function MasonryCard({ item }: { item: MasonryItem }) {
       }}
     >
       <div className="relative w-full" style={{ aspectRatio: ratio }}>
-        {/* Decoration overlay */}
         <Image
           src={item.deco.src}
           alt={item.deco.alt ?? ""}
           fill
           sizes="(min-width:1280px) 22rem, (min-width:1024px) 30vw, (min-width:640px) 45vw, 92vw"
           className={decoFit === "contain" ? "object-contain" : "object-cover"}
-          style={{
-            objectPosition: decoAlign,
-            opacity: decoOpacity,
-            mixBlendMode: decoBlend,
-          }}
+          style={{ objectPosition: decoAlign, opacity: decoOpacity, mixBlendMode: decoBlend as any }}
           priority={false}
         />
 
-        {/* Optional main image layer */}
         {hasMainImg && (
           <Image
             src={item.image!.src}
@@ -382,25 +453,14 @@ function MasonryCard({ item }: { item: MasonryItem }) {
           />
         )}
 
-        <div
-          className={`absolute inset-0 flex p-5 sm:p-6 ${contentAlignClasses}`}
-        >
+        <div className={`absolute inset-0 flex p-5 sm:p-6 ${contentAlignClasses}`}>
           <div
             className={`max-w-[90%] flex flex-col gap-3 ${
-              item.contentAlign?.includes("right")
-                ? "items-end text-right"
-                : "items-start text-left"
+              item.contentAlign?.includes("right") ? "items-end text-right" : "items-start text-left"
             }`}
           >
-            {/* Icon box */}
             <div className="flex h-14 w-14 items-center justify-center rounded-md border border-white/15 bg-black/25 backdrop-blur-sm">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M7 9.50006L2 12.0001L11.6422 16.8212C11.7734 16.8868 11.839 16.9196 11.9078 16.9325C11.9687 16.9439 12.0313 16.9439 12.0922 16.9325C12.161 16.9196 12.2266 16.8868 12.3578 16.8212L22 12.0001L17 9.50006M7 14.5001L2 17.0001L11.6422 21.8212C11.7734 21.8868 11.839 21.9196 11.9078 21.9325C11.9687 21.9439 12.0313 21.9439 12.0922 21.9325C12.161 21.9196 12.2266 21.8868 12.3578 21.8212L22 17.0001L17 14.5001M2 7.00006L11.6422 2.17895C11.7734 2.11336 11.839 2.08056 11.9078 2.06766C11.9687 2.05622 12.0313 2.05622 12.0922 2.06766C12.161 2.08056 12.2266 2.11336 12.3578 2.17895L22 7.00006L12.3578 11.8212C12.2266 11.8868 12.161 11.9196 12.0922 11.9325C12.0313 11.9439 11.9687 11.9439 11.9078 11.9325C11.839 11.9196 11.7734 11.8868 11.6422 11.8212L2 7.00006Z"
                   stroke={textDark ? "#0D0D12" : "#fff"}
@@ -410,21 +470,12 @@ function MasonryCard({ item }: { item: MasonryItem }) {
               </svg>
             </div>
 
-            {/* Text */}
             <div>
-              <h3
-                className={`font-semibold text-xl md:text-2xl ${
-                  textDark ? "text-[#0D0D12]" : "text-white"
-                }`}
-              >
+              <h3 className={`font-semibold text-xl md:text-2xl ${textDark ? "text-[#0D0D12]" : "text-white"}`}>
                 {item.title}
               </h3>
               {item.subtitle && (
-                <p
-                className={`mt-1 text-sm md:text-base ${
-                    textDark ? "text-black/70" : "text-white/70"
-                  }`}
-                >
+                <p className={`mt-1 text-sm md:text-base ${textDark ? "text-black/70" : "text-white/70"}`}>
                   {item.subtitle}
                 </p>
               )}
@@ -435,3 +486,4 @@ function MasonryCard({ item }: { item: MasonryItem }) {
     </article>
   );
 }
+

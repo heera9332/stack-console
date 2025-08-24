@@ -590,7 +590,6 @@ export default function ScHeader() {
           <MobileMenu nav={NAV} onClose={() => setMobileOpen(false)} />
         )}
       </header>
-      <HeaderWatcher />
     </>
   );
 }
