@@ -1,9 +1,15 @@
 section {
-  --x: 50%;
-  --y: 50%;
-  --r: 290px;
+  --x: -50%;
+  --y: -50%;
+  --r: 132px;
   --r-bg: 100px;
   --hard: 255, 247, 0; /* bright yellow spotlight */
+}
+
+.heroText {
+  line-height: 100%;
+  letter-spacing: 0;
+  font-weight: 600;
 }
 
 @media (min-width: 768px) {
@@ -28,17 +34,9 @@ section {
     background-clip: text;
     color: transparent;
     pointer-events: none;
-    filter: drop-shadow(0 0 10px rgba(var(--hard), 0.6));
+    filter: drop-shadow(0 0 10px rgba(var(--hard), 0.001));
     transition: background 0.15s ease-out;
   }
-}
-
-section {
-  --x: 50%;
-  --y: 50%;
-  --r: 290px;
-  --r-bg: 100px;
-  --hard: 255, 247, 0; /* bright yellow spotlight */
 }
 
 .grid-container {
@@ -102,6 +100,7 @@ section {
   );
   box-shadow: 0 0 6px rgba(100, 149, 237, 0.25);
 }
+
 .vertical-segment {
   width: 2px;
   background: linear-gradient(

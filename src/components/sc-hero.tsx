@@ -65,7 +65,6 @@ export default function ScHero() {
       opacity: number
     ) {
       if (typeof document === "undefined") return null;
-      
       const seg = document.createElement("div");
       seg.className = `grid-glow-segment ${
         isHorizontal ? "horizontal-segment" : "vertical-segment"
@@ -200,6 +199,51 @@ export default function ScHero() {
     };
   }, []);
 
+  useEffect(() => {
+    const container = wrapRef.current;
+    if (!container) return;
+
+    const heroTexts = Array.from(
+      container.querySelectorAll<HTMLElement>(".heroText")
+    );
+
+    // helper: reset all to center (nice default)
+    const resetAll = () => {
+      heroTexts.forEach((el) => {
+        el.style.setProperty("--x", "-50%");
+        el.style.setProperty("--y", "-50%");
+      });
+    };
+
+    const onMoveText = (e: PointerEvent) => {
+      // which heroText (if any) are we over?
+      const target = (e.target as HTMLElement)?.closest(
+        ".heroText"
+      ) as HTMLElement | null;
+
+      // center everyone first, then update the active one
+      resetAll();
+
+      if (target) {
+        const rect = target.getBoundingClientRect();
+        // use percentages so it scales with text width/height
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        target.style.setProperty("--x", `${x}%`);
+        target.style.setProperty("--y", `${y}%`);
+      }
+    };
+
+    const onLeaveText = () => resetAll();
+
+    container.addEventListener("pointermove", onMoveText);
+    container.addEventListener("pointerleave", onLeaveText);
+    return () => {
+      container.removeEventListener("pointermove", onMoveText);
+      container.removeEventListener("pointerleave", onLeaveText);
+    };
+  }, []);
+
   return (
     <section
       ref={wrapRef}
@@ -208,11 +252,9 @@ export default function ScHero() {
       className="
         relative overflow-hidden
         bg-[#12141D] text-white
-        px-4 md:px-6 lg:px-8 py-36 md:py-50
-        flex flex-col items-center justify-center
-        grid-container 
-      "
-    >
+        px-4 md:px-6 lg:px-8 py-36 md:pb-50
+        flex flex-col items-center justify-center grid-container"
+      >
       <div className="gradient-overlay"></div>
       <div id="glowSegments" ref={glowSegmentsRef}></div>
 
@@ -223,19 +265,18 @@ export default function ScHero() {
 
       {/* Text + spotlight */}
       <div className="max-w-6xl mx-auto text-center relative z-10">
-        <p className="text-[20px] font-bold md:text-[24px] text-white">
+        <p className="text-[20px] font-bold md:text-[24px] text-white mb-4">
           {data.kicker}
         </p>
 
-        <div className="my-8">
+        <div className="mb-8">
           {/* Title 1 */}
           <h1 className="font-semibold leading-tight text-[36px] md:text-[64px]">
             <span className="heroText" data-text={data.title1}>
               {data.title1}
             </span>
-          </h1>
 
-          {/* Title 2 */}
+            {/* Title 2 */}
           <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight">
             <span className="heroText relative" data-text={data.title2}>
               <Image
@@ -248,13 +289,14 @@ export default function ScHero() {
               <span
                 className="
                   bg-clip-text text-transparent
-                  [background-image:linear-gradient(90deg,#ff7a59,#ffd400,#78e08f,#3ba1ff)]
+                  [background-image:linear-gradient(90deg,#ff4315,#ffd400,#78e08f,#003667)]
                 "
               >
                 {data.title2}
               </span>
             </span>
           </p>
+          </h1>
 
           <p className="mx-auto mt-5 md:px-62 text-body2 md:text-body1 text-white/80">
             {data.description}
