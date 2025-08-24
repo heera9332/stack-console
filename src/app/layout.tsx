@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/sc-theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import SCFooter from "@/components/sc-footer";

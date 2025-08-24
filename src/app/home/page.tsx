@@ -5,7 +5,7 @@ import ScTrustedCloudInnovators from "@/components/sc-trusted-cloud-innovators";
 import ScWhoForStacKConsole from "@/components/sc-who-for-stackconsole";
 import ScCloudEcosystem from "@/components/sc-cloud-ecosystem";
 import { ScHeroClient } from "@/components/sc-hero.client";
-import ScCta from "@/components/footer-cta";
+import ScCta from "@/components/sc-footer-cta";
 import ScTurningIdeasCloudPowerBusiness from "@/components/sc-cloud-power-business";
 
 const Page = () => {

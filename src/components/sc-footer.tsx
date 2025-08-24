@@ -1,7 +1,7 @@
 // src/components/SCFooter.tsx
 import Image from "next/image";
 import Link from "next/link";
-import Newsletter from "./news-letter";
+import Newsletter from "./sc-news-letter";
 import { headers } from "next/headers";
 
 type NavItem = {

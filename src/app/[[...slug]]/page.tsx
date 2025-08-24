@@ -1,7 +1,7 @@
 // app/[[...slug]]/page.tsx
 import { notFound } from "next/navigation";
 import { getAllPageUris, getPageByUri } from "@/lib/wp";
-import SectionRenderer from "@/sections/SectionRenderer";
+import ScSectionRenderer from "@/sections/sc-section-renderer";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -32,7 +32,7 @@ export default async function Page({
   return (
     <main>
       <h1 className="sr-only">{page.title}</h1>
-      <SectionRenderer sections={page.pageBuilder?.sections || []} />
+      <ScSectionRenderer sections={page.pageBuilder?.sections || []} />
     </main>
   );
 }

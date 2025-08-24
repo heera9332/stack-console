@@ -1,4 +1,4 @@
-import Counter from "./counter";
+import Counter from "./sc-counter";
 
 const sectionData = {
   heading: "Turning Big💡 Ideas Into Cloud Power",

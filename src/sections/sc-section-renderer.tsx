@@ -6,7 +6,7 @@ import ScCloudCommerceHero from "@/components/sc-cloud-commerce-hero";
 import ScCloudEcosystem from "@/components/sc-cloud-ecosystem";
 import ScStackConsoleFeatures from "@/components/sc-stack-console-features";
 import ScFAQ from "@/components/sc-faq";
-import ScCta from "@/components/footer-cta";
+import ScCta from "@/components/sc-footer-cta";
 import ScSeeInAction from "@/components/sc-see-in-action";
 import ScTurningIdeasCloudPowerBusiness from "@/components/sc-cloud-power-business";
 import ScPlatformCapabilitiesGrid from "@/components/sc-platform-capacilities";
@@ -54,7 +54,7 @@ const map: Record<string, (props: any) => JSX.Element | null> = {
   ),
 };
 
-export default function SectionRenderer({ sections }: { sections: any[] }) {
+export default function ScSectionRenderer({ sections }: { sections: any[] }) {
   console.log(sections.slice(0));
   return (
     <>
