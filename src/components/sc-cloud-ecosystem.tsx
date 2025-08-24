@@ -51,7 +51,7 @@ export default function ScCloudEcosystem() {
   const offsets = ["ml-0", "ml-8 md:ml-16", "ml-16 md:ml-32"];
 
   return (
-    <section id="sc-cloud-ecosystem" data-aos="fade-up" className="section relative overflow-hidden bg-foreground text-background">
+    <section id="sc-cloud-ecosystem" data-aos="fade-up" className="section relative overflow-hidden bg-foreground text-background bg-dark">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
         {/* Heading */}
         <header className="relative text-center flex flex-col items-center justify-center md:px-64">

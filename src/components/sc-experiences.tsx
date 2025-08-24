@@ -30,7 +30,7 @@ export default function ScExperienceSection(props: { data?: ExperienceData }) {
 
   return (
     <section
-      className="relative bg-[#F1D52F] overflow-hidden min-h-[620px] flex items-end"
+      className="relative bg-[#F1D52F] overflow-hidden min-h-[620px] flex items-end bg-light"
       aria-labelledby="experience-title"
     >
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 md:px-14 py-10 md:py-0">

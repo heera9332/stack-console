@@ -23,7 +23,7 @@ export default function ScCloudCommerceHero() {
         relative overflow-hidden
         bg-gradient-to-b from-[#0b0d0f] to-[#12141d] text-white
         px-4 md:px-6 lg:px-8 py-8
-        flex flex-col items-center justify-center
+        flex flex-col items-center justify-center bg-dark
       "
     >
       <div className="gradient-overlay"></div>

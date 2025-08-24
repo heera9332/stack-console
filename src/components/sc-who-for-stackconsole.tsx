@@ -51,7 +51,7 @@ const items: Item[] = [
 
 export default function ScWhoForStacKConsole() {
   return (
-    <section id="sc-who-for-stack-console" data-aos="fade-up" className="section px-4 md:px-6 lg:px-8 py-10 md:py-20 md:bg-muted">
+    <section id="sc-who-for-stack-console" data-aos="fade-up" className="section px-4 md:px-6 lg:px-8 py-10 md:py-20 md:bg-muted bg-light">
       {/* Heading */}
       <header className="text-center max-w-4xl mx-auto">
         <h2 className="text-[36px] md:text-[56px] leading-tight font-semibold text-foreground">

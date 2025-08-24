@@ -22,7 +22,7 @@ export default function ScInfityCloudPower(props: { data?: HeroData }) {
   const d = props.data ?? DATA;
 
   return (
-    <section id="infinite-cloud-power" className="relative bg-[#12141D]">
+    <section id="infinite-cloud-power" className="relative bg-[#12141D] bg-dark">
       {/* subtle grid background */}
       <div className="rounded-tr-[44px] rounded-tl-[44px] -top-4 bg-white">
         <div

@@ -249,11 +249,11 @@ export default function ScHero() {
       ref={wrapRef}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="
+      className="section
         relative overflow-hidden
         bg-[#12141D] text-white
         px-4 md:px-6 lg:px-8 py-36 md:pb-50
-        flex flex-col items-center justify-center grid-container"
+        flex flex-col items-center justify-center grid-container bg-dark"
       >
       <div className="gradient-overlay"></div>
       <div id="glowSegments" ref={glowSegmentsRef}></div>

@@ -30,7 +30,7 @@ export default function ScSeeInAction() {
   };
 
   return (
-    <section id="sc-see-in-action" data-aos="fade-up" className="section px-4 md:px-6 lg:px-8 py-12 pb-40 md:pb-16 md:py-16 bg-gray-100/50">
+    <section id="sc-see-in-action" data-aos="fade-up" className="section px-4 md:px-6 lg:px-8 py-12 pb-40 md:pb-16 md:py-16 bg-gray-100/50 bg-light">
       {/* Heading */}
       <header className="text-center max-w-5xl mx-auto">
           <h2 className="hidden md:block text-[32px] md:text-[56px] leading-tight font-semibold text-foreground">

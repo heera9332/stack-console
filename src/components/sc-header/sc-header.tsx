@@ -1,11 +1,12 @@
 // src/components/SCHeader.tsx
 "use client";
-
+import "./sc-header.css";
 import * as React from "react";
 import Link from "next/link";
 import { useState, useRef } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
+import HeaderWatcher from "./HeaderWatcher";
 
 /* =========================
    1) STATIC MENU DATA
@@ -496,88 +497,101 @@ export default function ScHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/20 bg-[#0B0D0F] text-white py-2">
-      <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Left: Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src={"/assets/images/brand/logo-dark.png"}
-            alt="stack console"
-            width={512}
-            height={512}
-            className="w-42 h-12 object-cover"
-          />
-        </Link>
+    <>
+      <header
+        id="page-header"
+        className="sticky top-0 z-50 border-b border-black/20 py-2 transition-colors duration-300 header-dark text-white"
+      >
+        <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
+          {/* Left: Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src={"/assets/images/brand/logo-dark.png"}
+              alt="stack console"
+              width={512}
+              height={512}
+              className="w-42 h-12 object-cover logo-dark"
+            />
+            <Image
+              src={"/assets/images/brand/logo.png"}
+              alt="stack console"
+              width={512}
+              height={512}
+              className="w-42 h-12 object-cover logo-light"
+            />
+          </Link>
 
-        <div className="flex gap-2 items-center">
-          {/* Center: Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-2">
-            {NAV.map((item, i) =>
-              item.type === "mega" ? (
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => onOpenMega(i)}
-                  onMouseLeave={onCloseMega}
-                >
-                  <button
+          <div className="flex gap-2 items-center">
+            {/* Center: Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-2">
+              {NAV.map((item, i) =>
+                item.type === "mega" ? (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => onOpenMega(i)}
+                    onMouseLeave={onCloseMega}
+                  >
+                    <button
+                      className="px-3 py-2 cursor-pointer transition-colors rounded-full hover:bg-white hover:text-primary inline-flex items-center gap-1"
+                      aria-expanded={openMega && activeMegaIndex === i}
+                    >
+                      {item.label}
+                      <ChevronDown className="size-4 opacity-80" />
+                    </button>
+
+                    {/* Mega panel */}
+                    {openMega && activeMegaIndex === i && (
+                      <MegaPanel
+                        sections={item.sections!}
+                        hoverItem={hoverItem}
+                        setHoverItem={setHoverItem}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href!}
                     className="px-3 py-2 cursor-pointer transition-colors rounded-full hover:bg-white hover:text-primary inline-flex items-center gap-1"
-                    aria-expanded={openMega && activeMegaIndex === i}
                   >
                     {item.label}
-                    <ChevronDown className="size-4 opacity-80" />
-                  </button>
-
-                  {/* Mega panel */}
-                  {openMega && activeMegaIndex === i && (
-                    <MegaPanel
-                      sections={item.sections!}
-                      hoverItem={hoverItem}
-                      setHoverItem={setHoverItem}
-                    />
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href!}
-                  className="px-3 py-2 cursor-pointer transition-colors rounded-full hover:bg-white hover:text-primary inline-flex items-center gap-1"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-          </nav>
-
-          {/* Right: CTA + mobile button */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/demo"
-              className="hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
-            >
-              Schedule a Meeting
-            </Link>
-
-            <button
-              className="lg:hidden inline-flex items-center justify-center size-9 rounded-md hover:bg-white/10"
-              onClick={() => setMobileOpen((s) => !s)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? (
-                <X className="size-5" />
-              ) : (
-                <Menu className="size-5" />
+                  </Link>
+                )
               )}
-            </button>
+            </nav>
+
+            {/* Right: CTA + mobile button */}
+            <div className="flex items-center gap-3">
+              <Link
+                href="/demo"
+                className="hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
+              >
+                Schedule a Meeting
+              </Link>
+
+              <button
+                className="lg:hidden inline-flex items-center justify-center size-9 rounded-md hover:bg-white/10"
+                onClick={() => setMobileOpen((s) => !s)}
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? (
+                  <X className="size-5" />
+                ) : (
+                  <Menu className="size-5" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
-        <MobileMenu nav={NAV} onClose={() => setMobileOpen(false)} />
-      )}
-    </header>
+        {/* Mobile drawer */}
+        {mobileOpen && (
+          <MobileMenu nav={NAV} onClose={() => setMobileOpen(false)} />
+        )}
+      </header>
+      <HeaderWatcher />
+    </>
   );
 }
 

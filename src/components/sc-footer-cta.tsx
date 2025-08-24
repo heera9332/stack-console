@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function ScCta() {
   return (
-    <section id="sc-cta" className="relative min-h-[296px] w-full flex justify-center">
+    <section id="sc-cta" className="relative min-h-[296px] w-full flex justify-center bg-light">
       <div className="max-w-6xl mx-4 md:mx-auto text-center text-white rounded-lg bg-[#2B59FF] md:px-20 py-8 md:py-16 absolute top-[72px] md:top-[96px]">
         <div className="cta-content px-4 md:px-16">
           <h2 className="md:text-[56px] text-[42px] font-bold leading-[100%] md:leading-[68px]">

@@ -77,11 +77,11 @@ export default async function SCFooter() {
   return (
     <footer
       id="footerSection"
-      className={`bg-foreground text-white ${
+      className={`bg-foreground bg-dark text-white ${
         isHome ? "pt-64" : "pt-0"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 py-12">
+      <div className="mx-auto max-w-7xl px-6 py-12 ">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           {/* Brand / Address */}
           <div className="md:col-span-4">
