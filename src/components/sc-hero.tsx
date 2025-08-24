@@ -284,7 +284,7 @@ export default function ScHero() {
                 alt="trophy"
                 width={512}
                 height={512}
-                className="h-10 md:h-18 w-10 md:w-18 object-cover absolute rotate-[-30deg] -left-10 md:-left-14"
+                className="h-10 md:h-18 w-10 md:w-18 object-cover absolute rotate-[-30deg] -left-10 md:-left-14 -top-3"
               />
               <span
                 className="
