@@ -288,8 +288,7 @@ export default function ScHero() {
               />
               <span
                 className="
-                  bg-clip-text text-transparent
-                  [background-image:linear-gradient(90deg,#ff4315,#ffd400,#78e08f,#003667)]
+                  bg-clip-text text-transparent text-rainbow
                 "
               >
                 {data.title2}

@@ -62,7 +62,7 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
@@ -87,24 +87,31 @@
 
 /* globals.css */
 @keyframes marquee-x {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); } /* track is duplicated, so -50% loops seamlessly */
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  } /* track is duplicated, so -50% loops seamlessly */
 }
 
 .marquee {
   animation: marquee-x var(--marquee-duration, 2s) linear infinite;
   will-change: transform;
 }
-.marquee-reverse { animation-direction: reverse; }
+.marquee-reverse {
+  animation-direction: reverse;
+}
 .marquee-pause:hover,
-.marquee-pause:focus-within { animation-play-state: paused; }
-
+.marquee-pause:focus-within {
+  animation-play-state: paused;
+}
 
 /* hero section mouse hover effect */
 
-
 .img-primary {
-  filter: invert(39%) sepia(64%) saturate(446%) hue-rotate(187deg) brightness(92%) contrast(90%);
+  filter: invert(39%) sepia(64%) saturate(446%) hue-rotate(187deg)
+    brightness(92%) contrast(90%);
 }
 
 /* base hidden state */
@@ -136,6 +143,19 @@
 
 [data-aos="fade-right"] {
   transform: translateX(-20px);
+}
+
+.text-rainbow {
+  background: linear-gradient(
+    90deg,
+    #df2d2e 0%,   /* red starts */
+  
+    #f1d530 30%,  /* yellow runs until 70% */
+    #f1d530 70%,  /* yellow runs until 70% */
+    #3c68b9 100%  /* blue takes last 30% */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 
