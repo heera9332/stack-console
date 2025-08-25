@@ -96,7 +96,7 @@ const NAV: TopNav[] = [
           {
             id: "integration",
             label: "Integration",
-            href: "#",
+          href: "/cloud-integrations",
             emoji: "/assets/svg/atom-01.svg",
             description: "Connect clouds, tools, identity and more.",
             preview: {

@@ -1,11 +1,11 @@
 import { wp } from '@/lib/graphql';
 import { gql } from 'graphql-request';
 import { PAGE_SECTIONS_BY_URI } from '@/lib/graphql-queries';
+import type { PageSectionsByUriQuery, PageSectionsByUriQueryVariables } from '../gql/__generated__/graphql';
 
 export async function getPageByUri(uri: string) {
-  const data = await wp.request(PAGE_SECTIONS_BY_URI, { uri });
-
-  // @ts-ignore
+  const data = await wp.request<PageSectionsByUriQuery, PageSectionsByUriQueryVariables>(PAGE_SECTIONS_BY_URI, { uri });
+  
   return data?.page ?? null;
 }
 

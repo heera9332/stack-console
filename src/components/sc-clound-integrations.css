@@ -1,0 +1,16 @@
+.integration-highlighted {
+  background: linear-gradient(
+    176deg,
+    #e52c2c -14.07%,
+    #f3d431 57.98%,
+    #386cc5 89.58%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* For modern browsers */
+  color: transparent;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0px;
+  text-align: center;
+}

@@ -36,5 +36,3 @@ export const wp = new GraphQLClient(endpoint, {
   },
   fetch: guardedFetch,
 });
-
-console.log("[WP_GRAPHQL_ENDPOINT]", endpoint);
