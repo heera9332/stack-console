@@ -78,7 +78,7 @@ const NAV: TopNav[] = [
             id: "billing",
             label: "Subscription & Billing",
             href: "#",
-            emoji: "/assets/svg/file.svg",
+            emoji: "/assets/svg/atom-01.svg",
             description: "Automated invoices, usage metering, multi-currency.",
             preview: {
               title: "Billing",
@@ -96,7 +96,7 @@ const NAV: TopNav[] = [
           {
             id: "integration",
             label: "Integration",
-          href: "/cloud-integrations",
+            href: "/cloud-integrations",
             emoji: "/assets/svg/atom-01.svg",
             description: "Connect clouds, tools, identity and more.",
             preview: {
@@ -207,7 +207,7 @@ const NAV: TopNav[] = [
             id: "ovr",
             label: "Cloud & Hosting Provider",
             href: "#",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/cloud.svg",
             description: "Launch, Manage, and scale with Ease",
             preview: {
               title: "Overview",
@@ -227,7 +227,7 @@ const NAV: TopNav[] = [
             id: "data-centers2",
             label: "Turn Infrastructure into Cloud Revenue",
             href: "#",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/database-01.svg",
             description: "Launch, Manage, and scale with Ease",
             preview: {
               title: "Overview",
@@ -246,7 +246,7 @@ const NAV: TopNav[] = [
             id: "Managed Service Providers",
             label: "Deliver More, Manage Less",
             href: "#",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/message-check-circle.svg",
             description: "Launch, Manage, and scale with Ease",
             preview: {
               title: "Overview",
@@ -265,7 +265,7 @@ const NAV: TopNav[] = [
             id: "data-centers",
             label: "Turn Infrastructure into Cloud Revenue",
             href: "#",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/signal-02.svg",
             description: "Launch, Manage, and scale with Ease",
             preview: {
               title: "Overview",
@@ -297,7 +297,7 @@ const NAV: TopNav[] = [
             id: "insights",
             label: "Insights",
             href: "/insights",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/heart-hand.svg",
             description: "Case Studies, eBooks, Reports & Whitepapers",
             preview: {
               title: "Insight",
@@ -316,7 +316,7 @@ const NAV: TopNav[] = [
             id: "blogs",
             label: "Blogs",
             href: "/blogs",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/file-heart-02.svg",
             description: "Expert Tips, Product Updates & Stories",
             preview: {
               title: "Blogs",
@@ -328,15 +328,15 @@ const NAV: TopNav[] = [
                 alt: "Blogs",
               },
             },
-            iconHoverBgColor: "#966F18, #160E02",
-            cardHoverBgColor: "#966F18",
+            iconHoverBgColor: "#F93333, #A10606",
+            cardHoverBgColor: "#FFD6D6",
             textHoverColor: "#fff",
           },
           {
             id: "videos",
             label: "Videos",
             href: "/videos",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/play-square.svg",
             description: "Product Demos, Tutorials & Feature Highlights",
             preview: {
               title: "Vidoes",
@@ -348,15 +348,15 @@ const NAV: TopNav[] = [
                 alt: "Videos",
               },
             },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
+            iconHoverBgColor: "#DDB458, #895924",
+            cardHoverBgColor: "#FFEFCA",
             textHoverColor: "#fff",
           },
           {
             id: "events",
             label: "Events",
             href: "/events",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/disc-02.svg",
             description: "Meet Us at Industry Shows & Conferences",
             preview: {
               title: "Events",
@@ -389,7 +389,7 @@ const NAV: TopNav[] = [
             id: "manifesto",
             label: "Manifesto",
             href: "/manifesto",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/file-03.svg",
             description: "Driven by Innovation, Guided by Purpose",
             preview: {
               title: "Manifesto",
@@ -408,7 +408,7 @@ const NAV: TopNav[] = [
             id: "about-us",
             label: "About us",
             href: "/manifesto",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/building-01.svg",
             description: "Passion, People & the Cloud We Build",
             preview: {
               title: "About us",
@@ -419,15 +419,15 @@ const NAV: TopNav[] = [
                 alt: "",
               },
             },
-            iconHoverBgColor: "#921314, #921314",
-            cardHoverBgColor: "#921314",
+            iconHoverBgColor: "#966F18, #160E02",
+            cardHoverBgColor: "#FFEFCA",
             textHoverColor: "#fff",
           },
           {
             id: "careers",
             label: "Careers",
             href: "/manifesto",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/briefcase-01.svg",
             description: "Build the Future of Cloud With Us",
             preview: {
               title: "Careers",
@@ -439,15 +439,15 @@ const NAV: TopNav[] = [
               },
             },
 
-            iconHoverBgColor: "#921314, #921314",
-            cardHoverBgColor: "#921314",
+            iconHoverBgColor: "#F93333, #A10606",
+            cardHoverBgColor: "#FFD6D6",
             textHoverColor: "#fff",
           },
           {
             id: "contact-us",
             label: "Contact us",
             href: "/manifesto",
-            emoji: "/assets/svg/overview.svg",
+            emoji: "/assets/svg/phone.svg",
             description: "We’re Just a Message Away",
             preview: {
               title: "Contact us",
@@ -643,6 +643,8 @@ function MegaPanel({
                       <GetIcon
                         iconHoverBgColor={it.iconHoverBgColor}
                         textHoverColor={it.textHoverColor}
+                        link={it.emoji}
+                        altText={it.label}
                       />
                       <span className="flex-1">
                         <span className="block font-medium text-gray-900">
@@ -799,11 +801,14 @@ function MobileMenu({ nav, onClose }: { nav: TopNav[]; onClose: () => void }) {
       </div>
     </div>
   );
-}
+} 
 
 const GetIcon = ({
+  className = "",
   iconHoverBgColor = "#356EC3, #0D3269",
   textHoverColor = "#fff",
+  link = "",
+  altText = "",
 }) => {
   return (
     <div
@@ -812,26 +817,24 @@ const GetIcon = ({
         ["--icon-color" as any]: textHoverColor,
       }}
       className={`
-        rounded-[12px] size-12 flex items-center justify-center
-        border border-[#AFB9CE] group-hover:border-none
+        group rounded-[12px] size-12 flex items-center justify-center
+        border border-[#AFB9CE] transition
+        group-hover:border-none
         group-hover:[background:var(--icon-gradient)]
         group-hover:text-[var(--icon-color)]
+        ${className}
       `}
     >
-      <svg
-        width="24"
-        height="25"
-        viewBox="0 0 24 25"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M14 2.76953V6.90007C14 7.46012 14 7.74015 14.109 7.95406C14.2049 8.14222 14.3578 8.2952 14.546 8.39108C14.7599 8.50007 15.0399 8.50007 15.6 8.50007H19.7305M14 17.5H8M16 13.5H8M20 10.4882V17.7C20 19.3802 20 20.2202 19.673 20.862C19.3854 21.4265 18.9265 21.8854 18.362 22.173C17.7202 22.5 16.8802 22.5 15.2 22.5H8.8C7.11984 22.5 6.27976 22.5 5.63803 22.173C5.07354 21.8854 4.6146 21.4265 4.32698 20.862C4 20.2202 4 19.3802 4 17.7V7.3C4 5.61984 4 4.77976 4.32698 4.13803C4.6146 3.57354 5.07354 3.1146 5.63803 2.82698C6.27976 2.5 7.11984 2.5 8.8 2.5H12.0118C12.7455 2.5 13.1124 2.5 13.4577 2.58289C13.7638 2.65638 14.0564 2.77759 14.3249 2.94208C14.6276 3.1276 14.887 3.38703 15.4059 3.90589L18.5941 7.09411C19.113 7.61297 19.3724 7.8724 19.5579 8.17515C19.7224 8.44356 19.8436 8.7362 19.9171 9.0423C20 9.38757 20 9.75445 20 10.4882Z"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <Image
+        src={link}
+        alt={altText}
+        width={64}
+        height={64}
+        className="p-2.5 transition
+          [filter:brightness(0)_saturate(100%)_invert(26%)_sepia(61%)_saturate(1406%)_hue-rotate(192deg)_brightness(91%)_contrast(95%)]
+          group-hover:brightness-0 group-hover:invert"
+      />
     </div>
   );
 };
+ 

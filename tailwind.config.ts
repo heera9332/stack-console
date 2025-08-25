@@ -19,7 +19,7 @@ module.exports = {
         body1: ["18px", { lineHeight: "28px" }],
         body2: ["16px", { lineHeight: "24px" }],
         body3: ["14px", { lineHeight: "20px" }],
-      },
+      }
     },
   },
   plugins: [],

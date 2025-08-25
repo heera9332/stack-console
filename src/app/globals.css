@@ -186,5 +186,13 @@
   opacity: 1;
 }
 
+.img-white {
+  filter: brightness(0) invert(1);
+}
+ 
+.img-blue {
+  filter: brightness(0) saturate(100%) invert(26%) sepia(61%) saturate(1406%) hue-rotate(192deg) brightness(91%) contrast(95%);
+}
+
 
 /* * { outline: 1px dashed rgb(255, 0, 0); outline-offset: -1px; } */

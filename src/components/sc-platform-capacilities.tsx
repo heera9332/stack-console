@@ -426,7 +426,7 @@ function MasonryCard({ item }: { item: MasonryItem }) {
         background: item.bg ?? "#181822",
         boxShadow:
           item.textOn === "light"
-            ? "inset 1px 1px 0px #5C3AE480, inset 1px 1px 4px #FFFFFF66"
+            ? "inset 1px 1px 0px #5C3AE480, inset 1px 1px 0px #FFFFFF66"
             : "none",
       }}
     >
