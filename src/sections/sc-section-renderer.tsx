@@ -19,6 +19,7 @@ import ScCloudIntegrationsHero from '@/components/sc-clound-integrations';
 import type { Section, SectionByName } from '@/gql/section-types';
 import { PageSectionsByUriQuery } from '@/gql/__generated__/graphql';
 import { ScCloudIntegrationsPosts } from '@/components/sc-cloud-integrations-posts';
+import ScCloudIntegrationsCta from '@/components/sc-cloud-integrations-cta';
 
 type SectionMap = {
   [K in Section['__typename']]:
@@ -67,6 +68,10 @@ const map: SectionMap = {
   ),
   PageBuilderSectionsCloudIntegrationsPostsLayout: (props) => (
     <ScCloudIntegrationsPosts {...props} />
+  ),  
+  
+  PageBuilderSectionsCloudIntegrationsCtaLayout: (props) => (
+    <ScCloudIntegrationsCta {...props} />
   ),
 };
 

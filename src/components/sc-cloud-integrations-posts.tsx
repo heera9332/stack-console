@@ -131,7 +131,7 @@ const STATIC_APPS: App[] = [
     logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
   },
   {
-    id: "13",
+    id: "133",
     name: "Proxmox VE",
     category: "Cloud Platforms",
     status: "Live",

@@ -109,7 +109,7 @@ export default function ScCloudIntegrationsHero(
 ) {
   console.log("CloudIntegrationsHero data:", data);
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-white" id="clound-integrations-hero">
       {/* BG images (no SVG) */}
       <div
         className="absolute inset-0 -z-10 bg-center bg-cover md:hidden opacity-90 bg-light"
@@ -145,7 +145,7 @@ export default function ScCloudIntegrationsHero(
 
       {/* Field */}
       <div
-        className="relative mx-auto h-[440px] md:h-[732px] flex items-center justify-center -mt-80 z-10"
+        className="relative mx-auto h-[440px] md:h-[732px] flex items-center justify-center -mt-40 md:-mt-80 z-10"
         style={{
           backgroundImage: `url(${data.backgroundImage.node.link})`,
           backgroundSize: "cover", // cover
@@ -154,8 +154,8 @@ export default function ScCloudIntegrationsHero(
         }}
       >
         {/* Desktop: butterfly/X placement */}
-        <div className="hidden md:block w-full max-w-5xl pt-62">
-          <div className="grid grid-cols-9 gap-16 justify-items-center">
+        <div className="md:block w-full max-w-5xl pt-36 md:pt-62">
+          <div className="grid grid-cols-9 gap-2 md:gap-16 justify-items-center">
             {(() => {
               // Fixed, deterministic mapping (left→right, top→bottom)
               // cells that should show a logo:
@@ -188,7 +188,7 @@ export default function ScCloudIntegrationsHero(
                   return (
                     <div
                       key={`${i}-${j}`}
-                      className={`h-24 w-24 rounded-xl flex items-center justify-center ${ isLastRow ? "mt-[-42px]" : ""}`}
+                      className={`w-8 md:h-24 h-8 md:w-24 rounded-xl flex items-center justify-center ${ isLastRow ? "mt-[-42px]" : ""}`}
                     >
                       {showLogo ? (
                         <Image

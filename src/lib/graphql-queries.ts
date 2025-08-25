@@ -17,6 +17,7 @@ import {
   WHY_CHOOSE_STACK_CONSOLE_SECTION,
   CLOUD_INTEGRATIONS_HERO_SECTION,
   CLOUD_INTEGRETIONS_POSTS,
+  CLOUD_INTEGRETIONS_CTA
 } from '@/lib/fragments';
 
 export const PAGE_SECTIONS_BY_URI = gql`
@@ -48,6 +49,7 @@ export const PAGE_SECTIONS_BY_URI = gql`
           ...WhyChooseStackConsoleSection
           ...CloudIntegrationsHeroSection
           ...CloudIntegrationsPostsSection
+          ...CloudIntegrationsCTASection
         }
       }
     }
@@ -68,4 +70,5 @@ export const PAGE_SECTIONS_BY_URI = gql`
   ${WHY_CHOOSE_STACK_CONSOLE_SECTION}
   ${CLOUD_INTEGRATIONS_HERO_SECTION}
   ${CLOUD_INTEGRETIONS_POSTS}
+  ${CLOUD_INTEGRETIONS_CTA}
 `;

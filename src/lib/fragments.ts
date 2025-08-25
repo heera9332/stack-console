@@ -271,3 +271,19 @@ export const CLOUD_INTEGRETIONS_POSTS = gql`
     }
   }
 `;
+
+export const CLOUD_INTEGRETIONS_CTA = gql`
+  fragment CloudIntegrationsCTASection on PageBuilderSectionsCloudIntegrationsCtaLayout {
+    fieldGroupName
+    heading
+    description
+    actionButtonLabel
+    actionButtonLink
+    heroImage {
+      node {
+        altText
+        link
+      }
+    }
+  }
+`;
