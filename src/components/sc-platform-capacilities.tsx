@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
@@ -82,7 +82,7 @@ type MasonryData = {
 
 /** DATA — uses your URL everywhere needed */
 const IMG =
-  "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/layers-1.png";
+  "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/Component-192.png";
 
 const DATA: MasonryData = {
   heading: "Platform Capabilities Grid",
@@ -91,8 +91,8 @@ const DATA: MasonryData = {
       id: "prov",
       title: "Service Provisioning & Orchestration",
       subtitle: "Multi-orchestrator, instant provisioning, auto-scaling",
-      width: 4,
-      height: 4,
+      width: 3,
+      height: 3.5,
       bg: "#151223",
       textOn: "light",
       contentAlign: "bottom-left",
@@ -107,11 +107,37 @@ const DATA: MasonryData = {
       icon: { src: "/assets/svg/layers-three-02.svg", alt: "Provisioning" },
     },
     {
+      id: "support",
+      title: "Support & SLA",
+      subtitle: "Ticketing, SLA tracking, escalation workflows",
+      width: 4,
+      height: 3,
+      bg: "#FFF06A",
+      textOn: "dark",
+      contentAlign: "bottom-left",
+      deco: {
+        src: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/sla-and-support.png",
+        alt: "Support deco",
+        opacity: 0.22,
+        blend: "overlay",
+        fit: "cover",
+        align: "bottom-left",
+      },
+      image: {
+        src: IMG,
+        alt: "Support preview",
+        fit: "cover",
+        align: "top-right",
+        opacity: 0.2,
+      },
+      icon: { src: "/assets/svg/layers-three-02.svg", alt: "Icon" },
+    },
+    {
       id: "self",
       title: "Customer Self-Service",
       subtitle: "White-label portal for provisioning, monitoring, scaling",
-      width: 6,
-      height: 3,
+      width: 5,
+      height: 3.5,
       bg: "#25184D",
       textOn: "light",
       contentAlign: "bottom-left",
@@ -153,10 +179,10 @@ const DATA: MasonryData = {
     },
     {
       id: "reseller",
-      title: "Reseller & Channel",
+      title: "Reseller & Channel Management",
       subtitle: "Multi-tier resellers, sub-portals, quota control",
-      width: 6,
-      height: 4,
+      width: 3,
+      height: 2,
       bg: "#FFD7E0",
       textOn: "dark",
       contentAlign: "bottom-left",
@@ -177,32 +203,7 @@ const DATA: MasonryData = {
       },
       icon: { src: "/assets/svg/layers-three-02.svg", alt: "Icon" },
     },
-    {
-      id: "support",
-      title: "Support & SLA",
-      subtitle: "Ticketing, SLA tracking, escalation workflows",
-      width: 4,
-      height: 3,
-      bg: "#FFF06A",
-      textOn: "dark",
-      contentAlign: "bottom-left",
-      deco: {
-        src: IMG,
-        alt: "Support deco",
-        opacity: 0.22,
-        blend: "overlay",
-        fit: "cover",
-        align: "bottom-left",
-      },
-      image: {
-        src: IMG,
-        alt: "Support preview",
-        fit: "cover",
-        align: "top-right",
-        opacity: 0.2,
-      },
-      icon: { src: "/assets/svg/layers-three-02.svg", alt: "Icon" },
-    },
+
     {
       id: "api",
       title: "API & Integrations",
@@ -368,7 +369,6 @@ export default function ScPlatformCapabilitiesGrid(props: {
 
 /** Single card */
 
-
 function MasonryCard({ item }: { item: MasonryItem }) {
   const ratio = `${item.width} / ${item.height}`;
   const textDark = item.textOn === "dark";
@@ -390,11 +390,19 @@ function MasonryCard({ item }: { item: MasonryItem }) {
   // keep torch centered on the hovered card even if window resizes
   useEffect(() => {
     function recenterIfHover() {
-      const hovered = document.querySelector("article[data-hover='1']") as HTMLElement | null;
+      const hovered = document.querySelector(
+        "article[data-hover='1']"
+      ) as HTMLElement | null;
       if (!hovered) return;
       const r = hovered.getBoundingClientRect();
-      document.documentElement.style.setProperty("--torch-x", `${r.left + r.width / 2}px`);
-      document.documentElement.style.setProperty("--torch-y", `${r.top + r.height / 2}px`);
+      document.documentElement.style.setProperty(
+        "--torch-x",
+        `${r.left + r.width / 2}px`
+      );
+      document.documentElement.style.setProperty(
+        "--torch-y",
+        `${r.top + r.height / 2}px`
+      );
     }
     window.addEventListener("resize", recenterIfHover);
     return () => window.removeEventListener("resize", recenterIfHover);
@@ -404,8 +412,14 @@ function MasonryCard({ item }: { item: MasonryItem }) {
     const el = cardRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    document.documentElement.style.setProperty("--torch-x", `${r.left + r.width / 2}px`);
-    document.documentElement.style.setProperty("--torch-y", `${r.top + r.height / 2}px`);
+    document.documentElement.style.setProperty(
+      "--torch-x",
+      `${r.left + r.width / 2}px`
+    );
+    document.documentElement.style.setProperty(
+      "--torch-y",
+      `${r.top + r.height / 2}px`
+    );
     el.setAttribute("data-hover", "1");
     document.body.classList.add("__torch-on");
   }
@@ -421,7 +435,9 @@ function MasonryCard({ item }: { item: MasonryItem }) {
       ref={cardRef}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      className={`mb-4 break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-white/5 shadow-[0_10px_30px_rgba(0,0,0,.35)] relative ${item.textOn === "dark" ? "rainbow-gradient-border-hover" : ""}`}
+      className={`mb-4 break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-white/5 shadow-[0_10px_30px_rgba(0,0,0,.35)] relative ${
+        item.textOn === "dark" ? "rainbow-gradient-border-hover" : ""
+      }`}
       style={{
         background: item.bg ?? "#181822",
         boxShadow:
@@ -437,7 +453,11 @@ function MasonryCard({ item }: { item: MasonryItem }) {
           fill
           sizes="(min-width:1280px) 22rem, (min-width:1024px) 30vw, (min-width:640px) 45vw, 92vw"
           className={decoFit === "contain" ? "object-contain" : "object-cover"}
-          style={{ objectPosition: decoAlign, opacity: decoOpacity, mixBlendMode: decoBlend as any }}
+          style={{
+            objectPosition: decoAlign,
+            opacity: decoOpacity,
+            mixBlendMode: decoBlend as any,
+          }}
           priority={false}
         />
 
@@ -453,10 +473,14 @@ function MasonryCard({ item }: { item: MasonryItem }) {
           />
         )}
 
-        <div className={`absolute inset-0 flex p-5 sm:p-6 ${contentAlignClasses}`}>
+        <div
+          className={`absolute inset-0 flex p-5 sm:p-6 ${contentAlignClasses}`}
+        >
           <div
             className={`max-w-[90%] flex flex-col gap-3 ${
-              item.contentAlign?.includes("right") ? "items-end text-right" : "items-start text-left"
+              item.contentAlign?.includes("right")
+                ? "items-end text-right"
+                : "items-start text-left"
             }`}
           >
             <div className="flex h-14 w-14 items-center justify-center rounded-md border border-white/15 bg-black/25 backdrop-blur-sm">
@@ -471,11 +495,19 @@ function MasonryCard({ item }: { item: MasonryItem }) {
             </div>
 
             <div>
-              <h3 className={`font-semibold text-xl md:text-2xl ${textDark ? "text-[#0D0D12]" : "text-white"}`}>
+              <h3
+                className={`font-semibold text-xl md:text-2xl ${
+                  textDark ? "text-[#0D0D12]" : "text-white"
+                }`}
+              >
                 {item.title}
               </h3>
               {item.subtitle && (
-                <p className={`mt-1 text-sm md:text-base ${textDark ? "text-black/70" : "text-white/70"}`}>
+                <p
+                  className={`mt-1 text-sm md:text-base ${
+                    textDark ? "text-black/70" : "text-white/70"
+                  }`}
+                >
                   {item.subtitle}
                 </p>
               )}
@@ -486,4 +518,3 @@ function MasonryCard({ item }: { item: MasonryItem }) {
     </article>
   );
 }
-
