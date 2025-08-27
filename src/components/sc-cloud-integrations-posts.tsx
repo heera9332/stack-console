@@ -311,7 +311,7 @@ export const ScCloudIntegrationsPosts = (
                       <span className="text-[#929292]">Close</span>
                     </DialogClose>
                     <DialogClose asChild className="w-2/3">
-                      <Button className="bg-black text-white w-full h-12">
+                      <Button className="bg-black text-white h-12">
                         Apply
                       </Button>
                     </DialogClose>
