@@ -200,9 +200,98 @@ export const INFINITE_CLOUD_CONSOLE_SECTION = gql`
 
 export const PLATFORM_CAPABILITIES_GRID_SECTION = gql`
   fragment PlatformCapabilitiesGridSection on PageBuilderSectionsPlatformCapabilitiesGridLayout {
-    fieldGroupName
+  fieldGroupName
+  heading
+  card1 { 
+  cardImage {
+      node {
+        altText
+        link
+      }
+    }
+    description
+    heading 
   }
+  card2 { 
+    cardImage {
+      node {
+        altText
+        link
+      }
+    }
+    description
+    heading 
+  }
+  card3 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+  card4 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+  card5 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+  card6 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+  card7 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+  card8 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+  card9 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+  card10 { cardImage {
+    node {
+      altText
+      link
+    }
+  }
+  description
+  heading }
+}
+
+ 
 `;
+
+
 
 export const EXPERIENCE_STACK_SECTION = gql`
   fragment ExperienceStackSection on PageBuilderSectionsExperienceStackLayout {

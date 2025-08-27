@@ -36,6 +36,9 @@ export default async function Page({
   // Null-safe sections extraction
   const sections = (page.pageBuilder?.sections ?? []) as SectionNullable[];
 
+  console.log('Rendering page for URI:', uri);
+  console.log('Sections:', sections);
+  
   return (
     <main>
       <h1 className="sr-only">{page.title}</h1>
