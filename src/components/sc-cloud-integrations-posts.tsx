@@ -63,7 +63,9 @@ export const ScCloudIntegrationsPosts = (
   // UI-only state
   const [query, setQuery] = React.useState("");
   const [activeCategoryName, setActiveCategoryName] = React.useState("All"); // ✅ default All
-  const [activeStatuses, setActiveStatuses] = React.useState<string[]>(["Live"]); // ✅ default Live
+  const [activeStatuses, setActiveStatuses] = React.useState<string[]>([
+    "Live",
+  ]); // ✅ default Live
   const [page, setPage] = React.useState(1);
 
   // debounce search
@@ -74,7 +76,10 @@ export const ScCloudIntegrationsPosts = (
   }, [query]);
 
   // reset to page 1 when filters/search change
-  React.useEffect(() => setPage(1), [debouncedQuery, activeCategoryName, activeStatuses]);
+  React.useEffect(
+    () => setPage(1),
+    [debouncedQuery, activeCategoryName, activeStatuses]
+  );
 
   // fetch categories (prepend "All")
   React.useEffect(() => {
@@ -180,7 +185,9 @@ export const ScCloudIntegrationsPosts = (
                   key={c.id + "-" + c.name}
                   className={cn(
                     "flex cursor-pointer items-center gap-3 rounded-md px-2 py-1.5 text-sm",
-                    activeCategoryName === c.name ? "bg-muted" : "hover:bg-muted/60"
+                    activeCategoryName === c.name
+                      ? "bg-muted"
+                      : "hover:bg-muted/60"
                   )}
                 >
                   <input
@@ -239,9 +246,22 @@ export const ScCloudIntegrationsPosts = (
               className="w-full h-12 px-4"
             />
             <Dialog>
-              <DialogTrigger asChild className="md:hidden">
+              <DialogTrigger asChild className="md:hidden h-12 w-16 flex items-center justify-center">
                 <div className="border bg-white rounded-lg p-2">
-                  <Filter size={12} className="w-8 h-8" />
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3.38394 5.66687C2.6276 4.82155 2.24943 4.39889 2.23516 4.03968C2.22277 3.72764 2.35687 3.42772 2.59768 3.22889C2.87489 3 3.44203 3 4.57633 3H19.4193C20.5536 3 21.1207 3 21.3979 3.22889C21.6387 3.42772 21.7728 3.72764 21.7604 4.03968C21.7462 4.39889 21.368 4.82155 20.6116 5.66687L14.9054 12.0444C14.7546 12.2129 14.6793 12.2972 14.6255 12.3931C14.5778 12.4781 14.5428 12.5697 14.5217 12.6648C14.4978 12.7721 14.4978 12.8852 14.4978 13.1113V18.4584C14.4978 18.6539 14.4978 18.7517 14.4663 18.8363C14.4384 18.911 14.3931 18.9779 14.334 19.0315C14.2673 19.0922 14.1765 19.1285 13.9949 19.2012L10.5949 20.5612C10.2274 20.7082 10.0436 20.7817 9.89607 20.751C9.76706 20.7242 9.65385 20.6476 9.58104 20.5377C9.49779 20.4122 9.49779 20.2142 9.49779 19.8184V13.1113C9.49779 12.8852 9.49779 12.7721 9.47391 12.6648C9.45274 12.5697 9.41776 12.4781 9.37008 12.3931C9.31633 12.2972 9.24095 12.2129 9.09018 12.0444L3.38394 5.66687Z"
+                      stroke="black"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
@@ -252,7 +272,10 @@ export const ScCloudIntegrationsPosts = (
                   <div>
                     <h4 className="mb-3 text-sm font-semibold">Category</h4>
                     {categories.map((c) => (
-                      <label key={c.id} className="flex items-center gap-3 py-1.5">
+                      <label
+                        key={c.id}
+                        className="flex items-center gap-3 py-1.5"
+                      >
                         <input
                           type="radio"
                           name="category-mobile"
@@ -266,15 +289,20 @@ export const ScCloudIntegrationsPosts = (
                   {/* statuses (mobile) */}
                   <div>
                     <h4 className="mb-3 text-sm font-semibold">Status</h4>
-                    {["Live", "In Progress", "Planned", "To Be Planned"].map((s) => (
-                      <label key={s} className="flex items-center gap-3 py-1.5">
-                        <Checkbox
-                          checked={activeStatuses.includes(s)}
-                          onCheckedChange={() => toggleStatus(s)}
-                        />
-                        <span>{s}</span>
-                      </label>
-                    ))}
+                    {["Live", "In Progress", "Planned", "To Be Planned"].map(
+                      (s) => (
+                        <label
+                          key={s}
+                          className="flex items-center gap-3 py-1.5"
+                        >
+                          <Checkbox
+                            checked={activeStatuses.includes(s)}
+                            onCheckedChange={() => toggleStatus(s)}
+                          />
+                          <span>{s}</span>
+                        </label>
+                      )
+                    )}
                   </div>
                 </aside>
                 <DialogFooter>
@@ -297,7 +325,10 @@ export const ScCloudIntegrationsPosts = (
           {loading ? (
             <div className="grid grid-cols-1 gap-4 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="h-40 bg-gray-100 animate-pulse rounded-lg" />
+                <div
+                  key={i}
+                  className="h-40 bg-gray-100 animate-pulse rounded-lg"
+                />
               ))}
             </div>
           ) : pageItems.length === 0 ? (
@@ -313,10 +344,16 @@ export const ScCloudIntegrationsPosts = (
                   style={{ boxShadow: "0 4px 12px 0 #241C151F" }}
                 >
                   <CardContent className="flex aspect-[4/3] items-center justify-center bg-zinc-100">
-                    <img src={app.logo} alt={app.name} className="h-auto w-auto opacity-90" />
+                    <img
+                      src={app.logo}
+                      alt={app.name}
+                      className="h-auto w-auto opacity-90"
+                    />
                   </CardContent>
                   <CardFooter className="flex items-center justify-between">
-                    <span className="truncate text-sm font-medium">{app.name}</span>
+                    <span className="truncate text-sm font-medium">
+                      {app.name}
+                    </span>
                     <Badge
                       className={cn(
                         "rounded-full px-2.5 py-1 text-xs font-medium",
