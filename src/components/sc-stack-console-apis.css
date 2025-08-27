@@ -1,0 +1,11 @@
+.highlightedText {
+  background: linear-gradient(
+    90deg,
+    #df2d2e 9.62%,
+    #f1d530 46.63%,
+    #3c68b9 87.5%
+  );
+  -webkit-background-clip: text; /* For Safari/Chrome */
+  background-clip: text;
+  color: transparent; /* Hide original text color */
+}

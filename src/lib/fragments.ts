@@ -229,6 +229,12 @@ export const CLOUD_INTEGRATIONS_HERO_SECTION = gql`
         link
       }
     }
+    backgroundImageMobile {
+      node {
+        altText
+        link
+      }
+    }
     description
     brandLogos {
       fieldGroupName
@@ -269,6 +275,33 @@ export const CLOUD_INTEGRETIONS_POSTS = gql`
         }
       }
     }
+  }
+`;
+
+export const STACK_CONSOLE_APIS_SECTION = gql`
+  fragment StackConsoleApisSection on PageBuilderSectionsStackConsoleApisLayout {
+      description
+      fieldGroupName
+      heading
+      headingHighlighted
+      sectionBackgroundImage {
+        node {
+          altText
+          link
+        }
+      }
+      sectionMainImage {
+        node {
+          altText
+          link
+        }
+      }
+      sectionMainImageMobile {
+        node {
+          altText
+          link
+        }
+      }
   }
 `;
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { CloudIntegrationsHeroProps } from "@/types/sections-props";
+import type { ScCloudIntegrationsPostsProps } from "@/types/sections-props";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,8 +13,6 @@ import {
   DialogClose,
   DialogContent,
   DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
 import { Filter } from "lucide-react";
@@ -212,7 +210,8 @@ function statusBadgeClasses(s: Status) {
 }
 
 // ---------- component ----------
-export const ScCloudIntegrationsPosts = (data: CloudIntegrationsHeroProps) => {
+export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) => {
+  console.log("ScCloudIntegrationsPostsProps data:", data);
   // you’ll replace STATIC_APPS with data coming from `data` later
   const [query, setQuery] = React.useState("");
   const [activeCategory, setActiveCategory] =

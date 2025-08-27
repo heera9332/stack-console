@@ -17,3 +17,4 @@ export type WhyChooseProps = SectionByName<'PageBuilderSectionsWhyChooseStackCon
 export type WhoForProps = SectionByName<'PageBuilderSectionsWhoIsForStackConsoleLayout'>;
 export type CloudIntegrationsHeroProps = SectionByName<'PageBuilderSectionsCloudIntegrationsHeroLayout'>;
 export type ScCloudIntegrationsPostsProps = SectionByName<'PageBuilderSectionsCloudIntegrationsPostsLayout'>;
+export type ScStackConsoleApisProps = SectionByName<'PageBuilderSectionsStackConsoleApisLayout'>;
