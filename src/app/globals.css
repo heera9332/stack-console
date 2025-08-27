@@ -194,5 +194,8 @@
   filter: brightness(0) saturate(100%) invert(26%) sepia(61%) saturate(1406%) hue-rotate(192deg) brightness(91%) contrast(95%);
 }
 
+.max-w-8xl {
+  max-width: 90rem; /* 1440px */
+}
 
 /* * { outline: 1px dashed rgb(255, 0, 0); outline-offset: -1px; } */

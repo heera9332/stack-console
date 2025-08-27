@@ -32,3 +32,8 @@
 .header-light .logo-dark {
   display: none;
 }
+
+.header-light .schedule-meeting {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}

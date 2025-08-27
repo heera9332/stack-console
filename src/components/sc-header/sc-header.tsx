@@ -502,7 +502,7 @@ export default function ScHeader() {
         id="page-header"
         className="sticky top-0 z-50 border-b border-black/20 py-2 transition-colors duration-300 header-dark text-white"
       >
-        <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="mx-auto max-w-8xl px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Left: Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -565,7 +565,7 @@ export default function ScHeader() {
             <div className="flex items-center gap-3">
               <Link
                 href="/demo"
-                className="hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
+                className="schedule-meeting hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
               >
                 Schedule a Meeting
               </Link>
