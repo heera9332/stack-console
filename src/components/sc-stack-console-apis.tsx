@@ -2,8 +2,6 @@ import { ScStackConsoleApisProps } from "@/types/sections-props";
 import "./sc-stack-console-apis.css";
 import Image from "next/image";
 
-
-
 export const ScStackConsoleApis = (data: ScStackConsoleApisProps) => {
   console.log("ScStackConsoleApis data:", data);
   return (

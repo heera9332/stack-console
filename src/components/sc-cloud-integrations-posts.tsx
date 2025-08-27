@@ -3,11 +3,10 @@
 import * as React from "react";
 import type { ScCloudIntegrationsPostsProps } from "@/types/sections-props";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils"; // if you don’t have this helper, replace cn(...) with className strings
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogClose,
@@ -18,185 +17,28 @@ import {
 import { Filter } from "lucide-react";
 import { Button } from "./ui/button";
 
-// ---------- static data (replace later with API/GraphQL) ----------
-const CATEGORIES = [
-  "Cloud Platforms",
-  "Billing & Finance",
-  "Payment Gateways",
-  "Backup & Disaster Recovery",
-  "Monitoring & Alerts",
-  "Storage & Object Storage",
-  "Others",
-] as const;
-
-const STATUS = ["Live", "In Progress", "Planned", "To Be Planned"] as const;
-type Status = (typeof STATUS)[number];
-type Category = (typeof CATEGORIES)[number];
+const PAGE_SIZE = 12;
+const WP_REST_ENDPOINT =
+  (process.env.NEXT_PUBLIC_WP_REST_ENDPOINT as string) ||
+  "https://stack-console.zoro-dev.com";
 
 type App = {
   id: string;
   name: string;
-  category: Category;
-  status: Status;
-  logo: string; // url
+  categories: string[]; // multiple category names per post
+  status: string;
+  logo: string;
 };
 
-// small sample set repeated to fill grid; replace with your real data
-const STATIC_APPS: App[] = [
-  {
-    id: "1",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "2",
-    name: "Proxmox Backup",
-    category: "Backup & Disaster Recovery",
-    status: "To Be Planned",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "3",
-    name: "Proxmox Mail",
-    category: "Monitoring & Alerts",
-    status: "Planned",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "4",
-    name: "Proxmox Cloud",
-    category: "Cloud Platforms",
-    status: "In Progress",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  // duplicate with different ids/status to fill grid demo
-  {
-    id: "5",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "6",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "7",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "8",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "To Be Planned",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "9",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Planned",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "10",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "11",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "In Progress",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "12",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "133",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "14",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "15",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "13",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "44",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "444",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "4545",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "4545",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-  {
-    id: "4545",
-    name: "Proxmox VE",
-    category: "Cloud Platforms",
-    status: "Live",
-    logo: "https://stack-console.zoro-dev.com/wp-content/uploads/2025/08/overview-experiences.png",
-  },
-];
+type WPCategory = { id: number; name: string };
 
-// ---------- helpers ----------
-const PAGE_SIZE = 12;
+function decodeHTML(str: string) {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = str;
+  return txt.value;
+}
 
-function statusBadgeClasses(s: Status) {
+function statusBadgeClasses(s: string) {
   switch (s) {
     case "Live":
       return "bg-emerald-100 text-emerald-700 border border-emerald-200";
@@ -206,79 +48,152 @@ function statusBadgeClasses(s: Status) {
       return "bg-amber-100 text-amber-700 border border-amber-200";
     case "To Be Planned":
       return "bg-zinc-100 text-zinc-700 border border-zinc-200";
+    default:
+      return "bg-gray-100 text-gray-700 border border-gray-200";
   }
 }
 
-// ---------- component ----------
-export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) => {
-  console.log("ScCloudIntegrationsPostsProps data:", data);
-  // you’ll replace STATIC_APPS with data coming from `data` later
+export const ScCloudIntegrationsPosts = (
+  data: ScCloudIntegrationsPostsProps
+) => {
+  const [categories, setCategories] = React.useState<WPCategory[]>([]);
+  const [apps, setApps] = React.useState<App[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  // UI-only state
   const [query, setQuery] = React.useState("");
-  const [activeCategory, setActiveCategory] =
-    React.useState<Category>("Cloud Platforms");
-  const [activeStatuses, setActiveStatuses] = React.useState<Status[]>([
-    "Live",
-  ]);
+  const [activeCategoryName, setActiveCategoryName] = React.useState("All"); // ✅ default All
+  const [activeStatuses, setActiveStatuses] = React.useState<string[]>(["Live"]); // ✅ default Live
   const [page, setPage] = React.useState(1);
 
-  // reset to page 1 when filters change
-  React.useEffect(() => setPage(1), [query, activeCategory, activeStatuses]);
+  // debounce search
+  const [debouncedQuery, setDebouncedQuery] = React.useState(query);
+  React.useEffect(() => {
+    const t = setTimeout(() => setDebouncedQuery(query), 300);
+    return () => clearTimeout(t);
+  }, [query]);
 
+  // reset to page 1 when filters/search change
+  React.useEffect(() => setPage(1), [debouncedQuery, activeCategoryName, activeStatuses]);
+
+  // fetch categories (prepend "All")
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`${WP_REST_ENDPOINT}/wp-json/wp/v2/categories`);
+        const json = await res.json();
+        const list: WPCategory[] = (json || []).map((c: any) => ({
+          id: c.id,
+          name: decodeHTML(c.name),
+        }));
+        setCategories([{ id: 0, name: "All" }, ...list]); // ✅ All first
+        setActiveCategoryName("All"); // ✅ ensure All selected
+      } catch (err) {
+        console.error("Error fetching categories", err);
+        setCategories([{ id: 0, name: "All" }]);
+      }
+    })();
+  }, []);
+
+  // fetch posts
+  React.useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(
+          `${WP_REST_ENDPOINT}/wp-json/wp/v2/cloud-integrations?_embed`
+        );
+        const json = await res.json();
+
+        const mapped: App[] = (json || []).map((item: any) => {
+          const terms = (item?._embedded?.["wp:term"] || []).flat();
+          const catNames = terms
+            .filter((t: any) => t?.taxonomy === "category")
+            .map((t: any) => decodeHTML(t?.name || ""))
+            .filter(Boolean);
+
+          return {
+            id: String(item.id),
+            name: item?.title?.rendered ?? "",
+            categories: catNames.length ? catNames : ["Others"],
+            status: item?.acf?.status || "Live",
+            logo:
+              item?._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+              "https://via.placeholder.com/150",
+          };
+        });
+
+        setApps(mapped);
+      } catch (err) {
+        console.error("Error fetching apps", err);
+        setApps([]);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  // filtering
   const filtered = React.useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return STATIC_APPS.filter((a) => {
-      const matchesCategory = a.category === activeCategory;
+    const q = debouncedQuery.trim().toLowerCase();
+    return apps.filter((a) => {
+      const matchesCategory =
+        activeCategoryName === "All"
+          ? true
+          : a.categories.some(
+              (c) => c.toLowerCase() === activeCategoryName.toLowerCase()
+            );
       const matchesStatus =
         activeStatuses.length === 0 ? true : activeStatuses.includes(a.status);
       const matchesQuery = q ? a.name.toLowerCase().includes(q) : true;
       return matchesCategory && matchesStatus && matchesQuery;
     });
-  }, [query, activeCategory, activeStatuses]);
+  }, [apps, debouncedQuery, activeCategoryName, activeStatuses]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const start = (page - 1) * PAGE_SIZE;
   const pageItems = filtered.slice(start, start + PAGE_SIZE);
 
-  const toggleStatus = (s: Status) =>
+  const toggleStatus = (s: string) =>
     setActiveStatuses((prev) =>
-      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]
+      prev.includes(s) ? prev.filter((x) => x !== s) : [s]
     );
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-8 md:px-6 md:py-36">
-      {/* header + search */}
       <div className="mb-6 flex flex-col gap-3 md:mb-8 ">
-        <h2 className="text-4xl font-bold tracking-tight md:text-[64px]">
-          The Stack Console
-          <br />
-          Ecosystem
+        <h2 className="text-4xl font-bold tracking-tight md:text-[64px] md:max-w-xl">
+          {data.heading}
         </h2>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
-        {/* left filters */}
+        {/* sidebar (desktop) */}
         <aside className="space-y-6 hidden md:block md:col-span-3">
           <h3>Filter by:</h3>
           <hr />
           <div>
             <h4 className="mb-3 text-sm font-semibold">Category</h4>
             <div className="space-y-2">
-              {CATEGORIES.map((c) => (
+              {categories.map((c) => (
                 <label
-                  key={c}
+                  key={c.id + "-" + c.name}
                   className={cn(
                     "flex cursor-pointer items-center gap-3 rounded-md px-2 py-1.5 text-sm",
-                    activeCategory === c ? "bg-muted" : "hover:bg-muted/60"
+                    activeCategoryName === c.name ? "bg-muted" : "hover:bg-muted/60"
                   )}
                 >
                   <input
                     type="radio"
                     name="category"
                     className="h-4 w-4 accent-foreground"
-                    checked={activeCategory === c}
-                    onChange={() => setActiveCategory(c)}
+                    checked={activeCategoryName === c.name}
+                    onChange={() => {
+                      setActiveCategoryName(c.name);
+                      setPage(1);
+                    }}
                   />
-                  <span>{c}</span>
+                  <span>{c.name}</span>
                 </label>
               ))}
             </div>
@@ -287,7 +202,7 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
           <div>
             <h4 className="mb-3 text-sm font-semibold">Status</h4>
             <div className="space-y-2">
-              {STATUS.map((s) => {
+              {["Live", "In Progress", "Planned", "To Be Planned"].map((s) => {
                 const checked = activeStatuses.includes(s);
                 return (
                   <label
@@ -299,7 +214,10 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
                   >
                     <Checkbox
                       checked={checked}
-                      onCheckedChange={() => toggleStatus(s)}
+                      onCheckedChange={() => {
+                        toggleStatus(s);
+                        setPage(1);
+                      }}
                       className="data-[state=checked]:bg-foreground data-[state=checked]:text-background"
                     />
                     <span>{s}</span>
@@ -312,17 +230,17 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
 
         {/* grid */}
         <div className="min-h-[400px] md:col-span-9">
+          {/* search + mobile filter trigger */}
           <div className="flex w-full items-center gap-3 mb-8 ">
             <Input
-              placeholder="Try an app name"
+              placeholder="Search by app name…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full focus:outline-none bg-white h-12 px-4 focus:ring-none"
+              className="w-full h-12 px-4"
             />
-
             <Dialog>
               <DialogTrigger asChild className="md:hidden">
-                <div className="border bg-whtie rounded-lg p-2">
+                <div className="border bg-white rounded-lg p-2">
                   <Filter size={12} className="w-8 h-8" />
                 </div>
               </DialogTrigger>
@@ -330,81 +248,64 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
                 <aside className="space-y-6 md:col-span-3">
                   <h3>Filter by:</h3>
                   <hr />
+                  {/* categories (mobile) */}
                   <div>
                     <h4 className="mb-3 text-sm font-semibold">Category</h4>
-                    <div className="space-y-2">
-                      {CATEGORIES.map((c) => (
-                        <label
-                          key={c}
-                          className={cn(
-                            "flex cursor-pointer items-center gap-3 rounded-md px-2 py-1.5 text-sm",
-                            activeCategory === c
-                              ? "bg-muted"
-                              : "hover:bg-muted/60"
-                          )}
-                        >
-                          <input
-                            type="radio"
-                            name="category"
-                            className="h-4 w-4 accent-foreground"
-                            checked={activeCategory === c}
-                            onChange={() => setActiveCategory(c)}
-                          />
-                          <span>{c}</span>
-                        </label>
-                      ))}
-                    </div>
+                    {categories.map((c) => (
+                      <label key={c.id} className="flex items-center gap-3 py-1.5">
+                        <input
+                          type="radio"
+                          name="category-mobile"
+                          checked={activeCategoryName === c.name}
+                          onChange={() => setActiveCategoryName(c.name)}
+                        />
+                        <span>{c.name}</span>
+                      </label>
+                    ))}
                   </div>
-
+                  {/* statuses (mobile) */}
                   <div>
                     <h4 className="mb-3 text-sm font-semibold">Status</h4>
-                    <div className="space-y-2">
-                      {STATUS.map((s) => {
-                        const checked = activeStatuses.includes(s);
-                        return (
-                          <label
-                            key={s}
-                            className={cn(
-                              "flex cursor-pointer items-center gap-3 rounded-md px-2 py-1.5 text-sm",
-                              checked ? "bg-muted" : "hover:bg-muted/60"
-                            )}
-                          >
-                            <Checkbox
-                              checked={checked}
-                              onCheckedChange={() => toggleStatus(s)}
-                              className="data-[state=checked]:bg-foreground data-[state=checked]:text-background"
-                            />
-                            <span>{s}</span>
-                          </label>
-                        );
-                      })}
-                    </div>
+                    {["Live", "In Progress", "Planned", "To Be Planned"].map((s) => (
+                      <label key={s} className="flex items-center gap-3 py-1.5">
+                        <Checkbox
+                          checked={activeStatuses.includes(s)}
+                          onCheckedChange={() => toggleStatus(s)}
+                        />
+                        <span>{s}</span>
+                      </label>
+                    ))}
                   </div>
                 </aside>
                 <DialogFooter>
                   <div className="flex gap-4 items-center">
-                    {" "}
                     <DialogClose className="w-1/3" asChild>
-                      <span className="text-[#929292]">Clear filter</span>
+                      <span className="text-[#929292]">Close</span>
                     </DialogClose>
-                    <Button
-                      type="submit"
-                      className="bg-black text-white hover:bg-none px-4 py-4 text-lg rounded-md w-2/3 h-12"
-                    >
-                      Apply
-                    </Button>
+                    <DialogClose asChild className="w-2/3">
+                      <Button className="bg-black text-white w-full h-12">
+                        Apply
+                      </Button>
+                    </DialogClose>
                   </div>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
           </div>
 
-          {pageItems.length === 0 ? (
+          {/* list */}
+          {loading ? (
+            <div className="grid grid-cols-1 gap-4 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="h-40 bg-gray-100 animate-pulse rounded-lg" />
+              ))}
+            </div>
+          ) : pageItems.length === 0 ? (
             <div className="flex h-40 items-center justify-center rounded-md border text-sm text-muted-foreground">
               No apps match your filters.
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-4  md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {pageItems.map((app) => (
                 <Card
                   key={app.id}
@@ -412,17 +313,10 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
                   style={{ boxShadow: "0 4px 12px 0 #241C151F" }}
                 >
                   <CardContent className="flex aspect-[4/3] items-center justify-center bg-zinc-100">
-                    {/* replace img src with real CDN/media from WPGraphQL */}
-                    <img
-                      src={app.logo}
-                      alt={app.name}
-                      className="h-auto w-auto opacity-90"
-                    />
+                    <img src={app.logo} alt={app.name} className="h-auto w-auto opacity-90" />
                   </CardContent>
                   <CardFooter className="flex items-center justify-between">
-                    <span className="truncate text-sm font-medium">
-                      {app.name}
-                    </span>
+                    <span className="truncate text-sm font-medium">{app.name}</span>
                     <Badge
                       className={cn(
                         "rounded-full px-2.5 py-1 text-xs font-medium",
@@ -441,6 +335,7 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
           {/* pagination */}
           <div className="mt-6 flex items-center justify-center gap-2">
             <button
+              type="button"
               className="rounded-md border px-3 py-1.5 text-sm disabled:opacity-50"
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
@@ -449,14 +344,14 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
             </button>
             {Array.from({ length: totalPages }).map((_, idx) => {
               const n = idx + 1;
-              const active = n === page;
               return (
                 <button
+                  type="button"
                   key={n}
                   onClick={() => setPage(n)}
                   className={cn(
                     "h-8 w-8 rounded-md border text-sm",
-                    active ? "font-bold" : "hover:bg-muted"
+                    n === page ? "font-bold" : "hover:bg-muted"
                   )}
                 >
                   {n}
@@ -464,6 +359,7 @@ export const ScCloudIntegrationsPosts = (data: ScCloudIntegrationsPostsProps) =>
               );
             })}
             <button
+              type="button"
               className="rounded-md border px-3 py-1.5 text-sm disabled:opacity-50"
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
