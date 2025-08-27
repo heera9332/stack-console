@@ -9,7 +9,7 @@ export default function ScCloudIntegrationsHero(
 ) {
   console.log("CloudIntegrationsHero data:", data);
   return (
-    <section className="relative overflow-hidden bg-white" id="clound-integrations-hero">
+    <section className="relative overflow-hidden bg-white bg-light" id="clound-integrations-hero">
       {/* BG images (no SVG) */}
       <div
         className="absolute inset-0 -z-10 bg-center bg-cover md:hidden opacity-90 bg-light"

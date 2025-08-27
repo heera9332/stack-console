@@ -28,7 +28,7 @@ export default function ScCloudIntegrationsCta(props) {
   return (
     <section
       className={[
-        "relative overflow-hidden rounded-tl-[24px] rounded-tr-[24px]",
+        "relative overflow-hidden rounded-tl-[24px] rounded-tr-[24px] bg-light",
         "bg-[#E31D1A]",
         "px-6 pt-10 md:px-16 md:pt-16",
       ].join(" ")}

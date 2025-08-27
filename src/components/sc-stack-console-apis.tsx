@@ -6,7 +6,7 @@ export const ScStackConsoleApis = (data: ScStackConsoleApisProps) => {
   console.log("ScStackConsoleApis data:", data);
   return (
     <section
-      className="relative overflow-hidden bg-dark w-full px-4 py-12 md:py-20 -mb-12"
+      className="relative overflow-hidden bg-dark w-full px-4 py-12 md:py-20 -mb-12 bg-dark"
       id="sc-stack-console-apis"
       style={{
         backgroundImage: `url(${data.sectionBackgroundImage.node.link})`,

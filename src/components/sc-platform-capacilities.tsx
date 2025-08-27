@@ -343,7 +343,7 @@ export default function ScPlatformCapabilitiesGrid(props: {
   return (
     <section
       id="platform-capcabilities-grid"
-      className="bg-[#121219] bg-dark text-white px-4 md:px-0 section"
+      className="bg-[#121219] bg-dark text-white px-4 md:px-0 section bg-dark"
     >
       {d.heading && (
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
