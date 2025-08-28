@@ -1,76 +1,124 @@
 // src/sections/ScCloudEcosystem.tsx
-"use client";
-
 import Image from "next/image";
+import { MediaNode } from "@/types/utils";
 
-/** --------- STATIC DATA (swap with API later) --------- */
-const cloudData = {
-  titleTop: "Seamlessly Integrated with Your ☁️ Cloud Ecosystem 💻",
+interface Platform {
+  fieldGroupName: string;
+  name: string;
+  logo: MediaNode;
+}
 
-  subtitle:
-    "No plugins. No hacks. Just native, deep integrations with your core cloud infrastructure.",
-  items: [
-    { name: "Apache CloudStack", src: "/assets/website/home/eco-system-1.svg" },
-    {
-      name: "OpenStack / RedHat OpenStack",
-      src: "/assets/website/home/eco-system-9.svg",
-    },
+interface Props {
+  __typename: "PageBuilderSectionsIntegratedCloudEcosystemLayout";
+  fieldGroupName: string;
+  description: string; // subtitle
+  heading: string;     // titleTop
+  heading2: string;     // titleTop
+  platforms: Platform[];
+}
 
-    { name: "OpenNebula", src: "/assets/website/home/eco-system-6.svg" },
-    { name: "Ceph", src: "/assets/svg/brands/ceph.svg" },
-    { name: "Veeam", src: "/assets/svg/brands/veeam.svg" },
-
-    { name: "Virtuozzo", src: "/assets/svg/brands/virtuazzo.svg" },
-    { name: "VMware", src: "/assets/website/home/eco-system-11.svg" },
-    { name: "HostedAI", src: "/assets/website/home/eco-system-5.svg" },
-
-    { name: "OpenShift", src: "/assets/website/home/eco-system-3.svg" },
-    { name: "Google Cloud Platform ", src: "/assets/website/home/eco-system-4.svg" },
-    {
-      name: "Coming Soon: AWS & Azure",
-      src: "/assets/website/home/eco-system-13.svg",
-    },
-
-    { name: "Proxmox", src: "/assets/website/home/eco-system-2.svg" },
-    // { name: "Cloudian", src: "/assets/website/home/eco-system-12.svg" },
-  ],
+/** Fallback logos by platform name (when API link isn't a direct image URL) */
+const FALLBACK_LOGOS: Record<string, string> = {
+  "Apache CloudStack": "/assets/website/home/eco-system-1.svg",
+  "Proxmox": "/assets/website/home/eco-system-2.svg",
+  "OpenShift": "/assets/website/home/eco-system-3.svg",
+  "Google Cloud Platform": "/assets/website/home/eco-system-4.svg",
+  "HostedAI": "/assets/website/home/eco-system-5.svg",
+  "OpenNebula": "/assets/website/home/eco-system-6.svg",
+  "OpenStack / RedHat OpenStack": "/assets/website/home/eco-system-9.svg",
+  "VMware": "/assets/website/home/eco-system-11.svg",
+  "Ceph": "/assets/svg/brands/ceph.svg",
+  "Veeam": "/assets/svg/brands/veeam.svg",
+  "Virtuozzo": "/assets/svg/brands/virtuazzo.svg",
+  "Coming Soon: AWS & Azure": "/assets/website/home/eco-system-13.svg",
 };
 
-/** --------- SECTION --------- */
-export default function ScCloudEcosystem() {
-  // FIXED PATTERN: 5, 4, 3
-  const pattern = [5, 4, 3, 2];
-  let start = 0;
-  const rows: (typeof cloudData.items)[] = [];
-  pattern.forEach((count) => {
-    rows.push(cloudData.items.slice(start, start + count));
-    start += count;
-  });
+/** Normalize API platforms into {name, src} with dedupe & fallbacks */
+function normalizeItems(platforms: Platform[]) {
+  const seen = new Set<string>();
+  const items: { name: string; src: string; alt?: string }[] = [];
 
-  // margin offsets for stair-step effect (row 1, 2, 3)
-  const offsets = ["ml-0", "ml-8 md:ml-16", "ml-16 md:ml-32"];
+  for (const p of platforms) {
+    const rawName = (p.name || "").trim();
+    if (!rawName) continue;
+    if (seen.has(rawName)) continue; // de-dupe by name
+    seen.add(rawName);
+
+    // Some API 'logo.node.link' might be a page URL; prefer image-like links
+    const link = p.logo?.node?.link?.trim() || "";
+    const looksLikeImage = /\.(svg|png|jpe?g|webp|gif|avif)(\?.*)?$/i.test(link);
+
+    const fallbackKey =
+      rawName.endsWith(" ") ? rawName.slice(0, -1) : rawName; // handle stray spaces
+    const src =
+      (looksLikeImage && link) ||
+      FALLBACK_LOGOS[fallbackKey] ||
+      "/assets/website/home/eco-system-13.svg"; // last-resort generic
+
+    items.push({
+      name: rawName,
+      src,
+      alt: p.logo?.node?.altText || rawName,
+    });
+  }
+
+  return items;
+}
+
+/** Split items into rows using [5,4,3,2] pattern safely */
+function splitRows<T>(items: T[], pattern = [5, 4, 3, 2]) {
+  let start = 0;
+  const rows: T[][] = [];
+  for (const count of pattern) {
+    if (start >= items.length) break;
+    rows.push(items.slice(start, start + count));
+    start += count;
+  }
+  // If items still remain (longer than pattern), continue with last count repeatedly
+  const last = pattern[pattern.length - 1] || 3;
+  while (start < items.length) {
+    rows.push(items.slice(start, start + last));
+    start += last;
+  }
+  return rows;
+}
+
+export default function ScCloudEcosystem(data: Props) {
+  console.log(data)
+  // Map API -> UI strings
+  const titleTop = data.heading || "Seamlessly Integrated with Your ☁️ Cloud Ecosystem 💻";
+  const subtitle =
+    data.description ||
+    "No plugins. No hacks. Just native, deep integrations with your core cloud infrastructure.";
+
+  const items = normalizeItems(data.platforms || []);
+  const rows = splitRows(items, [5, 4, 3, 2]);
+  const offsets = ["ml-0", "ml-8 md:ml-16", "ml-16 md:ml-32"]; // keep stair-step feel
 
   return (
-    <section id="sc-cloud-ecosystem" data-aos="fade-up" className="section relative overflow-hidden bg-foreground text-background bg-dark">
+    <section
+      id="sc-cloud-ecosystem"
+      data-aos="fade-up"
+      className="section relative overflow-hidden bg-foreground text-background bg-dark"
+    >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
         {/* Heading */}
         <header className="relative text-center flex flex-col items-center justify-center md:px-64">
           <h2 className="text-[32px] leading-tight font-semibold md:text-[44px] text-left md:text-center max-w-3xl">
-            {cloudData.titleTop}
+            {data.heading}
+          </h2><h2 className="text-[32px] leading-tight font-semibold md:text-[44px] text-left md:text-center max-w-3xl">
+            {data.heading2}
           </h2>
           <p className="my-3 text-body2 md:text-body1 text-muted-foreground/80 text-left md:text-center">
-            {cloudData.subtitle}
+            {subtitle}
           </p>
           {/* Decorative dotted connectors (top) */}
           <TopDottedWires className="w-full mx-auto absolute top-24 hidden md:block" />
         </header>
 
-        {/* Radar rings background */}
+        {/* Radar rings background (desktop) */}
         <div className="relative mt-10 md:mt-14 min-h-[720px] hidden md:block">
-          <img
-            src={"/assets/images/radar.png"}
-            className="absolute w-full mt-18"
-          />
+          <img src={"/assets/images/radar.png"} className="absolute w-full mt-18" alt="" />
 
           <svg
             className="w-full absolute top-[10%]"
@@ -79,10 +127,11 @@ export default function ScCloudEcosystem() {
             viewBox="0 0 1200 1"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <mask
               id="mask0_2445_2765"
-              style={{ maskType: "alpha" }}
+              style={{ maskType: "alpha" as const }}
               maskUnits="userSpaceOnUse"
               x="0"
               y="0"
@@ -135,7 +184,7 @@ export default function ScCloudEcosystem() {
           <div className="absolute w-full z-10 space-y-10 md:space-y-12 lg:space-y-16 mt-[8%] mb-20 pt-4 px-10">
             {rows.map((row, i) => (
               <div
-                key={i}
+                key={`row-${i}`}
                 className={`flex justify-center gap-6 ${offsets[i] ?? ""}`}
               >
                 {row.map((item) => (
@@ -146,15 +195,13 @@ export default function ScCloudEcosystem() {
                     <div className="rounded-xl p-2 bg-white/5 border border-white/10">
                       <Image
                         src={item.src}
-                        alt={item.name}
+                        alt={item.alt || item.name}
                         width={48}
                         height={48}
                         className="w-12 h-12 object-contain"
                       />
                     </div>
-                    <span className="mt-3 text-sm text-gray-300">
-                      {item.name}
-                    </span>
+                    <span className="mt-3 text-sm text-gray-300">{item.name}</span>
                   </div>
                 ))}
               </div>
@@ -162,12 +209,11 @@ export default function ScCloudEcosystem() {
           </div>
         </div>
 
-        {/* only mobile */}
-
+        {/* Mobile: pills */}
         <div className="mt-4 block md:hidden">
-          {cloudData.items.map((item, idx: number) => {
-            return <Pill item={item} key={idx} />;
-          })}
+          {items.map((item, idx) => (
+            <Pill item={item} key={`pill-${idx}`} />
+          ))}
         </div>
       </div>
     </section>
@@ -233,10 +279,10 @@ const Pill = ({ item }: { item: { src: string; name: string } }) => {
   return (
     <div
       className="
-      mb-4 rounded-md p-[1px]
-      bg-[linear-gradient(150.58deg,#E52C2C_-2.27%,#F3D431_41.79%,#386CC5_82.09%)]
-      overflow-hidden
-    "
+        mb-4 rounded-md p-[1px]
+        bg-[linear-gradient(150.58deg,#E52C2C_-2.27%,#F3D431_41.79%,#386CC5_82.09%)]
+        overflow-hidden
+      "
     >
       <div className="flex items-center gap-2 rounded-[inherit] p-2 bg-foreground">
         <Image

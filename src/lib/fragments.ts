@@ -99,6 +99,7 @@ export const INTEGRATED_CLOUD_ECOSYSTEM_SECTION = gql`
     fieldGroupName
     description
     heading
+    heading2
     platforms {
       fieldGroupName
       name
