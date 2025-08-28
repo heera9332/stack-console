@@ -239,7 +239,6 @@ const VideoFrame = forwardRef<HTMLVideoElement, VideoFrameProps>(
 );
 
 const TopVideoFrame = ({ color = "#0B0D0F" }) => {
-  console.log(color)
   return (
     <svg
       width="580"
