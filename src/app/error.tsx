@@ -3,14 +3,15 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-export default function Error({
-  error,
-  reset,
-}: {
+interface ErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}
+
+export default function Error({ error, reset }: ErrorProps) {
+  
   useEffect(() => {
+    /** show error in console */
     console.error(error);
   }, [error]);
 
