@@ -1,61 +1,39 @@
 import Image from "next/image";
 import clsx from "clsx";
 
-/** ===== Static data (replace from API in future) ===== */
-const data = {
-  title: {
-    pre: "Trusted by",
-    emphasis: "Cloud Innovators",
-    post: "Across the Globe",
-  },
-  logos: [
-    {
-      name: "SIEMENS",
-      src: "/assets/website/brands/siemans.svg",
-      makeWhite: true,
-    },
-    {
-      name: "Ogilvy",
-      src: "/assets/website/brands/ogilvy.svg",
-      makeWhite: true,
-    },
-    {
-      name: "nickelodeon",
-      src: "/assets/website/brands/nick.svg",
-      makeWhite: true,
-    },
-    {
-      name: "Ogilvy",
-      src: "/assets/website/brands/ogilvy.svg",
-      makeWhite: true,
-    },
-    {
-      name: "nickelodeon",
-      src: "/assets/website/brands/nick.svg",
-      makeWhite: true,
-    },
-    {
-      name: "snowflake",
-      src: "/assets/website/brands/snowflake.svg",
-      makeWhite: true,
-    },
-  ],
-};
 
-export default function ScTrustedCloudInnovators() {
-  const lanes = splitIntoLanes(data.logos, 2);
+interface ScTrustedCloudInnovatorsProps {
+  heading: string;
+  headingPrefix: string;
+  headingSufix: string;
+  brandLogos: {
+    node: {
+      altText: string;
+      link: string;
+    }[];
+  };
+}
+
+export default function ScTrustedCloudInnovators(
+  data: ScTrustedCloudInnovatorsProps
+) {
+  console.log("cloud innovators data > ", data);
+  const lanes = splitIntoLanes(data.brandLogos, 2);
 
   return (
-    <section data-aos="fade-up" className="section bg-primary text-primary-foreground mx-auto flex justify-center flex-col items-center bg-light">
+    <section
+      data-aos="fade-up"
+      className="section bg-primary text-primary-foreground mx-auto flex justify-center flex-col items-center bg-light"
+    >
       <div className="w-full max-w-7xl pt-10 flex flex-col items-cener justify-center">
         {/* Heading */}
         <h2 className="text-center leading-tight text-[20px] md:text-[18px] opacity-90 px-4 sm:px-6 lg:px-8 w-full">
-          {data.title.pre}{" "}
-          <span className="font-bold opacity-100">{data.title.emphasis}</span>{" "}
-          {data.title.post}
+          {data.headingPrefix}
+          <span className="font-bold opacity-100">{data.heading}</span>{" "}
+          {data.headingSufix}
         </h2>
         <p className="sr-only px-4 sm:px-6 lg:px-8">
-          {data.title.pre} {data.title.emphasis} {data.title.post}
+          {data.headingPrefix} {data.heading} {data.headingSufix}
         </p>
 
         {/* Mobile/Tablet: two vertical lanes (stacked), infinitely scrolling */}
@@ -76,7 +54,7 @@ export default function ScTrustedCloudInnovators() {
         </div>
       </div>
       <div className="pb-10 hidden lg:block">
-        <Lane items={data.logos} duration={10} />
+        <Lane items={data.brandLogos} duration={10} />
       </div>
     </section>
   );
@@ -89,16 +67,19 @@ function splitIntoLanes<T>(arr: T[], lanes: number) {
   return out;
 }
 
-/** A scrolling lane (horizontal marquee) */
-function Lane({
-  items,
-  reverse,
-  duration = 30,
-}: {
-  items: { name: string; src: string; makeWhite?: boolean }[];
+interface LaneProps {
+  items: {
+    node: {
+      altText: string;
+      link: string;
+    };
+  };
   reverse?: boolean;
-  duration?: number;
-}) {
+  duration: number;
+}
+
+/** A scrolling lane (horizontal marquee) */
+function Lane({ items, reverse, duration = 30 }: LaneProps) {
   // Duplicate track for seamless loop
   const track = [...items, ...items];
 
@@ -126,26 +107,23 @@ function Lane({
   );
 }
 
-/** Single logo cell */
-function Logo({
-  name,
-  src,
-  makeWhite = false,
-}: {
-  name: string;
-  src: string;
+interface LaneProps {
+  logo: { node: { altText: string; link: string } };
   makeWhite?: boolean;
-}) {
+}
+
+/** Single logo cell */
+function Logo(data: LaneProps) {
   return (
     <div className="flex items-center justify-center">
       <Image
-        src={src}
-        alt={name}
+        src={data.logo.node.link}
+        alt={data.logo.node.altText || ""}
         width={260}
         height={100}
         className={clsx(
           "h-12 lg:h-10 w-auto object-contain",
-          makeWhite && "invert brightness-0 saturate-100"
+          data.makeWhite && "invert brightness-0 saturate-100"
         )}
         priority
       />

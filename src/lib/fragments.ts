@@ -24,9 +24,18 @@ export const HERO_SECTION = gql`
 export const CLOUD_INNOVATORS_SECTION = gql`
   fragment CloudInnovatorsSection on PageBuilderSectionsCloudInnovatorsLayout {
     fieldGroupName
-    headinSufix
+    heading
+    headingSufix
     headingPrefix
-    sectionHeading
+    brandLogos {
+      fieldGroupName
+      logo {
+        node {
+          altText
+          link
+        }
+      }
+    }
   }
 `;
 
