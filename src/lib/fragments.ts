@@ -42,13 +42,20 @@ export const CLOUD_INNOVATORS_SECTION = gql`
 export const TURNING_IDEAS_SECTION = gql`
   fragment TurningIdeasCloudPowerBusinessSection on PageBuilderSectionsTurningideascloudpowerbusinessLayout {
     fieldGroupName
-    author
+    
     description1
     description2
+    fieldGroupName
     heading
+    sectionImage {
+      node {
+        altText
+        link
+      }
+    }
     stats {
-      fieldGroupName
       description
+      fieldGroupName
       prefix
       suffix
       value
