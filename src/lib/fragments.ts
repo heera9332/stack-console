@@ -70,13 +70,18 @@ export const CLOUD_POWER_BUSINESS_SECTION = gql`
     heading
     video {
       fieldGroupName
-      imageovervideo {
+      imageOverVideo {
         node {
           altText
           link
         }
       }
-      overImage
+      imageOverVideo {
+        node {
+          altText
+          link
+        }
+      }
       videoUrl
       videoPoster {
         node {
@@ -84,6 +89,7 @@ export const CLOUD_POWER_BUSINESS_SECTION = gql`
           link
         }
       }
+      buttonLabel
     }
   }
 `;
