@@ -10,79 +10,55 @@ import {
 } from "@/components/ui/accordion"; // shadcn/radix accordion
 import { cn } from "@/lib/utils";
 
-const faqs = [
-  // Beautiful Homes Service FAQs
-  {
-    category: "Beautiful Homes Service",
-    q: "How does Stack Console help me monetize my infrastructure?",
-    a: "Stack Console turns your infrastructure into a revenue-generating cloud platform by offering automated billing, subscription management, and reseller support — all white-labelled under your brand.",
-  },
-  {
-    category: "Beautiful Homes Service",
-    q: "Does Stack Console support multiple orchestrators (CloudStack, OpenStack, VMware, etc.)?",
-    a: "Yes. Stack Console integrates seamlessly with Apache CloudStack, OpenStack, VMware, OpenNebula, Virtuozzo, Proxmox, Ceph, and more — all managed from one console.",
-  },
-  {
-    category: "Beautiful Homes Service",
-    q: "Can my customers manage their own services through Stack Console?",
-    a: "Absolutely. Your end-users get a modern self-service portal to provision, monitor, and manage VMs, storage, and networks — reducing support overhead.",
-  },
-  {
-    category: "Beautiful Homes Service",
-    q: "How does StackAI simplify cloud operations for end users?",
-    a: "StackAI enables natural language commands like “Create a VM with 2 cores and 4GB RAM” and provides intelligent alerts on usage thresholds — making cloud management effortless.",
-  },
-  {
-    category: "Beautiful Homes Service",
-    q: "Does Stack Console include automated billing and subscription management?",
-    a: "Yes. From service activation to payment collection, Stack Console automates the entire billing lifecycle with prepaid, postpaid, and pay-as-you-go models.",
-  },
-  {
-    category: "Beautiful Homes Service",
-    q: "Can I manage resellers and partners with Stack Console?",
-    a: "Yes. Our reseller management module allows you to create, track, and support reseller accounts with tiered pricing, white-labelling, and reporting.",
-  },
+/* ---------- Types matching your API ---------- */
+type ApiQuestion = {
+  fieldGroupName: string;
+  question: string;
+  answer: string;
+};
 
-  // Stack Console FAQs
-  {
-    category: "Stack Console",
-    q: "What payment methods and currencies does the platform support?",
-    a: "Stack Console supports multiple payment gateways and global currencies, giving your customers the flexibility to pay how they want.",
-  },
-  {
-    category: "Stack Console",
-    q: "Does Stack Console support multiple orchestrators (CloudStack, OpenStack, VMware, etc.)?",
-    a: "Yes. Stack Console integrates seamlessly with Apache CloudStack, OpenStack, VMware, OpenNebula, Virtuozzo, Proxmox, Ceph, and more — all managed from one console.",
-  },
-  {
-    category: "Stack Console",
-    q: "How is Stack Console deployed — on-premises or SaaS?",
-    a: "Stack Console is deployed on-premises, directly within your data center infrastructure. This ensures complete control, data sovereignty, and compliance with your business and regulatory needs — without relying on third-party SaaS hosting.",
-  },
-  {
-    category: "Stack Console",
-    q: "What kind of support and updates do you provide?",
-    a: "We provide regular updates, 24/7 technical support, and onboarding assistance to ensure your cloud business runs smoothly and stays future-ready.",
-  },
-  {
-    category: "Stack Console",
-    q: "How long does it take to get started with Stack Console?",
-    a: "Depending on your infrastructure setup, you can launch your branded cloud platform in a matter of days — not months.",
-  },
-  {
-    category: "Stack Console",
-    q: "How does Stack Console charge?",
-    a: "Our pricing is flexible and depends on the integrations and modules you choose to enable. To get an accurate estimate tailored to your business needs, we recommend booking a meeting with our team.",
+interface Props {
+  __typename: "PageBuilderSectionsFaqsLayout";
+  fieldGroupName: string;
+  heading: string;         // e.g. "Frequently Asked 🤔 Questions 🙋🏻‍♂️"
+  questions: ApiQuestion[];
+}
+
+/* ---------- Helpers ---------- */
+function normalizeFaqs(input: ApiQuestion[] = []) {
+  const seen = new Set<string>();
+  const items: { q: string; a: string }[] = [];
+
+  for (const it of input) {
+    const q = (it?.question || "").trim();
+    if (!q) continue;
+
+    // de-duplicate by case/space-insensitive question text
+    const key = q.replace(/\s+/g, " ").toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    // clean up CR/LF and trailing spaces in answers
+    const a = (it?.answer || "").replace(/\r\n/g, "\n").trim();
+    items.push({ q, a });
   }
-];
+  return items;
+}
 
+/* ---------- Component ---------- */
+export default function ScFAQ(props: Props) {
+  const faqs = React.useMemo(() => normalizeFaqs(props.questions), [props.questions]);
 
-export default function ScFAQ() {
   return (
-    <section id="sc-faq" data-aos="fade-up" className="section bg-[#F3D431] py-8 md:py-14 bg-light">
-      <div className="mx-auto max-w-5xl px-4 text-center">
-        <h2 className="text-[36px] md:text-[56px] font-semibold text-foreground">
-          Frequently Asked 🤔 <br /> Questions 🙋🏻‍♂️
+    <section
+      id="sc-faq"
+      data-aos="fade-up"
+      className="section bg-[#F3D431] py-8 md:py-14 bg-light"
+    >
+      <div className="mx-auto max-w-5xl px-4 text-center flex flex-col justify-center items-center">
+        {/* Heading from API */}
+        <h2 className="text-[36px] md:text-[56px] font-semibold text-foreground max-w-xl">
+          {props.heading}
         </h2>
 
         <div
@@ -130,6 +106,13 @@ export default function ScFAQ() {
                 </AccordionContent>
               </AccordionItem>
             ))}
+
+            {/* Graceful empty state */}
+            {faqs.length === 0 && (
+              <div className="px-6 py-8 text-left text-muted-foreground">
+                No FAQs available right now.
+              </div>
+            )}
           </Accordion>
         </div>
       </div>
