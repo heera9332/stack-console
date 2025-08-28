@@ -4,20 +4,25 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const data = {
-  kicker: "Build a legacy",
-  title1: "Empowering Cloud Providers",
-  title2Emoji: "/assets/website/home/trophy.png",
-  title2: "Winning the Race",
-  description:
-    "Stack Console is a white-label cloud management and billing platform for CloudStack, OpenStack, Proxmox, OpenNebula, OpenShift, VMware, Virtuozzo, and more — helping you launch cloud services under your brand, faster and more profitably.",
-  ctas: {
-    primary: { label: "Schedule a Meeting", href: "#demo" },
-    secondary: { label: "Try the Live Demo", href: "#tour" },
-  },
-};
 
-export default function ScHero() {
+interface ScHeroProps {
+  heading: string;
+  subHeading: string;
+  description: string;
+  highlightedHeading: string;
+  scheduleMeetingLabel: string;
+  scheduleMeetingLink: string;
+  tryDemoLabel: string;
+  tryDemoLink: string;
+  trophyIcon: {
+    node: {
+      altText: string;
+      link: string;
+    };
+  };
+}
+
+export default function ScHero(data: ScHeroProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const glowSegmentsRef = useRef<HTMLDivElement>(null);
 
@@ -253,8 +258,7 @@ export default function ScHero() {
         relative overflow-hidden
         bg-[#12141D] text-white
         px-4 md:px-6 lg:px-8 py-36 md:pb-50
-        flex flex-col items-center justify-center grid-container bg-dark"
-      >
+        flex flex-col items-center justify-center grid-container bg-dark">
       <div className="gradient-overlay"></div>
       <div id="glowSegments" ref={glowSegmentsRef}></div>
 
@@ -266,35 +270,33 @@ export default function ScHero() {
       {/* Text + spotlight */}
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <p className="text-[20px] font-bold md:text-[24px] text-white mb-4">
-          {data.kicker}
+          {data.subHeading}
         </p>
 
         <div className="mb-8">
           {/* Title 1 */}
           <h1 className="font-semibold leading-tight text-[36px] md:text-[64px]">
-            <span className="heroText" data-text={data.title1}>
-              {data.title1}
+            <span className="heroText" data-text={data.heading}>
+              {data.heading}
             </span>
 
             {/* Title 2 */}
-          <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight">
-            <span className="heroText relative" data-text={data.title2}>
-              <Image
-                src={data.title2Emoji}
-                alt="trophy"
-                width={512}
-                height={512}
-                className="h-10 md:h-18 w-10 md:w-18 object-cover absolute rotate-[-30deg] -left-10 md:-left-14 -top-3"
-              />
-              <span
-                className="
-                  bg-clip-text text-transparent text-rainbow
-                "
-              >
-                {data.title2}
+            <p className="mt-2 text-[32px] md:text-[56px] font-extrabold leading-tight">
+              <span className="heroText relative" data-text={data.highlightedHeading}>
+                <Image
+                  src={data.trophyIcon.node.link}
+                  alt={data.trophyIcon.node.altText || "trophy"}
+                  width={512}
+                  height={512}
+                  className="h-10 md:h-18 w-10 md:w-18 object-cover absolute rotate-[-30deg] -left-10 md:-left-14 -top-3"
+                />
+                <span
+                  className="bg-clip-text text-transparent text-rainbow"
+                >
+                  {data.highlightedHeading}
+                </span>
               </span>
-            </span>
-          </p>
+            </p>
           </h1>
 
           <p className="mx-auto mt-5 md:px-62 text-body2 md:text-body1 text-white/80">
@@ -308,7 +310,7 @@ export default function ScHero() {
             size="lg"
             className="rounded-[10px] py-6 bg-[#1E1C26] hover:bg-[#1E1C26] hover:font-bold border border-white/10 w-56 transition-all delay-100 hover:shadow-[0_8px_0_#ef4444] hover:border-r-[2px] hover:border-[#ef4444] hover:border-l-0 hover:border-t-0"
           >
-            <a href={data.ctas.primary.href}>{data.ctas.primary.label}</a>
+            <a href={data.scheduleMeetingLink}>{data.scheduleMeetingLabel}</a>
           </Button>
 
           <Button
@@ -322,17 +324,17 @@ export default function ScHero() {
             "
           >
             <a
-              href={data.ctas.secondary.href}
+              href={data.tryDemoLink}
               className="inline-flex items-center gap-2"
             >
               <Image
-                width={100}
-                height={100}
-                className="svg-white"
+                width={56}
+                height={56}
+                className="svg-white w-12 h-12"
                 src={"/assets/svg/play-circle.svg"}
                 alt="try demo"
               />
-              {data.ctas.secondary.label}
+              {data.tryDemoLabel}
             </a>
           </Button>
         </div>

@@ -4,15 +4,15 @@ import { gql } from 'graphql-request';
 export const HERO_SECTION = gql`
   fragment HeroSection on PageBuilderSectionsHeroLayout {
     fieldGroupName
-    content
-    tryDemoLink
-    tryDemoLabel
     subHeading
-    requestADemoLink
-    requestADemoLabel
     heading
-    headingHighlighted
-    heroImage {
+    highlightedHeading
+    description
+    scheduleMeetingLabel
+    scheduleMeetingLink
+    tryDemoLabel
+    tryDemoLink
+    trophyIcon {
       node {
         altText
         link
