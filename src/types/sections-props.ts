@@ -78,15 +78,14 @@ export interface TopNav {
     fieldGroupName?: string | null;
     label?: string | null;
     link?: string | null;
-
     type: string;
-    icon?: {
-      node?: { altText?: string | null; link?: string | null } | null;
-    } | null;
+    icon: {
+      node: { altText?: string | null; link?: string | null };
+    };
     megaMenu?: {
+      title?: string | null;
       description?: string | null;
       fieldGroupName?: string | null;
-      title?: string | null;
       megaMenuItems?: Array<{
         description?: string | null;
         fieldGroupName?: string | null;

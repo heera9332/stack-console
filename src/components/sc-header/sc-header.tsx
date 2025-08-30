@@ -11,6 +11,9 @@ import type { TopNav as WpTopNav } from "@/types/sections-props";
 type UiNavItem = {
   id: string;
   label: string;
+  icon: {
+    node: { altText?: string | null; link?: string | null };
+  };
   href?: string;
   description?: string;
   emoji?: string;
@@ -39,7 +42,7 @@ type UiTopItem =
 
 /* ===== helpers ===== */
 const safe = (s?: string | null) => (s ?? "").trim();
-const pick = <T,>(v: T | null | undefined): T | undefined => (v ?? undefined);
+const pick = <T,>(v: T | null | undefined): T | undefined => v ?? undefined;
 function toGradient(start?: string | null, end?: string | null) {
   const s = safe(start);
   const e = safe(end);
@@ -61,19 +64,23 @@ function normalizeType(t?: string[] | string | null): "mega" | "link" {
 /* ===== map WP TopNav to UI data ===== */
 function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
   const items = nav?.navItems ?? [];
+
   return items.filter(Boolean).map((it, i) => {
     const label = safe(it?.label) || `Item ${i + 1}`;
     const normalizedType = normalizeType((it as any)?.type);
+    let desc = "";
 
     if (normalizedType === "mega" && it?.megaMenu) {
       const secTitle = safe(it.megaMenu.title) || label;
       const secDesc = safe(it.megaMenu.description);
+      desc = secDesc;
       const mItems = (it.megaMenu.megaMenuItems ?? [])
         .filter(Boolean)
         .map((mi, idx): UiNavItem => {
           const title = safe(mi?.title) || `Item ${idx + 1}`;
           const href = safe(mi?.link) || "#";
-          const emoji = safe(mi?.icon?.node?.link) || "/assets/svg/overview.svg";
+          const emoji =
+            safe(mi?.icon?.node?.link) || "/assets/svg/overview.svg";
           const description = safe(mi?.description);
 
           const iconHoverBgColor = toGradient(
@@ -100,6 +107,7 @@ function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
             id: `${label}-${idx}`,
             label: title,
             href,
+            icon: mi?.icon,
             emoji,
             description,
             iconHoverBgColor,
@@ -109,7 +117,10 @@ function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
               title,
               blurb,
               image: { link: previewImage, alt: previewAlt },
-              cta: ctaLabel && ctaLink ? { label: ctaLabel, href: ctaLink } : undefined,
+              cta:
+                ctaLabel && ctaLink
+                  ? { label: ctaLabel, href: ctaLink }
+                  : undefined,
             },
           };
         });
@@ -124,7 +135,12 @@ function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
       return { label, type: "mega", section } as UiTopItem;
     }
 
-    return { label, type: "link", href: safe(it?.link) || "#" } as UiTopItem;
+    return {
+      label,
+      description: desc,
+      type: "link",
+      href: safe(it?.link) || "#",
+    } as UiTopItem;
   });
 }
 
@@ -168,7 +184,10 @@ export default function ScHeader(data: WpTopNav) {
           {/* Left: Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src={pick(data?.logoDark?.node?.link) || "/assets/images/brand/logo-dark.png"}
+              src={
+                pick(data?.logoDark?.node?.link) ||
+                "/assets/images/brand/logo-dark.png"
+              }
               alt={pick(data?.logoDark?.node?.altText) || "stack console"}
               width={512}
               height={512}
@@ -176,7 +195,9 @@ export default function ScHeader(data: WpTopNav) {
               priority
             />
             <Image
-              src={pick(data?.logo?.node?.link) || "/assets/images/brand/logo.png"}
+              src={
+                pick(data?.logo?.node?.link) || "/assets/images/brand/logo.png"
+              }
               alt={pick(data?.logo?.node?.altText) || "stack console"}
               width={512}
               height={512}
@@ -238,7 +259,11 @@ export default function ScHeader(data: WpTopNav) {
                 onClick={() => setMobileOpen((s) => !s)}
                 aria-label="Toggle menu"
               >
-                {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+                {mobileOpen ? (
+                  <X className="size-5" />
+                ) : (
+                  <Menu className="size-5" />
+                )}
               </button>
             </div>
           </div>
@@ -369,7 +394,9 @@ function PreviewCard({ item }: { item: UiNavItem | null }) {
         <div className="absolute bottom-0 px-4 w-full">
           <div className="text-white font-semibold">{title}</div>
           <p title={blurb} className="h-20 mt-1 text-sm text-muted">
-            {blurb && blurb.length < 60 ? blurb : `${blurb?.slice(0, 60) ?? ""}...`}
+            {blurb && blurb.length < 60
+              ? blurb
+              : `${blurb?.slice(0, 60) ?? ""}...`}
           </p>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#110900] opacity-80 rounded-lg" />
         </div>
@@ -403,25 +430,42 @@ function MobileMenu({
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="lg:hidden border-t border-white/10 bg-[#0B0D0F] text-white">
-      <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 py-4 space-y-2">
+    <div className="lg:hidden border-t border-white/10 header-light">
+      <div className="mx-auto max-w-7xl px-2 md:px-6 lg:px-8 py-4 space-y-2">
         {nav.map((item, i) =>
           item.type === "mega" ? (
             <div key={item.label} className="border border-white/10 rounded-lg">
               <button
-                className="w-full flex items-center justify-between px-3 py-3"
+                className="w-full flex items-start justify-between px-3 py-3"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-                <span>{item.label}</span>
+                <div className="flex gap-2 items-center">
+                  <GetIcon
+                      iconHoverBgColor={
+                        item.section.items[0]?.iconHoverBgColor || ""
+                      }
+                      textHoverColor={
+                        item.section.items[0]?.textHoverColor || ""
+                      }
+                    />
+                  <div className="text-left">
+                    <h3>{item.label}</h3>
+                    <span className="text-[12px]">{item.section.description}</span>
+                  </div>
+                </div>
                 <ChevronDown
-                  className={`size-4 transition-transform ${openIndex === i ? "rotate-180" : ""}`}
+                  className={`size-4 transition-transform ${
+                    openIndex === i ? "rotate-0" : "rotate-270"
+                  }`}
                 />
               </button>
 
               {openIndex === i && (
                 <div className="px-3 pb-3 space-y-3">
                   <div>
-                    <div className="text-xs uppercase text-white/60 mb-1">{item.section.title}</div>
+                    <div className="text-xs uppercase text-white/60 mb-1">
+                      {item.section.title}
+                    </div>
                     <ul className="space-y-1">
                       {item.section.items.map((it) => (
                         <li key={it.id}>
@@ -431,7 +475,12 @@ function MobileMenu({
                             onClick={onClose}
                           >
                             <span className="inline-flex size-7 items-center justify-center rounded bg-white/10">
-                              <Image src={it.emoji ?? "/assets/svg/overview.svg"} alt={it.label} width={20} height={20} />
+                              <Image
+                                src={it.emoji ?? "/assets/svg/overview.svg"}
+                                alt={it.label}
+                                width={20}
+                                height={20}
+                              />
                             </span>
                             <span>{it.label}</span>
                           </Link>
@@ -457,7 +506,7 @@ function MobileMenu({
         <Link
           href={cta.href}
           onClick={onClose}
-          className="block text-center px-4 py-3 bg-white text-black rounded-md border border-white/20"
+          className="block text-center px-4 py-3 schedule-meeting rounded-md border border-white/20"
         >
           {cta.label}
         </Link>
