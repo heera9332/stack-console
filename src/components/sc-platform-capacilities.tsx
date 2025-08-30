@@ -685,7 +685,7 @@ function Card6({ className, data }: CardProps) {
       ref={cardRef}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      className={`mb-4 break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-white/5 shadow-[0_10px_30px_rgba(0,0,0,.35)] relative aspect-auto h-104 w-full rainbow-gradient-border-hover pb-8 ${className}`}
+      className={`mb-4 break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-white/5 shadow-[0_10px_30px_rgba(0,0,0,.35)] relative aspect-auto h-104 w-full pb-8 ${className}`}
       style={{
         boxShadow: "inset 1px 1px 0px #5C3AE480, inset 1px 1px 4px #FFFFFF66",
       }}

@@ -6,6 +6,8 @@ import SCFooter from "@/components/sc-footer";
 import ScHeader from "@/components/sc-header/sc-header";
 import "./globals.css";
 import HeaderWatcher from "@/components/sc-header/HeaderWatcher";
+import { getNavigation } from "@/lib/wp";
+import ScFooter from "@/components/sc-footer";
 
 // Load Inter font
 const inter = Inter({
@@ -27,11 +29,14 @@ export const viewport = {
   userScalable: false,
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const nav = await getNavigation();
+  
+  console.log("Navigation data:", JSON.stringify(nav));
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
@@ -40,10 +45,10 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={false}
         >
-          <ScHeader />
+          <ScHeader {...nav.topNav} />
           {children}
           <HeaderWatcher />
-          <SCFooter />
+          <ScFooter  {...nav.footer} />
         </ThemeProvider>
 
         <Script src="/fade-in.js" strategy="afterInteractive" />

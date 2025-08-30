@@ -1,6 +1,7 @@
 import { wp } from '@/lib/graphql';
 import { gql } from 'graphql-request';
 import { PAGE_SECTIONS_BY_URI } from '@/lib/graphql-queries';
+import type { NavData } from '@/types/sections-props';
 import type { PageSectionsByUriQuery, PageSectionsByUriQueryVariables } from '../gql/__generated__/graphql';
 
 export async function getPageByUri(uri: string) {
@@ -32,4 +33,131 @@ export async function getAllPageUris(): Promise<string[]> {
     const trimmed = u.replace(/^\/+|\/+$/g, "");
     return trimmed ? `/${trimmed}/` : "/";
   });
+}
+
+export async function getNavigation() {
+  const query = gql`
+    query NewQuery {
+      scNavigation {
+        headerNavigation {
+          fieldGroupName
+          footer {
+            columns {
+              fieldGroupName
+              headling
+              links {
+                fieldGroupName
+                link {
+                  fieldGroupName
+                  label
+                  url
+                }
+              }
+            }
+            companyDescription
+            fieldGroupName
+            logoImage {
+              node {
+                altText
+                link
+              }
+            }
+            subscribe {
+              buttonLabel
+              fieldGroupName
+              inputPlaceholder
+              subscribeMessage
+              successMessage
+            }
+          }
+          topNav {
+            cta {
+              label
+              fieldGroupName
+              link
+            }
+            fieldGroupName
+            logo {
+              node {
+                altText
+                link
+              }
+            }
+            logoDark {
+              node {
+                altText
+                link
+              }
+            }
+            navItems {
+              fieldGroupName
+              label
+              link
+              type
+              icon {
+                node {
+                  altText
+                  link
+                }
+              }
+              megaMenu {
+                description
+                fieldGroupName
+                title
+                megaMenuItems {
+                  description
+                  fieldGroupName
+                  icon {
+                    node {
+                      altText
+                      link
+                    }
+                  }
+                  itemHoverBackground
+                  itemHoverTextColor
+                  itemIconHoverBackgroundColorEnd
+                  itemIconHoverBackgroundColorStart
+                  itemIconHoverColor
+                  link
+                  title
+                  preview {
+                    description
+                    fieldGroupName
+                    title
+                    backgroundImage {
+                      node {
+                        altText
+                        link
+                      }
+                    }
+                    card {
+                      node {
+                        altText
+                        link
+                      }
+                    }
+                    cta {
+                      label
+                      link
+                      fieldGroupName
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await wp.request<{ scNavigation?: NavData['headerNavigation'] extends infer T ? { headerNavigation?: T | null } : never }>(query);
+
+  const headerNavigation = data?.scNavigation?.headerNavigation ?? null;
+
+  return {
+    topNav: headerNavigation?.topNav ?? null,
+    footer: headerNavigation?.footer ?? null,
+    fieldGroupName: headerNavigation?.fieldGroupName ?? null,
+  };
 }

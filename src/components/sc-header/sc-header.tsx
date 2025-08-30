@@ -471,7 +471,7 @@ const NAV: TopNav[] = [
 /* =========================
    2) HEADER
    ========================= */
-export default function ScHeader() {
+export default function ScHeader(data) {
   const [openMega, setOpenMega] = useState(false);
   const [activeMegaIndex, setActiveMegaIndex] = useState<number | null>(null);
   const [hoverItem, setHoverItem] = useState<NavItem | null>(null);
