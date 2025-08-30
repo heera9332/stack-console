@@ -144,7 +144,7 @@ export const WHO_IS_FOR_STACK_CONSOLE_SECTION = gql`
   fragment WhoIsForStackConsoleSection on PageBuilderSectionsWhoIsForStackConsoleLayout {
     fieldGroupName
     description
-    headign
+    heading
     tabs {
       fieldGroupName
       heading
