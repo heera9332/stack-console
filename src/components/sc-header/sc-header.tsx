@@ -472,6 +472,7 @@ const NAV: TopNav[] = [
    2) HEADER
    ========================= */
 export default function ScHeader(data) {
+  console.log("header data", data);
   const [openMega, setOpenMega] = useState(false);
   const [activeMegaIndex, setActiveMegaIndex] = useState<number | null>(null);
   const [hoverItem, setHoverItem] = useState<NavItem | null>(null);
@@ -506,15 +507,15 @@ export default function ScHeader(data) {
           {/* Left: Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src={"/assets/images/brand/logo-dark.png"}
-              alt="stack console"
+              src={ data?.logoDark.node.link || "/assets/images/brand/logo-dark.png"}
+              alt={ data?.logoDark.node.altText ||  "stack console"}
               width={512}
               height={512}
               className="w-42 h-12 object-cover logo-dark"
             />
             <Image
-              src={"/assets/images/brand/logo.png"}
-              alt="stack console"
+              src={ data?.logo.node.link || "/assets/images/brand/logo.png"}
+              alt={ data?.logo.node.altText ||  "stack console"}
               width={512}
               height={512}
               className="w-42 h-12 object-cover logo-light"
@@ -564,10 +565,10 @@ export default function ScHeader(data) {
             {/* Right: CTA + mobile button */}
             <div className="flex items-center gap-3">
               <Link
-                href="/demo"
+                href={data.cta?.link || "/demo"}
                 className="schedule-meeting hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
               >
-                Schedule a Meeting
+                {data.cta.label || "Schedule a Meeting"}
               </Link>
 
               <button
@@ -609,7 +610,7 @@ function MegaPanel({
   return (
     <div
       className="
-        overflow-hidden left-[62%] -translate-x-1/2 mt-6 w-[min(100vw-2rem,980px)]
+        mega-menu overflow-hidden left-[62%] -translate-x-1/2 mt-6 w-[min(100vw-2rem,980px)]
         rounded-xl border border-white/10 bg-white text-black shadow-2xl transition-colors
         fixed
       "
