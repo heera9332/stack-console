@@ -61,67 +61,73 @@ export type Footer = {
   } | null;
 };
 
-export type NavData = {
-  headerNavigation?: {
+export interface TopNav {
+  cta: {
+    label?: string | null;
+    link?: string | null;
     fieldGroupName?: string | null;
-    topNav?: {
-      cta?: {
-        label?: string | null;
-        link?: string | null;
-        fieldGroupName?: string | null;
-      } | null;
+  } | null;
+  fieldGroupName?: string | null;
+  logo: {
+    node: { altText: string | null; link: string | null };
+  };
+  logoDark: {
+    node: { altText: string | null; link: string | null };
+  };
+  navItems: Array<{
+    fieldGroupName?: string | null;
+    label?: string | null;
+    link?: string | null;
+
+    type: string;
+    icon?: {
+      node?: { altText?: string | null; link?: string | null } | null;
+    } | null;
+    megaMenu?: {
+      description?: string | null;
       fieldGroupName?: string | null;
-      logo?: {
-        node?: { altText?: string | null; link?: string | null } | null;
-      } | null;
-      logoDark?: {
-        node?: { altText?: string | null; link?: string | null } | null;
-      } | null;
-      navItems?: Array<{
+      title?: string | null;
+      megaMenuItems?: Array<{
+        description?: string | null;
         fieldGroupName?: string | null;
-        label?: string | null;
-        link?: string | null;
-        type?: string | null;
         icon?: {
           node?: { altText?: string | null; link?: string | null } | null;
         } | null;
-        megaMenu?: {
+
+        itemHoverBackground?: string | null;
+        itemHoverTextColor?: string | null;
+
+        itemIconHoverBackgroundColorEnd?: string | null;
+        itemIconHoverBackgroundColorStart?: string | null;
+        itemIconHoverColor?: string | null;
+        link?: string | null;
+        title?: string | null;
+        preview?: {
           description?: string | null;
+
           fieldGroupName?: string | null;
           title?: string | null;
-          megaMenuItems?: Array<{
-            description?: string | null;
-            fieldGroupName?: string | null;
-            icon?: {
-              node?: { altText?: string | null; link?: string | null } | null;
-            } | null;
-            itemHoverBackground?: string | null;
-            itemHoverTextColor?: string | null;
-            itemIconHoverBackgroundColorEnd?: string | null;
-            itemIconHoverBackgroundColorStart?: string | null;
-            itemIconHoverColor?: string | null;
+          backgroundImage?: {
+            node?: { altText?: string | null; link?: string | null } | null;
+          } | null;
+          card?: {
+            node?: { altText?: string | null; link?: string | null } | null;
+          } | null;
+          cta?: {
+            label?: string | null;
             link?: string | null;
-            title?: string | null;
-            preview?: {
-              description?: string | null;
-              fieldGroupName?: string | null;
-              title?: string | null;
-              backgroundImage?: {
-                node?: { altText?: string | null; link?: string | null } | null;
-              } | null;
-              card?: {
-                node?: { altText?: string | null; link?: string | null } | null;
-              } | null;
-              cta?: {
-                label?: string | null;
-                link?: string | null;
-                fieldGroupName?: string | null;
-              } | null;
-            } | null;
-          } | null> | null;
+            fieldGroupName?: string | null;
+          } | null;
         } | null;
       } | null> | null;
     } | null;
-    footer?: Footer | null;
+  }>;
+}
+
+export type NavData = {
+  headerNavigation: {
+    fieldGroupName: string | null;
+    topNav: TopNav;
+    footer: Footer;
   } | null;
 };

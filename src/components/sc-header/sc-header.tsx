@@ -1,22 +1,19 @@
-// src/components/SCHeader.tsx
 "use client";
 import "./sc-header.css";
 import * as React from "react";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
-import HeaderWatcher from "./HeaderWatcher";
+import type { TopNav as WpTopNav } from "@/types/sections-props";
 
-/* =========================
-   1) STATIC MENU DATA
-   ========================= */
-type NavItem = {
+/* ===== UI types (keeps UI stable, single section for mega) ===== */
+type UiNavItem = {
   id: string;
   label: string;
   href?: string;
   description?: string;
-  emoji?: string; // simple icon token (you can swap to <Image/> or SVG later)
+  emoji?: string;
   preview?: {
     title: string;
     blurb: string;
@@ -29,463 +26,127 @@ type NavItem = {
   textHoverColor: string;
 };
 
-type MegaSection = {
+type UiMegaSection = {
   id: string;
   title: string;
-  items: NavItem[];
+  items: UiNavItem[];
   description: string;
 };
 
-type TopNav = {
-  label: string;
-  type: "link" | "mega";
-  href?: string;
-  sections?: MegaSection[]; // required when type === "mega"
-};
+type UiTopItem =
+  | { label: string; type: "mega"; section: UiMegaSection }
+  | { label: string; type: "link"; href: string };
 
-const NAV: TopNav[] = [
-  // MEGA MENU
-  {
-    label: "Platform",
-    type: "mega",
-    sections: [
-      {
-        id: "overview",
-        title: "Overview",
-        description: "Everything You Need to Run Your Cloud",
+/* ===== helpers ===== */
+const safe = (s?: string | null) => (s ?? "").trim();
+const pick = <T,>(v: T | null | undefined): T | undefined => (v ?? undefined);
+function toGradient(start?: string | null, end?: string | null) {
+  const s = safe(start);
+  const e = safe(end);
+  if (!s && !e) return "#356EC3, #0D3269";
+  if (s && e) return `${s}, ${e}`;
+  return s || e || "#356EC3, #0D3269";
+}
+function normalizeType(t?: string[] | string | null): "mega" | "link" {
+  if (Array.isArray(t)) {
+    const lowered = t.map((x) => safe(x).toLowerCase());
+    if (lowered.includes("mega")) return "mega";
+    if (lowered.includes("link")) return "link";
+    return "link";
+  }
+  const s = safe(typeof t === "string" ? t : "");
+  return s === "mega" ? "mega" : "link";
+}
 
-        items: [
-          {
-            id: "ovr",
-            label: "Overview",
-            href: "/overview",
-            emoji: "/assets/svg/overview.svg",
-            description: "High-level overview and core concepts.",
-            preview: {
-              title: "Overview",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "billing",
-            label: "Subscription & Billing",
-            href: "#",
-            emoji: "/assets/svg/atom-01.svg",
-            description: "Automated invoices, usage metering, multi-currency.",
-            preview: {
-              title: "Billing",
-              blurb: "Automate billing and focus on growth.",
-              cta: { label: "Explore More", href: "/platform/billing" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#DDB458, #895924",
-            cardHoverBgColor: "#FFEFCA",
-            textHoverColor: "#000",
-          },
-          {
-            id: "integration",
-            label: "Integration",
-            href: "/cloud-integrations",
-            emoji: "/assets/svg/atom-01.svg",
-            description: "Connect clouds, tools, identity and more.",
-            preview: {
-              title: "Integration",
-              blurb: "Native, deep integrations with your stack.",
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-              cta: { label: "Explore More", href: "/platform/integration" },
-            },
-            iconHoverBgColor: "#F93333, #A10606",
-            cardHoverBgColor: "#FFD6D6",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "reseller",
-            label: "Reseller Management",
-            href: "#",
-            emoji: "/assets/svg/users-03.svg",
-            description: "Multi-tenant reseller workflows and controls.",
-            preview: {
-              title: "Reseller",
-              blurb: "Scale partners with guardrails.",
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-              cta: { label: "Explore More", href: "/platform/reseller" },
-            },
-            iconHoverBgColor: "#356EC3, #0D3269",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "style",
-            label: "Style your Stack",
-            href: "#",
-            emoji: "/assets/svg/layers-three-02.svg",
-            description: "White-label and brand controls.",
-            preview: {
-              title: "White Label",
-              blurb: "Make it truly yours.",
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-              cta: { label: "Explore More", href: "/platform/white-label" },
-            },
-            iconHoverBgColor: "#DDB458, #895924",
-            cardHoverBgColor: "#FFEFCA",
-            textHoverColor: "#000",
-          },
-          {
-            id: "ai",
-            label: "Stack AI",
-            href: "#",
-            emoji: "/assets/svg/stack-ai.svg",
-            description: "Natural-language operations for teams.",
-            preview: {
-              title: "Stack AI",
-              blurb: "Ship faster with AI-powered operations.",
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-              cta: { label: "Explore More", href: "/platform/ai" },
-            },
-            iconHoverBgColor: "#F93333, #A10606",
-            cardHoverBgColor: "#FFD6D6",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "migration",
-            label: "Migration Engine",
-            href: "#",
-            emoji: "/assets/svg/zap-fast.svg",
-            description: "Move workloads with confidence.",
-            preview: {
-              title: "Migration",
-              blurb: "Bring everything together safely.",
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-              cta: { label: "Explore More", href: "/platform/migration" },
-            },
-            iconHoverBgColor: "#356EC3, #0D3269",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-        ],
-      },
-    ],
-  },
+/* ===== map WP TopNav to UI data ===== */
+function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
+  const items = nav?.navItems ?? [];
+  return items.filter(Boolean).map((it, i) => {
+    const label = safe(it?.label) || `Item ${i + 1}`;
+    const normalizedType = normalizeType((it as any)?.type);
 
-  // SIMPLE LINKS
-  {
-    label: "Solutions",
-    type: "mega",
-    sections: [
-      {
-        id: "solution-1",
-        title: "Who We Serve",
-        description: "Powering Every Cloud Journey",
-        items: [
-          {
-            id: "ovr",
-            label: "Cloud & Hosting Provider",
-            href: "#",
-            emoji: "/assets/svg/cloud.svg",
-            description: "Launch, Manage, and scale with Ease",
-            preview: {
-              title: "Overview",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
+    if (normalizedType === "mega" && it?.megaMenu) {
+      const secTitle = safe(it.megaMenu.title) || label;
+      const secDesc = safe(it.megaMenu.description);
+      const mItems = (it.megaMenu.megaMenuItems ?? [])
+        .filter(Boolean)
+        .map((mi, idx): UiNavItem => {
+          const title = safe(mi?.title) || `Item ${idx + 1}`;
+          const href = safe(mi?.link) || "#";
+          const emoji = safe(mi?.icon?.node?.link) || "/assets/svg/overview.svg";
+          const description = safe(mi?.description);
 
-          {
-            id: "data-centers2",
-            label: "Turn Infrastructure into Cloud Revenue",
-            href: "#",
-            emoji: "/assets/svg/database-01.svg",
-            description: "Launch, Manage, and scale with Ease",
-            preview: {
-              title: "Overview",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#DDB458, #895924",
-            cardHoverBgColor: "#FFEFCA",
-            textHoverColor: "#000",
-          },
-          {
-            id: "Managed Service Providers",
-            label: "Deliver More, Manage Less",
-            href: "#",
-            emoji: "/assets/svg/message-check-circle.svg",
-            description: "Launch, Manage, and scale with Ease",
-            preview: {
-              title: "Overview",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#F93333, #A10606",
-            cardHoverBgColor: "#FFD6D6",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "data-centers",
-            label: "Turn Infrastructure into Cloud Revenue",
-            href: "#",
-            emoji: "/assets/svg/signal-02.svg",
-            description: "Launch, Manage, and scale with Ease",
-            preview: {
-              title: "Overview",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Resources",
-    type: "mega",
-    sections: [
-      {
-        id: "knowledge-hub",
-        title: "Knowledge Hub",
-        description: "Content That Powers Your Cloud Journey",
-        items: [
-          {
-            id: "insights",
-            label: "Insights",
-            href: "/insights",
-            emoji: "/assets/svg/heart-hand.svg",
-            description: "Case Studies, eBooks, Reports & Whitepapers",
-            preview: {
-              title: "Insight",
-              blurb: "Case Studies, eBooks, Reports & Whitepapers",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "Insight",
-              },
-            },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "blogs",
-            label: "Blogs",
-            href: "/blogs",
-            emoji: "/assets/svg/file-heart-02.svg",
-            description: "Expert Tips, Product Updates & Stories",
-            preview: {
-              title: "Blogs",
-              blurb:
-                "Keep everyone informed about the current state of your projects",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "Blogs",
-              },
-            },
-            iconHoverBgColor: "#F93333, #A10606",
-            cardHoverBgColor: "#FFD6D6",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "videos",
-            label: "Videos",
-            href: "/videos",
-            emoji: "/assets/svg/play-square.svg",
-            description: "Product Demos, Tutorials & Feature Highlights",
-            preview: {
-              title: "Vidoes",
-              blurb:
-                "Keep everyone informed about the current state of your projects",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "Videos",
-              },
-            },
-            iconHoverBgColor: "#DDB458, #895924",
-            cardHoverBgColor: "#FFEFCA",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "events",
-            label: "Events",
-            href: "/events",
-            emoji: "/assets/svg/disc-02.svg",
-            description: "Meet Us at Industry Shows & Conferences",
-            preview: {
-              title: "Events",
-              blurb:
-                "Keep everyone informed about the current state of your projects",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "Videos",
-              },
-            },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Company",
-    type: "mega",
-    sections: [
-      {
-        id: "the-company",
-        title: "The Company",
-        description: "Our Purpose, Team & Future",
-        items: [
-          {
-            id: "manifesto",
-            label: "Manifesto",
-            href: "/manifesto",
-            emoji: "/assets/svg/file-03.svg",
-            description: "Driven by Innovation, Guided by Purpose",
-            preview: {
-              title: "Manifesto",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "about-us",
-            label: "About us",
-            href: "/manifesto",
-            emoji: "/assets/svg/building-01.svg",
-            description: "Passion, People & the Cloud We Build",
-            preview: {
-              title: "About us",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
-            iconHoverBgColor: "#966F18, #160E02",
-            cardHoverBgColor: "#FFEFCA",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "careers",
-            label: "Careers",
-            href: "/manifesto",
-            emoji: "/assets/svg/briefcase-01.svg",
-            description: "Build the Future of Cloud With Us",
-            preview: {
-              title: "Careers",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "",
-              },
-            },
+          const iconHoverBgColor = toGradient(
+            mi?.itemIconHoverBackgroundColorStart,
+            mi?.itemIconHoverBackgroundColorEnd
+          );
+          const cardHoverBgColor = safe(mi?.itemHoverBackground) || "#E1F1FF";
+          const textHoverColor = safe(mi?.itemIconHoverColor) || "#fff";
 
-            iconHoverBgColor: "#F93333, #A10606",
-            cardHoverBgColor: "#FFD6D6",
-            textHoverColor: "#fff",
-          },
-          {
-            id: "contact-us",
-            label: "Contact us",
-            href: "/manifesto",
-            emoji: "/assets/svg/phone.svg",
-            description: "We’re Just a Message Away",
-            preview: {
-              title: "Contact us",
-              blurb: "Designed in pursuit of high-speed performance.",
-              cta: { label: "Explore More", href: "#" },
-              image: {
-                link: "/assets/overview-img.png",
-                alt: "contact us",
-              },
-            },
-            iconHoverBgColor: "#356EC5, #000052",
-            cardHoverBgColor: "#E1F1FF",
-            textHoverColor: "#fff",
-          },
-        ],
-      },
-    ],
-  },
-];
+          const previewImage =
+            safe(mi?.preview?.card?.node?.link) ||
+            safe(mi?.preview?.backgroundImage?.node?.link) ||
+            "/assets/overview-img.png";
+          const previewAlt =
+            safe(mi?.preview?.card?.node?.altText) ||
+            safe(mi?.preview?.backgroundImage?.node?.altText) ||
+            title;
+          const blurb = safe(mi?.preview?.description) || description;
 
-/* =========================
-   2) HEADER
-   ========================= */
-export default function ScHeader(data) {
-  console.log("header data", data);
+          const ctaLabel = safe(mi?.preview?.cta?.label);
+          const ctaLink = safe(mi?.preview?.cta?.link);
+
+          return {
+            id: `${label}-${idx}`,
+            label: title,
+            href,
+            emoji,
+            description,
+            iconHoverBgColor,
+            cardHoverBgColor,
+            textHoverColor,
+            preview: {
+              title,
+              blurb,
+              image: { link: previewImage, alt: previewAlt },
+              cta: ctaLabel && ctaLink ? { label: ctaLabel, href: ctaLink } : undefined,
+            },
+          };
+        });
+
+      const section: UiMegaSection = {
+        id: secTitle.toLowerCase().replace(/\s+/g, "-") || "section",
+        title: secTitle,
+        description: secDesc,
+        items: mItems,
+      };
+
+      return { label, type: "mega", section } as UiTopItem;
+    }
+
+    return { label, type: "link", href: safe(it?.link) || "#" } as UiTopItem;
+  });
+}
+
+/* ===== Component (styles untouched) ===== */
+export default function ScHeader(data: WpTopNav) {
   const [openMega, setOpenMega] = useState(false);
   const [activeMegaIndex, setActiveMegaIndex] = useState<number | null>(null);
-  const [hoverItem, setHoverItem] = useState<NavItem | null>(null);
+  const [hoverItem, setHoverItem] = useState<UiNavItem | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const NAV = useMemo(() => mapWpTopNavToUi(data), [data]);
 
   const onOpenMega = (i: number) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setActiveMegaIndex(i);
     setOpenMega(true);
-    // seed preview with the first item
-    const first = NAV[i].sections?.[0]?.items?.[0] ?? null;
-    setHoverItem(first);
+    const mega = NAV[i];
+    if (mega?.type === "mega") {
+      const first = mega.section.items?.[0];
+      if (first) setHoverItem(first);
+    }
   };
 
   const onCloseMega = () => {
@@ -494,7 +155,7 @@ export default function ScHeader(data) {
       setOpenMega(false);
       setActiveMegaIndex(null);
       setHoverItem(null);
-    }, 120); // small delay to allow moving between trigger & panel
+    }, 120);
   };
 
   return (
@@ -507,18 +168,20 @@ export default function ScHeader(data) {
           {/* Left: Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src={ data?.logoDark.node.link || "/assets/images/brand/logo-dark.png"}
-              alt={ data?.logoDark.node.altText ||  "stack console"}
+              src={pick(data?.logoDark?.node?.link) || "/assets/images/brand/logo-dark.png"}
+              alt={pick(data?.logoDark?.node?.altText) || "stack console"}
               width={512}
               height={512}
               className="w-42 h-12 object-cover logo-dark"
+              priority
             />
             <Image
-              src={ data?.logo.node.link || "/assets/images/brand/logo.png"}
-              alt={ data?.logo.node.altText ||  "stack console"}
+              src={pick(data?.logo?.node?.link) || "/assets/images/brand/logo.png"}
+              alt={pick(data?.logo?.node?.altText) || "stack console"}
               width={512}
               height={512}
               className="w-42 h-12 object-cover logo-light"
+              priority
             />
           </Link>
 
@@ -541,19 +204,18 @@ export default function ScHeader(data) {
                       <ChevronDown className="size-4 opacity-80" />
                     </button>
 
-                    {/* Mega panel */}
                     {openMega && activeMegaIndex === i && (
                       <MegaPanel
-                        sections={item.sections!}
+                        section={item.section}
                         hoverItem={hoverItem}
-                        setHoverItem={setHoverItem}
+                        setHoverItem={(i) => setHoverItem(i)}
                       />
                     )}
                   </div>
                 ) : (
                   <Link
                     key={item.label}
-                    href={item.href!}
+                    href={item.href}
                     className="px-3 py-2 cursor-pointer transition-colors rounded-full hover:bg-white hover:text-primary inline-flex items-center gap-1"
                   >
                     {item.label}
@@ -565,10 +227,10 @@ export default function ScHeader(data) {
             {/* Right: CTA + mobile button */}
             <div className="flex items-center gap-3">
               <Link
-                href={data.cta?.link || "/demo"}
+                href={pick(data?.cta?.link) || "https://www.stackconsole.io"}
                 className="schedule-meeting hidden sm:inline-block px-6 py-2.5 texxt-white bg-text rounded-md border border-white/20"
               >
-                {data.cta.label || "Schedule a Meeting"}
+                {safe(data?.cta?.label) || "Schedule a meeting"}
               </Link>
 
               <button
@@ -576,11 +238,7 @@ export default function ScHeader(data) {
                 onClick={() => setMobileOpen((s) => !s)}
                 aria-label="Toggle menu"
               >
-                {mobileOpen ? (
-                  <X className="size-5" />
-                ) : (
-                  <Menu className="size-5" />
-                )}
+                {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
               </button>
             </div>
           </div>
@@ -588,7 +246,14 @@ export default function ScHeader(data) {
 
         {/* Mobile drawer */}
         {mobileOpen && (
-          <MobileMenu nav={NAV} onClose={() => setMobileOpen(false)} />
+          <MobileMenu
+            nav={NAV}
+            onClose={() => setMobileOpen(false)}
+            cta={{
+              label: safe(data?.cta?.label) || "Schedule a meeting",
+              href: pick(data?.cta?.link) || "https://www.stackconsole.io",
+            }}
+          />
         )}
       </header>
     </>
@@ -596,16 +261,16 @@ export default function ScHeader(data) {
 }
 
 /* =========================
-   3) MEGA PANEL (Desktop)
+   Mega panel (single section)
    ========================= */
 function MegaPanel({
-  sections,
+  section,
   hoverItem,
   setHoverItem,
 }: {
-  sections: MegaSection[];
-  hoverItem: NavItem | null;
-  setHoverItem: (i: NavItem) => void;
+  section: UiMegaSection;
+  hoverItem: UiNavItem | null;
+  setHoverItem: (i: UiNavItem) => void;
 }) {
   return (
     <div
@@ -616,56 +281,51 @@ function MegaPanel({
       "
     >
       <div className="grid grid-cols-12">
-        {/* Left column: list */}
         <div className="col-span-8 p-4 md:p-6">
-          {sections.map((sec) => (
-            <div key={sec.id} className="mb-4">
-              <div className="px-2 pb-6">
-                <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  {sec.title}
-                </div>
-                <div>
-                  <p className="">{sec.description}</p>
-                </div>
+          <div className="mb-4">
+            <div className="px-2 pb-6">
+              <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                {section.title}
               </div>
-              <ul className="mt-2">
-                {sec.items.map((it) => (
-                  <li key={it.id}>
-                    <Link
-                      href={it.href ?? "#"}
-                      onMouseEnter={() => setHoverItem(it)}
-                      // inject the dynamic color into a CSS variable
-                      style={{ ["--hover-bg" as any]: it.cardHoverBgColor }}
-                      className={`
-                        group flex items-start gap-3 rounded-xl px-4 py-4
-                        hover:bg-[var(--hover-bg)]
-                      `}
-                    >
-                      <GetIcon
-                        iconHoverBgColor={it.iconHoverBgColor}
-                        textHoverColor={it.textHoverColor}
-                        link={it.emoji}
-                        altText={it.label}
-                      />
-                      <span className="flex-1">
-                        <span className="block font-medium text-gray-900">
-                          {it.label}
-                        </span>
-                        {it.description && (
-                          <span className="block text-sm text-gray-600">
-                            {it.description}
-                          </span>
-                        )}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <p className="">{section.description}</p>
+              </div>
             </div>
-          ))}
+            <ul className="mt-2">
+              {section.items.map((it) => (
+                <li key={it.id}>
+                  <Link
+                    href={it.href ?? "#"}
+                    onMouseEnter={() => setHoverItem(it)}
+                    style={{ ["--hover-bg" as any]: it.cardHoverBgColor }}
+                    className={`
+                      group flex items-start gap-3 rounded-xl px-4 py-4
+                      hover:bg-[var(--hover-bg)]
+                    `}
+                  >
+                    <GetIcon
+                      iconHoverBgColor={it.iconHoverBgColor}
+                      textHoverColor={it.textHoverColor}
+                      link={it.emoji ?? "/assets/svg/overview.svg"}
+                      altText={it.label}
+                    />
+                    <span className="flex-1">
+                      <span className="block font-medium text-gray-900">
+                        {it.label}
+                      </span>
+                      {it.description && (
+                        <span className="block text-sm text-gray-600">
+                          {it.description}
+                        </span>
+                      )}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Right column: preview card */}
         <div className="col-span-12 md:col-span-4 p-4 md:p-6 bg-gradient-to-b from-indigo-50 to-white flex items-center justify-center">
           <PreviewCard item={hoverItem} />
         </div>
@@ -675,9 +335,9 @@ function MegaPanel({
 }
 
 /* =========================
-   4) PREVIEW CARD (right)
+   Preview card
    ========================= */
-function PreviewCard({ item }: { item: NavItem | null }) {
+function PreviewCard({ item }: { item: UiNavItem | null }) {
   if (!item?.preview) {
     return (
       <div className="h-full w-full rounded-xl border border-black/10 p-4 flex items-center justify-center text-sm ">
@@ -697,19 +357,19 @@ function PreviewCard({ item }: { item: NavItem | null }) {
           }}
           className="rounded-lg bg-gradient-to-b h-64 overflow-hidden [background:var(--icon-gradient)]"
         />
-        {item.preview && (
+        {item.preview?.image?.link && (
           <Image
             className="absolute top-2"
-            src={item?.preview?.image?.link || "/assets/overview-img.png"}
+            src={item.preview.image.link}
             width={512}
             height={512}
-            alt={item?.preview.image?.alt || ""}
+            alt={item.preview.image.alt || ""}
           />
         )}
         <div className="absolute bottom-0 px-4 w-full">
           <div className="text-white font-semibold">{title}</div>
           <p title={blurb} className="h-20 mt-1 text-sm text-muted">
-            {blurb.length < 60 ? blurb : blurb.slice(0, 60) + "..."}
+            {blurb && blurb.length < 60 ? blurb : `${blurb?.slice(0, 60) ?? ""}...`}
           </p>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#110900] opacity-80 rounded-lg" />
         </div>
@@ -729,9 +389,17 @@ function PreviewCard({ item }: { item: NavItem | null }) {
 }
 
 /* =========================
-  5) MOBILE MENU (drawer)
+   Mobile drawer (single section)
    ========================= */
-function MobileMenu({ nav, onClose }: { nav: TopNav[]; onClose: () => void }) {
+function MobileMenu({
+  nav,
+  onClose,
+  cta,
+}: {
+  nav: UiTopItem[];
+  onClose: () => void;
+  cta: { label: string; href: string };
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -746,44 +414,38 @@ function MobileMenu({ nav, onClose }: { nav: TopNav[]; onClose: () => void }) {
               >
                 <span>{item.label}</span>
                 <ChevronDown
-                  className={`size-4 transition-transform ${
-                    openIndex === i ? "rotate-180" : ""
-                  }`}
+                  className={`size-4 transition-transform ${openIndex === i ? "rotate-180" : ""}`}
                 />
               </button>
 
               {openIndex === i && (
                 <div className="px-3 pb-3 space-y-3">
-                  {item.sections?.map((sec) => (
-                    <div key={sec.id}>
-                      <div className="text-xs uppercase text-white/60 mb-1">
-                        {sec.title}
-                      </div>
-                      <ul className="space-y-1">
-                        {sec.items.map((it) => (
-                          <li key={it.id}>
-                            <Link
-                              href={it.href || "#"}
-                              className="flex items-start gap-2 px-2 py-2 rounded-md hover:bg-white/10"
-                              onClick={onClose}
-                            >
-                              <span className="inline-flex size-7 items-center justify-center rounded bg-white/10">
-                                {it.emoji}
-                              </span>
-                              <span>{it.label}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                  <div>
+                    <div className="text-xs uppercase text-white/60 mb-1">{item.section.title}</div>
+                    <ul className="space-y-1">
+                      {item.section.items.map((it) => (
+                        <li key={it.id}>
+                          <Link
+                            href={it.href || "#"}
+                            className="flex items-start gap-2 px-2 py-2 rounded-md hover:bg-white/10"
+                            onClick={onClose}
+                          >
+                            <span className="inline-flex size-7 items-center justify-center rounded bg-white/10">
+                              <Image src={it.emoji ?? "/assets/svg/overview.svg"} alt={it.label} width={20} height={20} />
+                            </span>
+                            <span>{it.label}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               )}
             </div>
           ) : (
             <Link
               key={item.label}
-              href={item.href!}
+              href={item.href}
               onClick={onClose}
               className="block px-3 py-3 rounded-lg border border-white/10 hover:bg-white/10"
             >
@@ -793,16 +455,16 @@ function MobileMenu({ nav, onClose }: { nav: TopNav[]; onClose: () => void }) {
         )}
 
         <Link
-          href="/demo"
+          href={cta.href}
           onClick={onClose}
           className="block text-center px-4 py-3 bg-white text-black rounded-md border border-white/20"
         >
-          Schedule a Meeting
+          {cta.label}
         </Link>
       </div>
     </div>
   );
-} 
+}
 
 const GetIcon = ({
   className = "",
@@ -827,7 +489,7 @@ const GetIcon = ({
       `}
     >
       <Image
-        src={link}
+        src={link || "/assets/svg/overview.svg"}
         alt={altText}
         width={64}
         height={64}
@@ -838,4 +500,3 @@ const GetIcon = ({
     </div>
   );
 };
- 

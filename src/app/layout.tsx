@@ -2,7 +2,6 @@ import Script from "next/script";
 import { ThemeProvider } from "@/components/sc-theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import SCFooter from "@/components/sc-footer";
 import ScHeader from "@/components/sc-header/sc-header";
 import "./globals.css";
 import HeaderWatcher from "@/components/sc-header/HeaderWatcher";
@@ -35,8 +34,7 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   const nav = await getNavigation();
-  
-  console.log("Navigation data:", JSON.stringify(nav));
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
