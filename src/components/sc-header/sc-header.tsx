@@ -250,13 +250,13 @@ export default function ScHeader(data: WpTopNav) {
                 {/* only white logo in mobile */}
                 <Image
                   src={
-                    pick(data?.logoDark?.node?.link) ||
+                    pick(data?.logo?.node?.link) ||
                     "/assets/images/brand/logo.png"
                   }
                   alt={pick(data?.logo?.node?.altText) || "stack console"}
                   width={512}
                   height={512}
-                  className="w-42 h-12 object-cover"
+                  className="w-42 h-12 object-cover  block md:hidden"
                   priority
                 />
               </Link>

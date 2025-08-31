@@ -42,4 +42,8 @@
     background: #ffffff;
     color: #000;
   }
+
+  .logo-dark {
+    display: none !important;
+  }
 }
