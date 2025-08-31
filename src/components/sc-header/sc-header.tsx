@@ -6,43 +6,14 @@ import { useState, useRef, useMemo } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import type { TopNav as WpTopNav } from "@/types/sections-props";
-
-/* ===== UI types (keeps UI stable, single section for mega) ===== */
-type UiNavItem = {
-  id: string;
-  label: string;
-  icon: {
-    node: { altText?: string | null; link?: string | null };
-  };
-  href?: string;
-  description?: string;
-  emoji?: string;
-  preview?: {
-    title: string;
-    blurb: string;
-    cta?: { label: string; href: string };
-    image?: { link: string; alt: string };
-    bgImage?: { link: string; alt: string };
-  };
-  iconHoverBgColor: string;
-  cardHoverBgColor: string;
-  textHoverColor: string;
-};
-
-type UiMegaSection = {
-  id: string;
-  title: string;
-  items: UiNavItem[];
-  description: string;
-};
-
-type UiTopItem =
-  | { label: string; type: "mega"; section: UiMegaSection }
-  | { label: string; type: "link"; href: string };
+import { GetIcon } from "./sc-get-icon";
+import { UiTopItem, UiMegaSection, UiNavItem } from "@/types/header";
+import { MegaPanel } from "./sc-mega-panel";
 
 /* ===== helpers ===== */
 const safe = (s?: string | null) => (s ?? "").trim();
 const pick = <T,>(v: T | null | undefined): T | undefined => v ?? undefined;
+
 function toGradient(start?: string | null, end?: string | null) {
   const s = safe(start);
   const e = safe(end);
@@ -50,6 +21,7 @@ function toGradient(start?: string | null, end?: string | null) {
   if (s && e) return `${s}, ${e}`;
   return s || e || "#356EC3, #0D3269";
 }
+
 function normalizeType(t?: string[] | string | null): "mega" | "link" {
   if (Array.isArray(t)) {
     const lowered = t.map((x) => safe(x).toLowerCase());
@@ -182,7 +154,7 @@ export default function ScHeader(data: WpTopNav) {
       >
         <div className="mx-auto max-w-8xl px-4 md:px-8 lg:px-12 h-16 flex items-center justify-between">
           {/* Left: Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 dark-logo">
             <Image
               src={
                 pick(data?.logoDark?.node?.link) ||
@@ -278,7 +250,7 @@ export default function ScHeader(data: WpTopNav) {
                 {/* only white logo in mobile */}
                 <Image
                   src={
-                    pick(data?.logo?.node?.link) ||
+                    pick(data?.logoDark?.node?.link) ||
                     "/assets/images/brand/logo.png"
                   }
                   alt={pick(data?.logo?.node?.altText) || "stack console"}
@@ -321,135 +293,7 @@ export default function ScHeader(data: WpTopNav) {
   );
 }
 
-/* =========================
-   Mega panel (single section)
-   ========================= */
-function MegaPanel({
-  section,
-  hoverItem,
-  setHoverItem,
-}: {
-  section: UiMegaSection;
-  hoverItem: UiNavItem | null;
-  setHoverItem: (i: UiNavItem) => void;
-}) {
-  return (
-    <div
-      className="
-        mega-menu overflow-hidden left-[62%] -translate-x-1/2 mt-6 w-[min(100vw-2rem,980px)]
-        rounded-xl border border-white/10 bg-white text-black shadow-2xl transition-colors
-        fixed
-      "
-    >
-      <div className="grid grid-cols-12">
-        <div className="col-span-8 p-4 md:p-6">
-          <div className="mb-4">
-            <div className="px-2 pb-6">
-              <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                {section.title}
-              </div>
-              <div>
-                <p className="">{section.description}</p>
-              </div>
-            </div>
-            <ul className="mt-2">
-              {section.items.map((it) => (
-                <li key={it.id}>
-                  <Link
-                    href={it.href ?? "#"}
-                    onMouseEnter={() => setHoverItem(it)}
-                    style={{ ["--hover-bg" as any]: it.cardHoverBgColor }}
-                    className={`
-                      group flex items-start gap-3 rounded-xl px-4 py-4
-                      hover:bg-[var(--hover-bg)]
-                    `}
-                  >
-                    <GetIcon
-                      iconHoverBgColor={it.iconHoverBgColor}
-                      textHoverColor={it.textHoverColor}
-                      link={it.emoji ?? "/assets/svg/overview.svg"}
-                      altText={it.label}
-                    />
-                    <span className="flex-1">
-                      <span className="block font-medium text-gray-900">
-                        {it.label}
-                      </span>
-                      {it.description && (
-                        <span className="block text-sm text-gray-600">
-                          {it.description}
-                        </span>
-                      )}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
 
-        <div className="col-span-12 md:col-span-4 p-4 md:p-6 bg-gradient-to-b from-indigo-50 to-white flex items-center justify-center">
-          <PreviewCard item={hoverItem} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* =========================
-   Preview card
-   ========================= */
-function PreviewCard({ item }: { item: UiNavItem | null }) {
-  if (!item?.preview) {
-    return (
-      <div className="h-full w-full rounded-xl border border-black/10 p-4 flex items-center justify-center text-sm ">
-        Hover an item to preview
-      </div>
-    );
-  }
-  const { title, blurb, cta } = item.preview;
-
-  return (
-    <div className="rounded-xl overflow-hidden min-w-full flex flex-col justify-center items-center">
-      <div className="w-full relative">
-        <div
-          style={{
-            ["--icon-gradient" as any]: `linear-gradient(135deg, ${item.iconHoverBgColor})`,
-            ["--icon-color" as any]: item.textHoverColor,
-          }}
-          className="rounded-lg bg-gradient-to-b h-64 overflow-hidden [background:var(--icon-gradient)]"
-        />
-        {item.preview?.image?.link && (
-          <Image
-            className="absolute top-2"
-            src={item.preview.image.link}
-            width={512}
-            height={512}
-            alt={item.preview.image.alt || ""}
-          />
-        )}
-        <div className="absolute bottom-0 px-4 w-full">
-          <div className="text-white font-semibold">{title}</div>
-          <p title={blurb} className="h-20 mt-1 text-sm text-muted">
-            {blurb && blurb.length < 60
-              ? blurb
-              : `${blurb?.slice(0, 60) ?? ""}...`}
-          </p>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#110900] opacity-80 rounded-lg" />
-        </div>
-      </div>
-      {cta && (
-        <div className="p-4 pt-0 mt-4">
-          <Link
-            href={cta.href}
-            className="w-42 text-center block cursor-pointer px-4 py-2.5 bg-white text-black rounded-[8px] border border-black transition-all delay-100 hover:shadow-[0_8px_0_#356EC3] hover:border-l-0 hover:border-t-0 hover:border-[#356EC3]"
-          >
-            {cta.label}
-          </Link>
-        </div>
-      )}
-    </div>
-  );
-}
 
 /* =========================
    Mobile drawer (single section)
@@ -551,37 +395,4 @@ function MobileMenu({
   );
 }
 
-const GetIcon = ({
-  className = "",
-  iconHoverBgColor = "#356EC3, #0D3269",
-  textHoverColor = "#fff",
-  link = "",
-  altText = "",
-}) => {
-  return (
-    <div
-      style={{
-        ["--icon-gradient" as any]: `linear-gradient(135deg, ${iconHoverBgColor})`,
-        ["--icon-color" as any]: textHoverColor,
-      }}
-      className={`
-        group rounded-[12px] size-12 flex items-center justify-center
-        border border-[#AFB9CE] transition
-        group-hover:border-none
-        group-hover:[background:var(--icon-gradient)]
-        group-hover:text-[var(--icon-color)]
-        ${className}
-      `}
-    >
-      <Image
-        src={link || "/assets/svg/overview.svg"}
-        alt={altText}
-        width={64}
-        height={64}
-        className="p-2.5 transition
-          [filter:brightness(0)_saturate(100%)_invert(26%)_sepia(61%)_saturate(1406%)_hue-rotate(192deg)_brightness(91%)_contrast(95%)]
-          group-hover:brightness-0 group-hover:invert"
-      />
-    </div>
-  );
-};
+

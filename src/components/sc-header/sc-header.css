@@ -22,9 +22,6 @@
 .header-dark .logo-dark {
   display: block;
 }
-.header-dark .logo-light {
-  display: none;
-}
 
 .header-light .logo-light {
   display: block;
