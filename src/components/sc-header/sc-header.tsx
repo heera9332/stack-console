@@ -6,9 +6,9 @@ import { useState, useRef, useMemo } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import type { TopNav as WpTopNav } from "@/types/sections-props";
-import { GetIcon } from "./sc-get-icon";
 import { UiTopItem, UiMegaSection, UiNavItem } from "@/types/header";
 import { MegaPanel } from "./sc-mega-panel";
+import { MobileMenu } from "./sc-mobile";
 
 /* ===== helpers ===== */
 const safe = (s?: string | null) => (s ?? "").trim();
@@ -40,7 +40,7 @@ function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
   return items.filter(Boolean).map((it, i) => {
     const label = safe(it?.label) || `Item ${i + 1}`;
     const normalizedType = normalizeType((it as any)?.type);
-    let desc = "";
+    let desc = it.description;
 
     if (normalizedType === "mega" && it?.megaMenu) {
       const secTitle = safe(it.megaMenu.title) || label;
@@ -109,6 +109,7 @@ function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
 
     return {
       label,
+      icon: it.icon,
       description: desc,
       type: "link",
       href: safe(it?.link) || "#",
@@ -243,42 +244,11 @@ export default function ScHeader(data: WpTopNav) {
 
         {/* Mobile drawer */}
         {mobileOpen && (
-          <div className="fixed top-0  w-full">
-            <div className="mx-auto max-w-8xl px-4 md:px-8 lg:px-12 h-16 flex items-center justify-between">
-              {/* Left: Logo */}
-              <Link href="/" className="flex items-center gap-2">
-                {/* only white logo in mobile */}
-                <Image
-                  src={
-                    pick(data?.logo?.node?.link) ||
-                    "/assets/images/brand/logo.png"
-                  }
-                  alt={pick(data?.logo?.node?.altText) || "stack console"}
-                  width={512}
-                  height={512}
-                  className="w-42 h-12 object-cover  block md:hidden"
-                  priority
-                />
-              </Link>
-
-              <div className="flex gap-2 items-center">
-                {/* Right: CTA + mobile button */}
-                <div className="flex items-center gap-3">
-                  <button
-                    className="lg:hidden inline-flex items-center justify-center size-9 rounded-md hover:bg-white/10"
-                    onClick={() => setMobileOpen((s) => !s)}
-                    aria-label="Toggle menu"
-                  >
-                    {mobileOpen ? (
-                      <X className="size-5" />
-                    ) : (
-                      <Menu className="size-5" />
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
+          <div className="">
             <MobileMenu
+              mobileOpen={mobileOpen}
+              setMobileOpen={setMobileOpen}
+              data={data}
               nav={NAV}
               onClose={() => setMobileOpen(false)}
               cta={{
@@ -290,108 +260,6 @@ export default function ScHeader(data: WpTopNav) {
         )}
       </header>
     </>
-  );
-}
-
-
-
-/* =========================
-   Mobile drawer (single section)
-   ========================= */
-function MobileMenu({
-  nav,
-  onClose,
-  cta,
-}: {
-  nav: UiTopItem[];
-  onClose: () => void;
-  cta: { label: string; href: string };
-}) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  return (
-    <div className="lg:hidden border-t border-white/10 header-light">
-      <div className="mx-auto max-w-7xl px-2 md:px-6 lg:px-8 py-4 space-y-2">
-        {nav.map((item, i) =>
-          item.type === "mega" ? (
-            <div key={item.label} className="border border-white/10 rounded-lg">
-              <button
-                className="w-full flex items-start justify-between px-3 py-3"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-              >
-                <div className="flex gap-2 items-center">
-                  <GetIcon
-                    iconHoverBgColor={
-                      item.section.items[0]?.iconHoverBgColor || ""
-                    }
-                    textHoverColor={item.section.items[0]?.textHoverColor || ""}
-                  />
-                  <div className="text-left">
-                    <h3>{item.label}</h3>
-                    <span className="text-[12px]">
-                      {item.section.description}
-                    </span>
-                  </div>
-                </div>
-                <ChevronDown
-                  className={`size-4 transition-transform ${
-                    openIndex === i ? "rotate-0" : "rotate-270"
-                  }`}
-                />
-              </button>
-
-              {openIndex === i && (
-                <div className="px-3 pb-3 space-y-3">
-                  <div>
-                    <div className="text-xs uppercase text-white/60 mb-1">
-                      {item.section.title}
-                    </div>
-                    <ul className="space-y-1">
-                      {item.section.items.map((it) => (
-                        <li key={it.id}>
-                          <Link
-                            href={it.href || "#"}
-                            className="flex items-start gap-2 px-2 py-2 rounded-md hover:bg-white/10"
-                            onClick={onClose}
-                          >
-                            <span className="inline-flex size-7 items-center justify-center rounded bg-white/10">
-                              <Image
-                                src={it.emoji ?? "/assets/svg/overview.svg"}
-                                alt={it.label}
-                                width={20}
-                                height={20}
-                              />
-                            </span>
-                            <span>{it.label}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={onClose}
-              className="block px-3 py-3 rounded-lg border border-white/10 hover:bg-white/10"
-            >
-              {item.label}
-            </Link>
-          )
-        )}
-
-        <Link
-          href={cta.href}
-          onClick={onClose}
-          className="block text-center px-4 py-3 schedule-meeting rounded-md border border-white/20"
-        >
-          {cta.label}
-        </Link>
-      </div>
-    </div>
   );
 }
 

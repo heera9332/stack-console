@@ -77,6 +77,7 @@ export interface TopNav {
   navItems: Array<{
     fieldGroupName?: string | null;
     label?: string | null;
+    description: string;
     link?: string | null;
     type: string;
     icon: {

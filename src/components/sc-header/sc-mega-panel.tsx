@@ -27,7 +27,7 @@ export function MegaPanel({
         <div className="col-span-8 p-4 md:p-6">
           <div className="mb-4">
             <div className="px-2 pb-6">
-              <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 leading-[20%] mb-4">
                 {section.title}
               </div>
               <div>

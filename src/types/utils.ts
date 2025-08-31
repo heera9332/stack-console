@@ -1,1 +1,1 @@
-export type MediaNode = { node: { altText: string; link: string } };
+export type MediaNode = { node: { altText?: string; link: string } };

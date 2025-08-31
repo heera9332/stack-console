@@ -1,3 +1,5 @@
+import { MediaNode } from "./utils";
+
 /* ===== UI types (keeps UI stable, single section for mega) ===== */
 export type UiNavItem = {
   id: string;
@@ -28,5 +30,5 @@ export type UiMegaSection = {
 };
 
 export type UiTopItem =
-  | { label: string; type: "mega"; section: UiMegaSection }
+  | { label: string; icon: MediaNode,  type: "mega"; section: UiMegaSection }
   | { label: string; type: "link"; href: string };

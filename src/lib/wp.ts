@@ -93,6 +93,7 @@ export async function getNavigation() {
               fieldGroupName
               label
               link
+              description
               type
               icon {
                 node {
