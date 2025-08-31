@@ -34,6 +34,9 @@ export type ScCloudIntegrationsPostsProps =
 export type ScStackConsoleApisProps =
   SectionByName<"PageBuilderSectionsStackConsoleApisLayout">;
 
+export type ScStyleYourStackProps =
+  SectionByName<"PageBuilderSectionsStyleYourStackHeroLayout">;
+
 export type Footer = {
   columns?: Array<{
     fieldGroupName?: string | null;

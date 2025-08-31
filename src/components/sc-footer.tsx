@@ -49,7 +49,7 @@ function mapFooterToColumns(footer): Column[] {
 }
 
 export default async function ScFooter(data: Footer) {
-  console.log("Rendering SCFooter", data);
+  
   // data.headerNavigation?.footer contains the WP footer payload
   const footer = data ?? null;
   // Keep existing console for server debugging

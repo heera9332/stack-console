@@ -432,3 +432,36 @@ export const CLOUD_INTEGRETIONS_CTA = gql`
     }
   }
 `;
+
+export const STYLE_YOUR_STACK_HERO_SECTION = gql`
+  fragment StyleYourStackHeroSection on PageBuilderSectionsStyleYourStackHeroLayout {
+    fieldGroupName
+    heading
+    highlightedHeading
+    
+    cta {
+      label
+      link
+      fieldGroupName
+    }
+    ctaOutlined {
+      label
+      fieldGroupName
+      link
+    }
+    description
+    heroImage {
+      node {
+        altText
+        link
+      }
+    }
+      
+    sectionBackgroundImage {
+      node {
+        altText
+        link
+      }
+    }
+  }
+`;

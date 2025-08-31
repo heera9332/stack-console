@@ -21,6 +21,7 @@ import { PageSectionsByUriQuery } from '@/gql/__generated__/graphql';
 import { ScCloudIntegrationsPosts } from '@/components/sc-cloud-integrations-posts';
 import ScCloudIntegrationsCta from '@/components/sc-cloud-integrations-cta';
 import { ScStackConsoleApis } from '@/components/sc-stack-console-apis';
+import { ScStyleYourStack } from '@/components/sc-style-your-stack';
 
 type SectionMap = {
   [K in Section['__typename']]:
@@ -77,6 +78,10 @@ const map: SectionMap = {
 
   PageBuilderSectionsStackConsoleApisLayout: (props) => (
     <ScStackConsoleApis {...props} />
+  ),
+
+  PageBuilderSectionsStyleYourStackHeroLayout: (props) => (
+    <ScStyleYourStack {...props} />
   ),
 };
 

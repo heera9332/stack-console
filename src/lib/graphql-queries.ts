@@ -19,7 +19,7 @@ import {
   CLOUD_INTEGRETIONS_POSTS,
   CLOUD_INTEGRETIONS_CTA,
   STACK_CONSOLE_APIS_SECTION,
-  
+  STYLE_YOUR_STACK_HERO_SECTION
 } from '@/lib/fragments';
 
 export const PAGE_SECTIONS_BY_URI = gql`
@@ -53,6 +53,7 @@ export const PAGE_SECTIONS_BY_URI = gql`
           ...CloudIntegrationsPostsSection
           ...StackConsoleApisSection
           ...CloudIntegrationsCTASection
+          ...StyleYourStackHeroSection
         }
       }
     }
@@ -75,4 +76,5 @@ export const PAGE_SECTIONS_BY_URI = gql`
   ${CLOUD_INTEGRETIONS_POSTS}
   ${STACK_CONSOLE_APIS_SECTION}
   ${CLOUD_INTEGRETIONS_CTA}
+  ${STYLE_YOUR_STACK_HERO_SECTION}
 `;
