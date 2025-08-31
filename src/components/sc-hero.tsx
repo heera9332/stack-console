@@ -257,7 +257,7 @@ export default function ScHero(data: ScHeroProps) {
       className="section
         relative overflow-hidden
         bg-[#12141D] text-white
-        px-4 md:px-6 lg:px-8 py-36 md:pb-50
+        px-4 md:px-6 lg:px-8 py-36 md:pb-52
         flex flex-col items-center justify-center grid-container bg-dark">
       <div className="gradient-overlay"></div>
       <div id="glowSegments" ref={glowSegmentsRef}></div>

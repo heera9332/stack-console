@@ -101,7 +101,7 @@ export default function ScCloudEcosystem(data: Props) {
       data-aos="fade-up"
       className="section relative overflow-hidden bg-foreground text-background bg-dark"
     >
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 md:pt-20">
         {/* Heading */}
         <header className="relative text-center flex flex-col items-center justify-center md:px-64">
           <h2 className="text-[32px] leading-tight font-semibold md:text-[44px] text-left md:text-center max-w-3xl">
