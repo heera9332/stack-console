@@ -37,3 +37,12 @@
   background-color: var(--color-primary);
   color: var(--color-primary-foreground);
 }
+
+@media (max-width: 768px) {
+  .header-light,
+  .header-dark {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    color: #000;
+  }
+}

@@ -178,7 +178,7 @@ export default function ScHeader(data: WpTopNav) {
     <>
       <header
         id="page-header"
-        className="sticky top-0 z-50 border-b border-black/20 py-2 transition-colors duration-300 header-dark text-white"
+        className="sticky top-0 z-50 border-b border-black/20 md:py-2 transition-colors duration-300 header-dark text-white"
       >
         <div className="mx-auto max-w-8xl px-4 md:px-8 lg:px-12 h-16 flex items-center justify-between">
           {/* Left: Logo */}
@@ -271,14 +271,50 @@ export default function ScHeader(data: WpTopNav) {
 
         {/* Mobile drawer */}
         {mobileOpen && (
-          <MobileMenu
-            nav={NAV}
-            onClose={() => setMobileOpen(false)}
-            cta={{
-              label: safe(data?.cta?.label) || "Schedule a meeting",
-              href: pick(data?.cta?.link) || "https://www.stackconsole.io",
-            }}
-          />
+          <div className="fixed top-0  w-full">
+            <div className="mx-auto max-w-8xl px-4 md:px-8 lg:px-12 h-16 flex items-center justify-between">
+              {/* Left: Logo */}
+              <Link href="/" className="flex items-center gap-2">
+                {/* only white logo in mobile */}
+                <Image
+                  src={
+                    pick(data?.logo?.node?.link) ||
+                    "/assets/images/brand/logo.png"
+                  }
+                  alt={pick(data?.logo?.node?.altText) || "stack console"}
+                  width={512}
+                  height={512}
+                  className="w-42 h-12 object-cover"
+                  priority
+                />
+              </Link>
+
+              <div className="flex gap-2 items-center">
+                {/* Right: CTA + mobile button */}
+                <div className="flex items-center gap-3">
+                  <button
+                    className="lg:hidden inline-flex items-center justify-center size-9 rounded-md hover:bg-white/10"
+                    onClick={() => setMobileOpen((s) => !s)}
+                    aria-label="Toggle menu"
+                  >
+                    {mobileOpen ? (
+                      <X className="size-5" />
+                    ) : (
+                      <Menu className="size-5" />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <MobileMenu
+              nav={NAV}
+              onClose={() => setMobileOpen(false)}
+              cta={{
+                label: safe(data?.cta?.label) || "Schedule a meeting",
+                href: pick(data?.cta?.link) || "https://www.stackconsole.io",
+              }}
+            />
+          </div>
         )}
       </header>
     </>
@@ -441,16 +477,16 @@ function MobileMenu({
               >
                 <div className="flex gap-2 items-center">
                   <GetIcon
-                      iconHoverBgColor={
-                        item.section.items[0]?.iconHoverBgColor || ""
-                      }
-                      textHoverColor={
-                        item.section.items[0]?.textHoverColor || ""
-                      }
-                    />
+                    iconHoverBgColor={
+                      item.section.items[0]?.iconHoverBgColor || ""
+                    }
+                    textHoverColor={item.section.items[0]?.textHoverColor || ""}
+                  />
                   <div className="text-left">
                     <h3>{item.label}</h3>
-                    <span className="text-[12px]">{item.section.description}</span>
+                    <span className="text-[12px]">
+                      {item.section.description}
+                    </span>
                   </div>
                 </div>
                 <ChevronDown
