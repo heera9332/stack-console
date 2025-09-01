@@ -86,7 +86,7 @@ export default function ScSeeInAction(data: Props) {
       </header>
 
       {/* Video frame */}
-      <div className="mt-8 md:mt-10 mx-auto max-w-5xl">
+      <div className="mt-8 md:mt-10 mx-auto max-w-2xl">
         <div
           className="
             relative md:overflow-hidden

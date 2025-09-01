@@ -117,7 +117,7 @@ export default function ScCloudEcosystem(data: Props) {
         </header>
 
         {/* Radar rings background (desktop) */}
-        <div className="relative mt-10 md:mt-14 min-h-[720px] hidden md:block">
+        <div className="relative mt-10 md:mt-16 min-h-[680px] hidden md:block">
           <img src={"/assets/images/radar.png"} className="absolute w-full mt-18" alt="" />
 
           <svg
@@ -181,7 +181,7 @@ export default function ScCloudEcosystem(data: Props) {
           </svg>
 
           {/* Rows of integrations */}
-          <div className="absolute w-full z-10 space-y-10 md:space-y-12 lg:space-y-16 mt-[8%] mb-20 pt-4 px-10">
+          <div className="absolute w-full z-10 space-y-10 md:space-y-12 lg:space-t-16 mt-[8%] pt-4 px-10 mb-0">
             {rows.map((row, i) => (
               <div
                 key={`row-${i}`}

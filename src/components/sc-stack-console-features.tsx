@@ -157,15 +157,15 @@ export default function ScStackConsoleFeatures(props: Props) {
 
           {/* RIGHT: sticky video (desktop) with ENTIRE column bg color changing */}
           <div
-            className="hidden lg:block transition-colors duration-500 lg:py-32 px-12"
+            className="hidden lg:block transition-colors duration-500 lg:py-24 px-12"
             style={{
               backgroundColor:
                 props.features[active]?.videoSection.backgroundColor || "transparent",
             }}
           >
-            <div className="sticky top-46 overflow-visible">
+            <div className="sticky md:top-32 lg:top-36 xl:top-40 overflow-visible">
               <div
-                className="relative w-full max-w-[560px] mx-auto rounded-2xl"
+                className="relative w-full max-w-md mx-auto rounded-2xl"
                 style={{ boxShadow: "16px 16px 0px 6px black" }}
               >
                 {/* crossfade stack inside a PERFECT SQUARE */}

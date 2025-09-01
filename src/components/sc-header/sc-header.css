@@ -1,49 +1,44 @@
-/* Default (dark mode) */
+/* Base header skins */
 .header-dark {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background: #0b0d0f;
-  color: text-white;
+  color: #fff; /* fixed (was `text-white`) */
 }
-
-/* Light mode */
 .header-light {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background: #ffffff;
   color: #000;
 }
 
-.logo-dark {
-  display: none;
-}
+/* Default: hide both logos until a theme class decides */
+.logo-dark,
 .logo-light {
-  display: block;
-}
-
-.header-dark .logo-dark {
-  display: block;
-}
-
-.header-light .logo-light {
-  display: block;
-}
-.header-light .logo-dark {
   display: none;
 }
 
+/* Desktop/Tablet: show according to header theme */
+.header-dark .logo-dark { display: block; }
+.header-dark .logo-light { display: none; }
+
+.header-light .logo-light { display: block; }
+.header-light .logo-dark { display: none; }
+
+/* Example button skin under light header */
 .header-light .schedule-meeting {
   background-color: var(--color-primary);
   color: var(--color-primary-foreground);
 }
 
+/* Mobile: force light header & light logo only */
 @media (max-width: 768px) {
-  .header-light,
-  .header-dark {
+  .header-dark,
+  .header-light {
     background: #ffffff;
     color: #000;
     border-bottom: none;
   }
 
-  .logo-dark {
-    display: none !important;
-  }
+  /* On mobile, always show light version of the logo */
+  .logo-dark { display: none !important; }
+  .logo-light { display: block !important; }
 }

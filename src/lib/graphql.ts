@@ -16,6 +16,8 @@ if (!endpoint || !/^https?:\/\//i.test(endpoint)) {
 
 // Guard fetch to detect if WP returns HTML instead of JSON
 const guardedFetch: typeof fetch = async (url, init) => {
+  console.log("fetch url and init", url, init)
+
   const res = await fetch(url, init);
   const ct = res.headers.get("content-type") || "";
 

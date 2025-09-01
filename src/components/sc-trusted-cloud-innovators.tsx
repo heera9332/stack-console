@@ -23,7 +23,7 @@ export default function ScTrustedCloudInnovators(
   return (
     <section
       data-aos="fade-up"
-      className="section bg-primary text-primary-foreground mx-auto flex justify-center flex-col items-center bg-light"
+      className="section bg-primary text-primary-foreground mx-auto flex justify-center flex-col items-center bg-light overflow-hidden"
     >
       <div className="w-full max-w-7xl pt-10 flex flex-col items-cener justify-center">
         {/* Heading */}

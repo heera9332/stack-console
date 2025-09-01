@@ -151,30 +151,25 @@ export default function ScHeader(data: WpTopNav) {
     <>
       <header
         id="page-header"
-        className="sticky top-0 z-50 border-b border-black/20 md:py-2 transition-colors duration-300 header-dark text-white"
+        className="sticky top-0 z-50 border-b border-black/20 md:py-1 transition-colors duration-300 header-dark text-white"
       >
         <div className="mx-auto max-w-8xl px-4 md:px-8 lg:px-12 h-16 flex items-center justify-between">
           {/* Left: Logo */}
-          <Link href="/" className="flex items-center gap-2 dark-logo">
+          <Link href="/" className="flex items-center gap-2">
             <Image
-              src={
-                pick(data?.logoDark?.node?.link) ||
-                "/assets/images/brand/logo-dark.png"
-              }
+              src={pick(data?.logoDark?.node?.link) || "/assets/images/brand/logo-dark.png"}
               alt={pick(data?.logoDark?.node?.altText) || "stack console"}
               width={512}
               height={512}
-              className="w-42 h-12 object-cover logo-dark"
+              className="logo logo-dark h-12 w-auto object-contain"
               priority
             />
             <Image
-              src={
-                pick(data?.logo?.node?.link) || "/assets/images/brand/logo.png"
-              }
+              src={pick(data?.logo?.node?.link) || "/assets/images/brand/logo.png"}
               alt={pick(data?.logo?.node?.altText) || "stack console"}
               width={512}
               height={512}
-              className="w-42 h-12 object-cover logo-light"
+              className="logo logo-light h-12 w-auto object-contain"
               priority
             />
           </Link>
