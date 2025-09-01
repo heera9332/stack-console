@@ -15,7 +15,7 @@ export type UiNavItem = {
     blurb: string;
     cta?: { label: string; href: string };
     image?: { link: string; alt: string };
-    bgImage?: { link: string; alt: string };
+    bgImage?: MediaNode;
   };
   iconHoverBgColor: string;
   cardHoverBgColor: string;

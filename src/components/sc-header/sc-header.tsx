@@ -93,6 +93,7 @@ function mapWpTopNavToUi(nav: WpTopNav): UiTopItem[] {
                 ctaLabel && ctaLink
                   ? { label: ctaLabel, href: ctaLink }
                   : undefined,
+                  bgImage: mi?.preview?.backgroundImage,
             },
           };
         });

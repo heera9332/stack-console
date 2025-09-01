@@ -1,5 +1,6 @@
 // section-props.ts
 import type { SectionByName } from "@/gql/section-types";
+import { MediaNode } from "./utils";
 
 export type HeroProps = SectionByName<"PageBuilderSectionsHeroLayout">;
 export type CloudInnovatorsProps =
@@ -105,14 +106,12 @@ export interface TopNav {
         itemIconHoverColor?: string | null;
         link?: string | null;
         title?: string | null;
-        preview?: {
+        preview: {
           description?: string | null;
 
           fieldGroupName?: string | null;
           title?: string | null;
-          backgroundImage?: {
-            node?: { altText?: string | null; link?: string | null } | null;
-          } | null;
+          backgroundImage?: MediaNode;
           card?: {
             node?: { altText?: string | null; link?: string | null } | null;
           } | null;
@@ -121,7 +120,7 @@ export interface TopNav {
             link?: string | null;
             fieldGroupName?: string | null;
           } | null;
-        } | null;
+        };
       } | null> | null;
     } | null;
   }>;

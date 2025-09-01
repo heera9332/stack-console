@@ -2,7 +2,7 @@ import { UiMegaSection, UiNavItem } from "@/types/header";
 import Link from "next/link";
 import { GetIcon } from "./sc-get-icon";
 import { PreviewCard } from "./sc-preview-card";
-
+import Image from "next/image";
 /* =========================
    Mega panel (single section)
    ========================= */
@@ -19,8 +19,8 @@ export function MegaPanel({
     <div
       className="
         mega-menu overflow-hidden left-[62%] -translate-x-1/2 mt-6 w-[min(100vw-2rem,980px)]
-        rounded-xl border border-white/10 bg-white text-black shadow-2xl transition-colors
-        fixed
+        rounded-xl border border-white/10 text-black shadow-2xl transition-colors
+        fixed bg-white mx-auto
       "
     >
       <div className="grid grid-cols-12">
@@ -69,9 +69,27 @@ export function MegaPanel({
           </div>
         </div>
 
-        <div className="col-span-12 md:col-span-4 p-4 md:p-6 bg-gradient-to-b from-indigo-50 to-white flex items-center justify-center">
-          <PreviewCard item={hoverItem} />
+        <div className="col-span-12 md:col-span-4 flex items-center justify-center border-l-2 border-gray-100 min-h-[80vh]">
+          <div className="relative h-full w-full overflow-hidden">
+            {/* Background image */}
+            {hoverItem?.preview?.bgImage?.node?.link && (
+              <Image
+                src={hoverItem.preview.bgImage.node.link}
+                alt={hoverItem.preview.bgImage.node.altText || ""}
+                fill
+                className="object-cover object-center"
+                priority
+              />
+            )}
+
+
+            {/* Foreground content */}
+            <div className="relative z-10 h-full w-full flex items-center justify-center p-4 px-8">
+              <PreviewCard item={hoverItem} />
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   );
