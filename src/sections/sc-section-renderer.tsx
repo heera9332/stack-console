@@ -22,6 +22,7 @@ import { ScCloudIntegrationsPosts } from '@/components/sc-cloud-integrations-pos
 import ScCloudIntegrationsCta from '@/components/sc-cloud-integrations-cta';
 import { ScStackConsoleApis } from '@/components/sc-stack-console-apis';
 import { ScStyleYourStack } from '@/components/sc-style-your-stack';
+// import { ScMultipleThemesEndlessCapabilities } from '@/components/sc-multiple-themes-endless-capabilities';
 
 type SectionMap = {
   [K in Section['__typename']]:
@@ -83,6 +84,10 @@ const map: SectionMap = {
   PageBuilderSectionsStyleYourStackHeroLayout: (props) => (
     <ScStyleYourStack {...props} />
   ),
+
+  // PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout: (props) => (
+  //   <ScMultipleThemesEndlessCapabilities {...props} />
+  // ),
 };
 
 type Section =

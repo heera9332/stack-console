@@ -465,3 +465,24 @@ export const STYLE_YOUR_STACK_HERO_SECTION = gql`
     }
   }
 `;
+
+// export const MULTIPLE_THEMES_ENDLESS_CAPABILITIES = gql`
+//   fragment MultipleThemesEndlessCapabilitiesSection on PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout {
+//     heading
+//     description
+//     tabs {
+//       fieldGroupName
+//       tabLabel 
+//       tabDescription
+      
+//       tabContentBackground
+//       tabContentDescription
+//       tabContentImage {
+//           node {
+//             altText
+//             link
+//           }
+//       }
+//     }
+//   }
+// `;

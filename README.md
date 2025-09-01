@@ -10,3 +10,12 @@ md => 768px
 lg => 1024px
 xl => 1280px
 2xl => 1536px
+
+
+
+## Generate types
+
+
+```sh
+WP_GRAPHQL_ENDPOINT=https://stack-console.zoro-dev.com/graphql
+```
