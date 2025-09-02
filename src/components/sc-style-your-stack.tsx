@@ -5,7 +5,6 @@ import React from "react";
 type Cta = { label: string; link: string };
 type Data = {
   __typename: "PageBuilderSectionsStyleYourStackHeroLayout";
-  fieldGroupName: "PageBuilderSectionsStyleYourStackHeroLayout";
   heading: string;
   highlightedHeading: string;
   description: string;

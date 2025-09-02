@@ -40,25 +40,23 @@ export type ScStyleYourStackProps =
 
 export type Footer = {
   columns?: Array<{
-    fieldGroupName?: string | null;
+    __typename?: string | null;
     headling?: string | null;
     links?: Array<{
-      fieldGroupName?: string | null;
+      __typename?: string | null;
       link?: {
-        fieldGroupName?: string | null;
+        __typename?: string | null;
         label?: string | null;
         url?: string | null;
       } | null;
     } | null> | null;
   } | null> | null;
   companyDescription?: string | null;
-  fieldGroupName?: string | null;
-  logoImage?: {
-    node?: { altText?: string | null; link?: string | null } | null;
-  } | null;
+  __typename?: string | null;
+  logoImage?: MediaNode;
   subscribe?: {
     buttonLabel?: string | null;
-    fieldGroupName?: string | null;
+    __typename?: string | null;
     inputPlaceholder?: string | null;
     subscribeMessage?: string | null;
     successMessage?: string | null;
@@ -69,34 +67,26 @@ export interface TopNav {
   cta: {
     label?: string | null;
     link?: string | null;
-    fieldGroupName?: string | null;
+    __typename?: string | null;
   } | null;
-  fieldGroupName?: string | null;
-  logo: {
-    node: { altText: string | null; link: string | null };
-  };
-  logoDark: {
-    node: { altText: string | null; link: string | null };
-  };
+  __typename?: string | null;
+  logo: MediaNode;
+  logoDark: MediaNode;
   navItems: Array<{
-    fieldGroupName?: string | null;
-    label?: string | null;
+    __typename?: string | null;
+    label: string;
     description: string;
-    link?: string | null;
+    link: string;
     type: string;
-    icon: {
-      node: { altText?: string | null; link?: string | null };
-    };
+    icon: MediaNode;
     megaMenu?: {
       title?: string | null;
       description?: string | null;
-      fieldGroupName?: string | null;
+      __typename?: string | null;
       megaMenuItems?: Array<{
         description?: string | null;
-        fieldGroupName?: string | null;
-        icon?: {
-          node?: { altText?: string | null; link?: string | null } | null;
-        } | null;
+        __typename?: string | null;
+        icon: MediaNode;
 
         itemHoverBackground?: string | null;
         itemHoverTextColor?: string | null;
@@ -109,16 +99,14 @@ export interface TopNav {
         preview: {
           description?: string | null;
 
-          fieldGroupName?: string | null;
+          __typename?: string | null;
           title?: string | null;
           backgroundImage?: MediaNode;
-          card?: {
-            node?: { altText?: string | null; link?: string | null } | null;
-          } | null;
+          card?: MediaNode;
           cta?: {
             label?: string | null;
             link?: string | null;
-            fieldGroupName?: string | null;
+            __typename?: string | null;
           } | null;
         };
       } | null> | null;
@@ -128,7 +116,7 @@ export interface TopNav {
 
 export type NavData = {
   headerNavigation: {
-    fieldGroupName: string | null;
+    __typename: string | null;
     topNav: TopNav;
     footer: Footer;
   } | null;

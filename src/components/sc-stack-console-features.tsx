@@ -9,11 +9,11 @@ type Feature = {
   featureButtonLabel: string;
   featureButtonLink: string;
   featureDescription: string;
-  fieldGroupName: string;
+  __typename: string;
   name: string;
   videoSection: {
     backgroundColor: string;
-    fieldGroupName: string;
+    __typename: string;
     video: string;
     videoCardTopBackgroundColor: string;
     videoPoster: MediaNode;
@@ -21,8 +21,7 @@ type Feature = {
 };
 
 interface Props {
-  __typename: "PageBuilderSectionsStackConsoleFeaturesLayout";
-  fieldGroupName: string;
+  __typename: string;
   heading: string;
   description: string;
   features: Feature[];

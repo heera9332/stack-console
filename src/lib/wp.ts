@@ -40,22 +40,22 @@ export async function getNavigation() {
     query NewQuery {
       scNavigation {
         headerNavigation {
-          fieldGroupName
+          __typename
           footer {
             columns {
-              fieldGroupName
+              __typename
               headling
               links {
-                fieldGroupName
+                __typename
                 link {
-                  fieldGroupName
+                  __typename
                   label
                   url
                 }
               }
             }
             companyDescription
-            fieldGroupName
+            __typename
             logoImage {
               node {
                 altText
@@ -64,7 +64,7 @@ export async function getNavigation() {
             }
             subscribe {
               buttonLabel
-              fieldGroupName
+              __typename
               inputPlaceholder
               subscribeMessage
               successMessage
@@ -73,10 +73,10 @@ export async function getNavigation() {
           topNav {
             cta {
               label
-              fieldGroupName
+              __typename
               link
             }
-            fieldGroupName
+            __typename
             logo {
               node {
                 altText
@@ -90,7 +90,7 @@ export async function getNavigation() {
               }
             }
             navItems {
-              fieldGroupName
+              __typename
               label
               link
               description
@@ -103,11 +103,11 @@ export async function getNavigation() {
               }
               megaMenu {
                 description
-                fieldGroupName
+                __typename
                 title
                 megaMenuItems {
                   description
-                  fieldGroupName
+                  __typename
                   icon {
                     node {
                       altText
@@ -123,7 +123,7 @@ export async function getNavigation() {
                   title
                   preview {
                     description
-                    fieldGroupName
+                    __typename
                     title
                     backgroundImage {
                       node {
@@ -140,7 +140,7 @@ export async function getNavigation() {
                     cta {
                       label
                       link
-                      fieldGroupName
+                      __typename
                     }
                   }
                 }
@@ -159,6 +159,6 @@ export async function getNavigation() {
   return {
     topNav: headerNavigation?.topNav ?? null,
     footer: headerNavigation?.footer ?? null,
-    fieldGroupName: headerNavigation?.fieldGroupName ?? null,
+    __typename: headerNavigation?.__typename ?? null,
   };
 }

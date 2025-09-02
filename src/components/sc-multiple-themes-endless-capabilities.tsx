@@ -7,7 +7,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { MediaNode } from "@/types/utils";
 
 type WpTab = {
-    fieldGroupName: string;
+    __typename: string;
     tabLabel: string;
     tabDescription: string;
     tabContentBackground: string;      // e.g. "#F6A84F"

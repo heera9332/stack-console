@@ -5,7 +5,6 @@ import * as React from "react";
 
 interface Props {
   __typename: "PageBuilderSectionsBeforefooterctaLayout";
-  fieldGroupName: string;
   heading: string;
   description: string;
   talkToTeamLabel: string;

@@ -3,7 +3,7 @@ import { gql } from 'graphql-request';
 
 export const HERO_SECTION = gql`
   fragment HeroSection on PageBuilderSectionsHeroLayout {
-    fieldGroupName
+    __typename
     subHeading
     heading
     highlightedHeading
@@ -23,12 +23,12 @@ export const HERO_SECTION = gql`
 
 export const CLOUD_INNOVATORS_SECTION = gql`
   fragment CloudInnovatorsSection on PageBuilderSectionsCloudInnovatorsLayout {
-    fieldGroupName
+    __typename
     heading
     headingSufix
     headingPrefix
     brandLogos {
-      fieldGroupName
+      __typename
       logo {
         node {
           altText
@@ -41,11 +41,9 @@ export const CLOUD_INNOVATORS_SECTION = gql`
 
 export const TURNING_IDEAS_SECTION = gql`
   fragment TurningIdeasCloudPowerBusinessSection on PageBuilderSectionsTurningideascloudpowerbusinessLayout {
-    fieldGroupName
-    
+    __typename
     description1
     description2
-    fieldGroupName
     heading
     sectionImage {
       node {
@@ -55,7 +53,7 @@ export const TURNING_IDEAS_SECTION = gql`
     }
     stats {
       description
-      fieldGroupName
+      __typename
       prefix
       suffix
       value
@@ -65,11 +63,11 @@ export const TURNING_IDEAS_SECTION = gql`
 
 export const CLOUD_POWER_BUSINESS_SECTION = gql`
   fragment CloudPowerBusinessSection on PageBuilderSectionsCloudPowerBusinessLayout {
-    fieldGroupName
+    __typename
     description
     heading
     video {
-      fieldGroupName
+      __typename
       imageOverVideo {
         node {
           altText
@@ -96,12 +94,12 @@ export const CLOUD_POWER_BUSINESS_SECTION = gql`
 
 export const INTEGRATED_CLOUD_ECOSYSTEM_SECTION = gql`
   fragment IntegratedCloudEcosystemSection on PageBuilderSectionsIntegratedCloudEcosystemLayout {
-    fieldGroupName
+    __typename
     description
     heading
     heading2
     platforms {
-      fieldGroupName
+      __typename
       name
       logo {
         node {
@@ -115,17 +113,17 @@ export const INTEGRATED_CLOUD_ECOSYSTEM_SECTION = gql`
 
 export const STACK_CONSOLE_FEATURES_SECTION = gql`
   fragment StackConsoleFeaturesSection on PageBuilderSectionsStackConsoleFeaturesLayout {
-    fieldGroupName
+    __typename
     description
     heading
     features {
-      fieldGroupName
+      __typename
       name
       featureDescription
       featureButtonLabel
       featureButtonLink
       videoSection {
-        fieldGroupName
+        __typename
         backgroundColor
         video
         videoCardTopBackgroundColor
@@ -142,11 +140,11 @@ export const STACK_CONSOLE_FEATURES_SECTION = gql`
 
 export const WHO_IS_FOR_STACK_CONSOLE_SECTION = gql`
   fragment WhoIsForStackConsoleSection on PageBuilderSectionsWhoIsForStackConsoleLayout {
-    fieldGroupName
+    __typename
     description
     heading
     tabs {
-      fieldGroupName
+      __typename
       heading
       description
       learnMoreLabel
@@ -163,10 +161,10 @@ export const WHO_IS_FOR_STACK_CONSOLE_SECTION = gql`
 
 export const FAQS_SECTION = gql`
   fragment FaqsSection on PageBuilderSectionsFaqsLayout {
-    fieldGroupName
+    __typename
     heading
     questions {
-      fieldGroupName
+      __typename
       question
       answer
     }
@@ -175,7 +173,7 @@ export const FAQS_SECTION = gql`
 
 export const BEFORE_FOOTER_CTA_SECTION = gql`
   fragment BeforeFooterCtaSection on PageBuilderSectionsBeforefooterctaLayout {
-    fieldGroupName
+    __typename
     heading
     description
     talkToTeamLabel
@@ -186,7 +184,7 @@ export const BEFORE_FOOTER_CTA_SECTION = gql`
 
 export const CLOUD_COMMERCE_PLATFORM_SECTION = gql`
   fragment CloudCommercePlatformSection on PageBuilderSectionsCloudCommercePlatformLayout {
-    fieldGroupName
+    __typename
     heading
     highlightedHeading
     description
@@ -209,7 +207,7 @@ export const CLOUD_COMMERCE_PLATFORM_SECTION = gql`
 
 export const INFINITE_CLOUD_CONSOLE_SECTION = gql`
   fragment InfiniteCloudConsoleSection on PageBuilderSectionsInfiniteCloudConsoleLayout {
-    fieldGroupName
+    __typename
     heading
     description
     heroImage {
@@ -223,7 +221,7 @@ export const INFINITE_CLOUD_CONSOLE_SECTION = gql`
 
 export const PLATFORM_CAPABILITIES_GRID_SECTION = gql`
   fragment PlatformCapabilitiesGridSection on PageBuilderSectionsPlatformCapabilitiesGridLayout {
-  fieldGroupName
+  __typename
   heading
   card1 { 
   cardImage {
@@ -309,28 +307,23 @@ export const PLATFORM_CAPABILITIES_GRID_SECTION = gql`
   }
   description
   heading }
-}
-
- 
-`;
-
-
+}`;
 
 export const EXPERIENCE_STACK_SECTION = gql`
   fragment ExperienceStackSection on PageBuilderSectionsExperienceStackLayout {
-    fieldGroupName
+    __typename
   }
 `;
 
 export const WHY_CHOOSE_STACK_CONSOLE_SECTION = gql`
   fragment WhyChooseStackConsoleSection on PageBuilderSectionsWhyChooseStackConsoleLayout {
-    fieldGroupName
+    __typename
   }
 `;
 
 export const CLOUD_INTEGRATIONS_HERO_SECTION = gql`
   fragment CloudIntegrationsHeroSection on PageBuilderSectionsCloudIntegrationsHeroLayout {
-    fieldGroupName
+    __typename
     heading
     headingHighlighted
     integrationButtonLabel
@@ -349,7 +342,7 @@ export const CLOUD_INTEGRATIONS_HERO_SECTION = gql`
     }
     description
     brandLogos {
-      fieldGroupName
+      __typename
         logo {
           node {
             altText
@@ -362,7 +355,7 @@ export const CLOUD_INTEGRATIONS_HERO_SECTION = gql`
 
 export const CLOUD_INTEGRETIONS_POSTS = gql`
   fragment CloudIntegrationsPostsSection on PageBuilderSectionsCloudIntegrationsPostsLayout {
-    fieldGroupName
+    __typename
     heading
     posts {
       nodes {
@@ -393,7 +386,7 @@ export const CLOUD_INTEGRETIONS_POSTS = gql`
 export const STACK_CONSOLE_APIS_SECTION = gql`
   fragment StackConsoleApisSection on PageBuilderSectionsStackConsoleApisLayout {
       description
-      fieldGroupName
+      __typename
       heading
       headingHighlighted
       sectionBackgroundImage {
@@ -419,7 +412,7 @@ export const STACK_CONSOLE_APIS_SECTION = gql`
 
 export const CLOUD_INTEGRETIONS_CTA = gql`
   fragment CloudIntegrationsCTASection on PageBuilderSectionsCloudIntegrationsCtaLayout {
-    fieldGroupName
+    __typename
     heading
     description
     actionButtonLabel
@@ -435,21 +428,21 @@ export const CLOUD_INTEGRETIONS_CTA = gql`
 
 export const STYLE_YOUR_STACK_HERO_SECTION = gql`
   fragment StyleYourStackHeroSection on PageBuilderSectionsStyleYourStackHeroLayout {
-    fieldGroupName
+    __typename
     heading
     highlightedHeading
+    description
     
     cta {
       label
       link
-      fieldGroupName
+      __typename
     }
     ctaOutlined {
       label
-      fieldGroupName
+      __typename
       link
     }
-    description
     heroImage {
       node {
         altText
@@ -466,23 +459,50 @@ export const STYLE_YOUR_STACK_HERO_SECTION = gql`
   }
 `;
 
-// export const MULTIPLE_THEMES_ENDLESS_CAPABILITIES = gql`
-//   fragment MultipleThemesEndlessCapabilitiesSection on PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout {
-//     heading
-//     description
-//     tabs {
-//       fieldGroupName
-//       tabLabel 
-//       tabDescription
+export const MULTIPLE_THEMES_ENDLESS_CAPABILITIES = gql`
+  fragment MultipleThemesEndlessCapabilitiesSection on PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout {
+    __typename
+    heading
+    description
+    scTabs {
+      __typename
+      tabLabel 
+      tabDescription
       
-//       tabContentBackground
-//       tabContentDescription
-//       tabContentImage {
-//           node {
-//             altText
-//             link
-//           }
-//       }
-//     }
-//   }
-// `;
+      tabContentBackground
+      tabContentDescription
+      tabContentImage {
+          node {
+            altText
+            link
+          }
+      }
+    }
+  }
+`;
+
+
+export const STYLE_YOUR_STACK_CTA_SECTION = gql`
+  fragment  StyleYourStackCtaSection on PageBuilderSectionsSyleYourBrandCtaLayout {
+  descriptionHightlightedWords
+  heading
+  description
+  __typename
+  sectionBackgroundImage {
+    node {
+      altText
+      link
+    }
+  }
+  sectionBackgroundImageMobile {
+    node {
+      altText
+      link
+    }
+  }
+  cta {
+    __typename
+    label
+    link
+  }  
+}`;

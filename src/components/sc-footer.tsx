@@ -51,7 +51,7 @@ function mapFooterToColumns(footer): Column[] {
 export default async function ScFooter(data: Footer) {
   // data.headerNavigation?.footer contains the WP footer payload
   const footer = data ?? null;
-  const h = headers();
+  const h = await headers();
   const fullUrl = h.get("x-url") || ""; // from middleware
   const pathname = fullUrl ? new URL(fullUrl).pathname : "/";
   const isHome = pathname === "/" || pathname === "/index" || pathname === "/home";

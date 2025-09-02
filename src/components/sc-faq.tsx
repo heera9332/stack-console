@@ -12,14 +12,13 @@ import { cn } from "@/lib/utils";
 
 /* ---------- Types matching your API ---------- */
 type ApiQuestion = {
-  fieldGroupName: string;
+  __typename: string;
   question: string;
   answer: string;
 };
 
 interface Props {
   __typename: "PageBuilderSectionsFaqsLayout";
-  fieldGroupName: string;
   heading: string;         // e.g. "Frequently Asked 🤔 Questions 🙋🏻‍♂️"
   questions: ApiQuestion[];
 }

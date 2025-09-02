@@ -16,7 +16,7 @@ import ScWhoForStacKConsole from '@/components/sc-who-for-stackconsole';
 import ScWhyChooseAndCTA from '@/components/sc-why-choose-us-cta';
 import ScCloudIntegrationsHero from '@/components/sc-clound-integrations';
 
-import type { Section, SectionByName } from '@/gql/section-types';
+import type { SectionByName } from '@/gql/section-types';
 import { PageSectionsByUriQuery } from '@/gql/__generated__/graphql';
 import { ScCloudIntegrationsPosts } from '@/components/sc-cloud-integrations-posts';
 import ScCloudIntegrationsCta from '@/components/sc-cloud-integrations-cta';
