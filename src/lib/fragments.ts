@@ -475,6 +475,28 @@ export const MULTIPLE_THEMES_ENDLESS_POSSIBILITIES = gql`
   }
 `;
 
+export const MAKE_EVERY_PIXEL_YOUR_BRAND = gql`
+  fragment PixelMatchSection on PageBuilderSectionsPixelMatchLayout {
+    __typename
+    heading
+    headingHighlighted
+    scFeatures {
+      __typename
+      heading
+      points {
+        __typename
+        point      
+      }
+      featureIcon {
+        node {
+          altText
+          link
+        }
+      }
+    }
+  }
+`;
+
 export const NEED_SOMETHING_TRULY_UNIQUE_SECTION = gql`
   fragment  NeedSomethingTrulyUnqiueSection on PageBuilderSectionsSomethingTrulyUniqueLayout  {
   heading

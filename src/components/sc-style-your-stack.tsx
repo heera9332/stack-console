@@ -41,7 +41,7 @@ export const ScStyleYourStack = (data: Data) => {
       )}
 
   
-      <div className="relative mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-10 py-12 md:flex-row md:py-20 lg:py-24">
           {/* Left: copy */}
           <div className="w-full md:w-5/12">

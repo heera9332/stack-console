@@ -25,6 +25,7 @@ import { ScStyleYourStack } from '@/components/sc-style-your-stack';
 import { ScMultipleThemesEndlessPossibilities } from '@/components/sc-multiple-themes-endless-possibilities';
 import { ScStyleYourStackCta } from '@/components/sc-style-your-stack-cta';
 import { ScNeedSomethingTrulyUnique } from '@/components/sc-something-truly-unique';
+import { ScMakeEveryPixelYourBrand } from '@/components/sc-make-every-pixel-your-brand';
 
 type SectionMap = {
   [K in Section['__typename']]:
@@ -93,6 +94,10 @@ const map: SectionMap = {
 
   PageBuilderSectionsSomethingTrulyUniqueLayout: (props) => (
     <ScNeedSomethingTrulyUnique {...props} />
+  ),
+
+  PageBuilderSectionsPixelMatchLayout: (props) => (
+    <ScMakeEveryPixelYourBrand {...props} />
   ),
 
   PageBuilderSectionsStyleYourBrandCtaLayout: (props) => (
