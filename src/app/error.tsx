@@ -12,7 +12,7 @@ export default function Error({ error, reset }: ErrorProps) {
   
   useEffect(() => {
     /** show error in console */
-    console.error(error);
+    console.log(error);
   }, [error]);
 
   return (

@@ -16,14 +16,13 @@ type WpTab = {
 };
 
 interface Props {
-    __typename?: "PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout";
-    fieldGroupName: string;
+    __typename: string;
     heading: string;
     description: string;
     tabs: WpTab[];
 }
 
-export function ScMultipleThemesEndlessCapabilities({
+export function ScMultipleThemesEndlessPossibilities({
     heading,
     description,
     tabs,
@@ -76,7 +75,7 @@ export function ScMultipleThemesEndlessCapabilities({
                             const value = t.tabLabel || `tab-${idx}`;
                             const bg = (t.tabContentBackground || "").trim() || "#F6A84F";
                             const imgUrl =
-                                t.tabContentImage?.node?.url || t.tabContentImage?.node?.link || "";
+                                t.tabContentImage?.node?.link || t.tabContentImage?.node?.link || "";
                             const imgAlt = t.tabContentImage?.node?.altText || t.tabLabel || "Theme preview";
 
                             return (

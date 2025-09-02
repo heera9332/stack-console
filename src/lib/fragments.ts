@@ -74,12 +74,6 @@ export const CLOUD_POWER_BUSINESS_SECTION = gql`
           link
         }
       }
-      imageOverVideo {
-        node {
-          altText
-          link
-        }
-      }
       videoUrl
       videoPoster {
         node {
@@ -459,8 +453,8 @@ export const STYLE_YOUR_STACK_HERO_SECTION = gql`
   }
 `;
 
-export const MULTIPLE_THEMES_ENDLESS_CAPABILITIES = gql`
-  fragment MultipleThemesEndlessCapabilitiesSection on PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout {
+export const MULTIPLE_THEMES_ENDLESS_POSSIBILITIES = gql`
+  fragment MultipleThemesEndlessPossibilitiesSection on PageBuilderSectionsMultipleThemesAndEndlessPossibilitiesLayout {
     __typename
     heading
     description
@@ -483,7 +477,7 @@ export const MULTIPLE_THEMES_ENDLESS_CAPABILITIES = gql`
 
 
 export const STYLE_YOUR_STACK_CTA_SECTION = gql`
-  fragment  StyleYourStackCtaSection on PageBuilderSectionsSyleYourBrandCtaLayout {
+  fragment  StyleYourStackCtaSection on PageBuilderSectionsStyleYourBrandCtaLayout {
   descriptionHightlightedWords
   heading
   description

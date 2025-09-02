@@ -22,7 +22,7 @@ import { ScCloudIntegrationsPosts } from '@/components/sc-cloud-integrations-pos
 import ScCloudIntegrationsCta from '@/components/sc-cloud-integrations-cta';
 import { ScStackConsoleApis } from '@/components/sc-stack-console-apis';
 import { ScStyleYourStack } from '@/components/sc-style-your-stack';
-// import { ScMultipleThemesEndlessCapabilities } from '@/components/sc-multiple-themes-endless-capabilities';
+import { ScMultipleThemesEndlessPossibilities } from '@/components/sc-multiple-themes-endless-possibilities';
 
 type SectionMap = {
   [K in Section['__typename']]:
@@ -85,12 +85,13 @@ const map: SectionMap = {
     <ScStyleYourStack {...props} />
   ),
 
-  // PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout: (props) => (
-  //   <ScMultipleThemesEndlessCapabilities {...props} />
-  // ),
+  PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout: (props) => (
+    <ScMultipleThemesEndlessPossibilities {...props} />
+  ),
 };
 
 type Section =
+// @ts-ignore
   NonNullable<PageSectionsByUriQuery['page']>['pageBuilder']['sections'][number];
 type SectionNullable = Section | null | undefined;
 

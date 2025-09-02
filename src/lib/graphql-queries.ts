@@ -20,7 +20,7 @@ import {
   CLOUD_INTEGRETIONS_CTA,
   STACK_CONSOLE_APIS_SECTION,
   STYLE_YOUR_STACK_HERO_SECTION,
-  MULTIPLE_THEMES_ENDLESS_CAPABILITIES,
+  MULTIPLE_THEMES_ENDLESS_POSSIBILITIES,
   STYLE_YOUR_STACK_CTA_SECTION,
 } from '@/lib/fragments';
 
@@ -56,7 +56,7 @@ export const PAGE_SECTIONS_BY_URI = gql`
           ...StackConsoleApisSection
           ...CloudIntegrationsCTASection
           ...StyleYourStackHeroSection
-          ...MultipleThemesEndlessCapabilitiesSection
+          ...MultipleThemesEndlessPossibilitiesSection
           ...StyleYourStackCtaSection
         }
       }
@@ -81,6 +81,6 @@ export const PAGE_SECTIONS_BY_URI = gql`
   ${STACK_CONSOLE_APIS_SECTION}
   ${CLOUD_INTEGRETIONS_CTA}
   ${STYLE_YOUR_STACK_HERO_SECTION}
-  ${MULTIPLE_THEMES_ENDLESS_CAPABILITIES}
+  ${MULTIPLE_THEMES_ENDLESS_POSSIBILITIES}
   ${STYLE_YOUR_STACK_CTA_SECTION}
 `;
