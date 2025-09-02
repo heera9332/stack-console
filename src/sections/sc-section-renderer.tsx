@@ -85,7 +85,7 @@ const map: SectionMap = {
     <ScStyleYourStack {...props} />
   ),
 
-  PageBuilderSectionsMultiThemesAndEndlessPosibilitiesLayout: (props) => (
+  PageBuilderSectionsMultipleThemesAndEndlessPossibilitiesLayout: (props) => (
     <ScMultipleThemesEndlessPossibilities {...props} />
   ),
 };
