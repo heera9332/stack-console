@@ -21,6 +21,7 @@ import {
   STACK_CONSOLE_APIS_SECTION,
   STYLE_YOUR_STACK_HERO_SECTION,
   MULTIPLE_THEMES_ENDLESS_POSSIBILITIES,
+  NEED_SOMETHING_TRULY_UNIQUE_SECTION,
   STYLE_YOUR_STACK_CTA_SECTION,
 } from '@/lib/fragments';
 
@@ -57,6 +58,7 @@ export const PAGE_SECTIONS_BY_URI = gql`
           ...CloudIntegrationsCTASection
           ...StyleYourStackHeroSection
           ...MultipleThemesEndlessPossibilitiesSection
+          ...NeedSomethingTrulyUnqiueSection
           ...StyleYourStackCtaSection
         }
       }
@@ -82,5 +84,6 @@ export const PAGE_SECTIONS_BY_URI = gql`
   ${CLOUD_INTEGRETIONS_CTA}
   ${STYLE_YOUR_STACK_HERO_SECTION}
   ${MULTIPLE_THEMES_ENDLESS_POSSIBILITIES}
+  ${NEED_SOMETHING_TRULY_UNIQUE_SECTION}
   ${STYLE_YOUR_STACK_CTA_SECTION}
 `;

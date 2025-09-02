@@ -23,6 +23,8 @@ import ScCloudIntegrationsCta from '@/components/sc-cloud-integrations-cta';
 import { ScStackConsoleApis } from '@/components/sc-stack-console-apis';
 import { ScStyleYourStack } from '@/components/sc-style-your-stack';
 import { ScMultipleThemesEndlessPossibilities } from '@/components/sc-multiple-themes-endless-possibilities';
+import { ScStyleYourStackCta } from '@/components/sc-style-your-stack-cta';
+import { ScNeedSomethingTrulyUnique } from '@/components/sc-something-truly-unique';
 
 type SectionMap = {
   [K in Section['__typename']]:
@@ -88,6 +90,15 @@ const map: SectionMap = {
   PageBuilderSectionsMultipleThemesAndEndlessPossibilitiesLayout: (props) => (
     <ScMultipleThemesEndlessPossibilities {...props} />
   ),
+
+  PageBuilderSectionsSomethingTrulyUniqueLayout: (props) => (
+    <ScNeedSomethingTrulyUnique {...props} />
+  ),
+
+  PageBuilderSectionsStyleYourBrandCtaLayout: (props) => (
+    <ScStyleYourStackCta {...props} />
+  ),
+  
 };
 
 type Section =

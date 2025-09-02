@@ -475,6 +475,36 @@ export const MULTIPLE_THEMES_ENDLESS_POSSIBILITIES = gql`
   }
 `;
 
+export const NEED_SOMETHING_TRULY_UNIQUE_SECTION = gql`
+  fragment  NeedSomethingTrulyUnqiueSection on PageBuilderSectionsSomethingTrulyUniqueLayout  {
+  heading
+  description
+  backgroundImage {
+    node {
+      altText
+      link
+    }
+  }
+  backgroundImageMobile {
+    node {
+      altText
+      link
+    }
+  }
+
+  sectionImage {
+    node {
+      altText
+      link
+    }
+  }
+  sectionImageMobile {
+    node {
+      altText
+      link
+    }
+  }
+}`;
 
 export const STYLE_YOUR_STACK_CTA_SECTION = gql`
   fragment  StyleYourStackCtaSection on PageBuilderSectionsStyleYourBrandCtaLayout {
