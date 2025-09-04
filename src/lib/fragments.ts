@@ -574,6 +574,12 @@ export const POWER_YOUR_NETWORK_CTA_SECTION = gql`
         link
       }
     }
+    backgroundImageMobile {
+      node {
+        altText
+        link
+      }
+    }
     __typename
   }
 `;
