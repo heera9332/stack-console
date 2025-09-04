@@ -40,15 +40,17 @@ export const ScResellerCompetitiveEdgeSection = (
         </p>
 
         {/* Cards */}
-        <div className="mt-6 grid gap-6 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+        <div className="mt-8 flex flex-wrap justify-center gap-6">
           {data.edgeCards.map((card, idx) => (
             <div
               key={idx}
-              className="rounded-2xl bg-white border px-4 py-6 md:px-6 md:py-8 text-left"
+              className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]
+                         max-w-sm flex-shrink-0 rounded-2xl bg-white border
+                         px-4 py-6 md:px-6 md:py-8 text-left"
             >
-              {/* Icon (concentric circles) */}
+              {/* Icon */}
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#376DC3] relative">
-                <div className="absolute -inset-4 rounded-full bg-blue-600/10" /> 
+                <div className="absolute -inset-4 rounded-full bg-blue-600/10" />
                 <img
                   src={card.icon.node.link}
                   alt={card.icon.node.altText}
@@ -57,12 +59,12 @@ export const ScResellerCompetitiveEdgeSection = (
               </div>
 
               {/* Card heading */}
-              <h3 className="text-center font-semibold text-gray-900 text-base sm:text-lg md:text-xl">
+              <h3 className="text-center font-semibold text-base sm:text-lg md:text-xl">
                 {card.cardHeading}
               </h3>
 
               {/* Card description */}
-              <p className="mt-3 text-center text-sm md:text-base text-gray-600">
+              <p className="mt-3 text-center text-sm md:text-base ">
                 {card.cardDescription}
               </p>
             </div>
