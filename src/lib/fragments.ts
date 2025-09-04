@@ -213,6 +213,8 @@ export const INFINITE_CLOUD_CONSOLE_SECTION = gql`
   }
 `;
 
+// integrations page
+
 export const PLATFORM_CAPABILITIES_GRID_SECTION = gql`
   fragment PlatformCapabilitiesGridSection on PageBuilderSectionsPlatformCapabilitiesGridLayout {
   __typename
@@ -420,6 +422,8 @@ export const CLOUD_INTEGRETIONS_CTA = gql`
   }
 `;
 
+// style your stack page
+
 export const STYLE_YOUR_STACK_HERO_SECTION = gql`
   fragment StyleYourStackHeroSection on PageBuilderSectionsStyleYourStackHeroLayout {
     __typename
@@ -552,3 +556,133 @@ export const STYLE_YOUR_STACK_CTA_SECTION = gql`
     link
   }  
 }`;
+
+// reseller page
+export const POWER_YOUR_NETWORK_CTA_SECTION = gql`
+  fragment PowerYourNetworkCtaSection on PageBuilderSectionsPowerYourNetworkCtaLayout {
+    description
+    heading
+    headingHighlighted
+    cta {
+      __typename
+      label
+      link
+    }
+    backgroundImage {
+      node {
+        altText
+        link
+      }
+    }
+    __typename
+  }
+`;
+
+export const RESELLER_HERO_SECTION = gql`
+  fragment ResellerHeroSection on PageBuilderSectionsResellerHeroLayout {
+    __typename
+    description
+    videoUrl
+    headingHighlighted
+    heading
+    videoPoster {
+      node {
+        altText
+        link
+      }
+    }
+    cta {
+      __typename
+      label
+      link
+    }
+  }
+`;
+
+export const RESELLER_COMPETITIVE_EDGE_SECTION = gql`
+  fragment ResellerCompetitiveEdgeSection on PageBuilderSectionsResellerCompetitiveEdgeLayout {
+    __typename
+    description
+    heading
+    headingHighlighted
+    edgeCards {
+      __typename
+      cardDescription
+      cardHeading
+      icon {
+        node {
+          altText
+          link
+        }
+      }
+    }
+  }
+`;
+
+export const RESELLER_BRING_VENDORS_SECTION = gql`
+  fragment ResellerBringVendorsSection on PageBuilderSectionsResellerBringVendorsLayout {
+    __typename
+    description
+    heading
+    cta {
+      __typename
+      label
+      link
+    }
+    vendorCards {
+      __typename
+      cardDescription
+      heading
+      headingHighlighted
+      headingHighlightedColor
+    }
+  }
+`;
+
+export const GIVE_RESELLERS_FULL_AUTONOMY_SECTION = gql`
+  fragment GiveResellersFullAutonomySection on PageBuilderSectionsGiveResellersFullAutonomyLayout {
+    __typename
+    description
+    heading
+    resellerBenefits {
+      __typename
+      imageAlignment
+      heading
+      footerType
+      description
+      cardImage {
+        node {
+          altText
+          link
+        }
+      }
+      cardInnerContent {
+        __typename
+        heading
+        points {
+          __typename
+          point
+        }
+      }
+    }
+  }
+`;
+
+export const TURN_PARTNERS_INTO_GROWTH_ENGINE_SECTION = gql`
+  fragment TurnPartnersIntoGrowthEngineSection on PageBuilderSectionsTurnPartnersIntoGrowthEngineLayout {
+    __typename
+    descriptions
+    heading
+    highlightedWords {
+      __typename
+      color
+      word
+    }
+    sectionImage {
+      node {
+        altText
+        link
+      }
+    }
+  }
+`;

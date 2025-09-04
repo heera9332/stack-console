@@ -26,10 +26,16 @@ import { ScMultipleThemesEndlessPossibilities } from '@/components/sc-multiple-t
 import { ScStyleYourStackCta } from '@/components/sc-style-your-stack-cta';
 import { ScNeedSomethingTrulyUnique } from '@/components/sc-something-truly-unique';
 import { ScMakeEveryPixelYourBrand } from '@/components/sc-make-every-pixel-your-brand';
+import { ScPowerYourNetworkCtaSection } from '@/components/sc-power-your-network-cta';
+import { ScResellerHeroSection } from '@/components/sc-reseller-hero';
+import { ScResellerCompetitiveEdgeSection } from '@/components/sc-reseller-competitive-edge-section';
+import { ScResellerBringVendorsSection } from '@/components/sc-reseller-bring-vendors-section';
+import { ScGiveResellersFullAutonomySection } from '@/components/sc-give-resellers-full-autonomy-section';
+import { ScTurnPartnersIntoGrowthEngineSection } from '@/components/sc-turn-partners-into-growth-engine-section';
 
 type SectionMap = {
   [K in Section['__typename']]:
-    (props: SectionByName<K>) => JSX.Element | null;
+  (props: SectionByName<K>) => JSX.Element | null;
 };
 
 const map: SectionMap = {
@@ -74,8 +80,8 @@ const map: SectionMap = {
   ),
   PageBuilderSectionsCloudIntegrationsPostsLayout: (props) => (
     <ScCloudIntegrationsPosts {...props} />
-  ),  
-  
+  ),
+
   PageBuilderSectionsCloudIntegrationsCtaLayout: (props) => (
     <ScCloudIntegrationsCta {...props} />
   ),
@@ -103,11 +109,34 @@ const map: SectionMap = {
   PageBuilderSectionsStyleYourBrandCtaLayout: (props) => (
     <ScStyleYourStackCta {...props} />
   ),
-  
+
+  PageBuilderSectionsPowerYourNetworkCtaLayout: (props) => (
+    <ScPowerYourNetworkCtaSection {...props} />
+  ),
+
+  PageBuilderSectionsResellerHeroLayout: (props) => (
+    <ScResellerHeroSection {...props} />
+  ),
+
+  PageBuilderSectionsResellerCompetitiveEdgeLayout: (props) => (
+    <ScResellerCompetitiveEdgeSection {...props} />
+  ),
+
+  PageBuilderSectionsResellerBringVendorsLayout: (props) => (
+    <ScResellerBringVendorsSection {...props} />
+  ),
+
+  PageBuilderSectionsGiveResellersFullAutonomyLayout: (props) => (
+    <ScGiveResellersFullAutonomySection {...props} />
+  ),
+
+  PageBuilderSectionsTurnPartnersIntoGrowthEngineLayout: (props) => (
+    <ScTurnPartnersIntoGrowthEngineSection {...props} />
+  ),
 };
 
 type Section =
-// @ts-ignore
+  // @ts-ignore
   NonNullable<PageSectionsByUriQuery['page']>['pageBuilder']['sections'][number];
 type SectionNullable = Section | null | undefined;
 

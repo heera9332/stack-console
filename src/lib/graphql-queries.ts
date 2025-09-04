@@ -24,6 +24,14 @@ import {
   MAKE_EVERY_PIXEL_YOUR_BRAND,
   NEED_SOMETHING_TRULY_UNIQUE_SECTION,
   STYLE_YOUR_STACK_CTA_SECTION,
+
+  // reseller page sections
+  POWER_YOUR_NETWORK_CTA_SECTION,
+  RESELLER_HERO_SECTION,
+  RESELLER_COMPETITIVE_EDGE_SECTION,
+  RESELLER_BRING_VENDORS_SECTION,
+  GIVE_RESELLERS_FULL_AUTONOMY_SECTION,
+  TURN_PARTNERS_INTO_GROWTH_ENGINE_SECTION
 } from '@/lib/fragments';
 
 export const PAGE_SECTIONS_BY_URI = gql`
@@ -62,6 +70,12 @@ export const PAGE_SECTIONS_BY_URI = gql`
           ...PixelMatchSection
           ...NeedSomethingTrulyUnqiueSection
           ...StyleYourStackCtaSection
+          ...PowerYourNetworkCtaSection
+          ...ResellerHeroSection
+          ...ResellerCompetitiveEdgeSection
+          ...ResellerBringVendorsSection
+          ...GiveResellersFullAutonomySection
+          ...TurnPartnersIntoGrowthEngineSection
         }
       }
     }
@@ -89,4 +103,10 @@ export const PAGE_SECTIONS_BY_URI = gql`
   ${MAKE_EVERY_PIXEL_YOUR_BRAND}
   ${NEED_SOMETHING_TRULY_UNIQUE_SECTION}
   ${STYLE_YOUR_STACK_CTA_SECTION}
+  ${POWER_YOUR_NETWORK_CTA_SECTION}
+  ${RESELLER_HERO_SECTION}
+  ${RESELLER_COMPETITIVE_EDGE_SECTION}
+  ${RESELLER_BRING_VENDORS_SECTION}
+  ${GIVE_RESELLERS_FULL_AUTONOMY_SECTION}
+  ${TURN_PARTNERS_INTO_GROWTH_ENGINE_SECTION}
 `;
