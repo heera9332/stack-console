@@ -23,7 +23,7 @@ export const ScResellerHeroSection = (data: ScResellerHeroSectionProps) => {
   return (
     <section
       id="sc-reseller-hero"
-      className="relative overflow-hidden pb-12 md:pb-20"
+      className="relative overflow-hidden pb-12 md:pb-20 bg-light"
       aria-labelledby="reseller-hero-heading"
       style={{
         // subtle grid background
@@ -128,7 +128,7 @@ export const ScResellerHeroSection = (data: ScResellerHeroSectionProps) => {
           </g>
           <defs>
             <filter id="filter0_f_4717_22803" x="-139" y="0" width="608" height="398.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
               <feGaussianBlur stdDeviation="32" result="effect1_foregroundBlur_4717_22803" />
             </filter>
@@ -141,13 +141,13 @@ export const ScResellerHeroSection = (data: ScResellerHeroSectionProps) => {
           </g>
           <defs>
             <filter id="filter0_f_2314_317" x="0" y="0" width="669" height="433" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
               <feGaussianBlur stdDeviation="32" result="effect1_foregroundBlur_2314_317" />
             </filter>
             <linearGradient id="paint0_linear_2314_317" x1="64" y1="216.5" x2="605" y2="216.5" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#70CFFF" />
-              <stop offset="1" stop-color="#5A63E0" />
+              <stop stopColor="#70CFFF" />
+              <stop offset="1" stopColor="#5A63E0" />
             </linearGradient>
           </defs>
         </svg>

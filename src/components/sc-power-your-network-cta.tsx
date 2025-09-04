@@ -30,7 +30,7 @@ export const ScPowerYourNetworkCtaSection = (
   return (
     <section
       id="sc-power-your-network-cta"
-      className="relative overflow-hidden bg-white"
+      className="relative overflow-hidden bg-white bg-light"
     >
       {/* Background image fixed to bottom */}
       {data.backgroundImage?.node?.link && (

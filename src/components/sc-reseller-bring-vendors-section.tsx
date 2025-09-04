@@ -24,7 +24,7 @@ export const ScResellerBringVendorsSection = (
   return (
     <section
       id="sc-reseller-bring-vendors"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden bg-light"
       aria-labelledby="bring-vendors-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-16">

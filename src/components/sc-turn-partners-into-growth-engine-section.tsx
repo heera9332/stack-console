@@ -50,7 +50,7 @@ export const ScTurnPartnersIntoGrowthEngineSection = (
   return (
     <section
       id="sc-turn-partners-into-growth-engine"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden bg-light"
       aria-labelledby="tpige-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
