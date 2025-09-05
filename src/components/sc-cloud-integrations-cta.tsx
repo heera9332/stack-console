@@ -13,7 +13,7 @@ type Props = {
   className?: string;
 };
 
-export default function ScCloudIntegrationsCta(props) {
+export default function ScCloudIntegrationsCta(props: Props) {
   console.log("ScCloudIntegrationsCta props:", props);
   const data = {
     heading: "Didn’t find the integration you were looking for?",
@@ -35,7 +35,7 @@ export default function ScCloudIntegrationsCta(props) {
     >
       <div className="mx-auto flex flex-col md:flex-row max-w-7xl items-center">
         <div className="w-full md:w-6/10 pb-10">
-          <h2 className="text-[36px] font-semibold leading-tight tracking-[-0.02em] md:text-[64px] text-white md:text-left text-center">
+          <h2 className="text-4xl font-semibold leading-tight tracking-[-0.02em] md:text-6xl text-white md:text-left text-center">
             Didn’t find the
             <span className="block"> integration you were </span> looking for?
           </h2>
