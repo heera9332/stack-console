@@ -24,7 +24,7 @@ export function MegaPanel({
       "
     >
       <div className="grid grid-cols-12">
-        <div className="col-span-8 p-4 md:p-6">
+        <div className="col-span-7 p-4 md:p-6">
           <div className="mb-4">
             <div className="px-2 pb-6">
               <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 leading-[20%] mb-4">
@@ -69,7 +69,7 @@ export function MegaPanel({
           </div>
         </div>
 
-        <div className="col-span-12 md:col-span-4 flex items-center justify-center border-l-2 border-gray-100 min-h-[80vh]">
+        <div className="col-span-12 md:col-span-5 flex items-center justify-center border-l-2 border-gray-100 min-h-[80vh]">
           <div className="relative h-full w-full overflow-hidden">
             {/* Background image */}
             {hoverItem?.preview?.bgImage?.node?.link && (
@@ -84,7 +84,7 @@ export function MegaPanel({
 
 
             {/* Foreground content */}
-            <div className="relative z-10 h-full w-full flex items-center justify-center p-4 px-8">
+            <div className="relative z-10 h-full w-full flex items-center justify-center p-4 px-12">
               <PreviewCard item={hoverItem} />
             </div>
           </div>

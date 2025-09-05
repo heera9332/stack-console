@@ -289,7 +289,7 @@ export default function ScHero(data: ScHeroProps) {
                   alt={data.trophyIcon.node.altText || "trophy"}
                   width={512}
                   height={512}
-                  className="h-10 md:h-18 w-10 md:w-18 object-cover absolute rotate-[-30deg] -left-10 md:-left-14 -top-3"
+                  className="h-10 md:h-18 w-10 md:w-18 object-cover absolute rotate-[-30deg] -left-10 md:-left-14 md:-top-3"
                 />
                 <span
                   className="bg-clip-text text-transparent text-rainbow"

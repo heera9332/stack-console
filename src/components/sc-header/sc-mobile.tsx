@@ -13,6 +13,16 @@ const pick = <T,>(v: T | null | undefined): T | undefined => v ?? undefined;
  ========================= */
 // ...imports unchanged
 
+
+interface MobileMenuProps {
+  data: WpTopNav;
+  nav: UiTopItem[];
+  onClose: () => void;
+  mobileOpen: boolean;
+  setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  cta: { label: string; href: string };
+}
+
 export function MobileMenu({
   data,
   nav,
@@ -20,20 +30,15 @@ export function MobileMenu({
   mobileOpen,
   setMobileOpen,
   cta,
-}: {
-  data: WpTopNav;
-  nav: UiTopItem[];
-  onClose: () => void;
-  mobileOpen: boolean;
-  setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  cta: { label: string; href: string };
-}) {
+}: MobileMenuProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
+  console.log(data)
   useEffect(() => {
     if (!mobileOpen) setOpenIndex(null);
   }, [mobileOpen]);
 
+  console.log("mobile menu > ")
+  console.log(data.navItems)
   const isSubmenuOpen = openIndex !== null;
 
   return (
@@ -101,8 +106,10 @@ export function MobileMenu({
               {(() => {
                 const i = openIndex as number;
                 const item = nav[i];
+                console.log("mega menu item > ", item)
                 // Guard: only render if this is a mega item
-                if (!item || item.type !== "mega") return null;
+                if (!item || item.type !== "mega") return null; 
+                
                 return (
                   <div
                     id={`submenu-${i}`}
@@ -110,8 +117,10 @@ export function MobileMenu({
                     className="px-1 space-y-3"
                     role="region"
                   >
-                    <div className="text-xs uppercase text-gray-900 mb-1">
-                      {item.section.title}
+                    <div className="text-xs uppercase text-gray-900 mb-4">
+                      <p className="leading-[20%]">
+                        {item.section.title}
+                      </p>
                     </div>
                     <ul className="space-y-1" role="menu">
                       {item.section.items.map((it) => (
@@ -122,12 +131,12 @@ export function MobileMenu({
                             onClick={onClose}
                             role="menuitem"
                           >
-                            <div className="flex gap-2 items-center">
-                              <GetIcon />
+                            <div className="flex gap-2 items-center overflow-hidden">
+                              <GetIcon link={it.icon.node.link || ""}/>
                               <div className="text-left">
-                                <h3>{item.label}</h3>
-                                <span className="text-[12px]">
-                                  {item.section.description}
+                                <h3 className="text-sm">{it.label}</h3>
+                                <span className="text-[10px]" title={it.description}>
+                                  {it.description}
                                 </span>
                               </div>
                             </div>
