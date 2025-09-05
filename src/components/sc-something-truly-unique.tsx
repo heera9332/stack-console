@@ -101,7 +101,7 @@ export const ScNeedSomethingTrulyUnique: React.FC<ScNeedSomethingTrulyUniqueProp
           </div>
 
           {/* Foreground illustration (UNCHANGED) */}
-          <div className="mx-auto mt-10 md:mt-14 max-w-4xl">
+          <div className="mx-auto mt-10 mr-0 md:mt-14 max-w-8xl">
             <div className="relative">
               {/* Desktop illustration */}
               {fgDesktop ? (

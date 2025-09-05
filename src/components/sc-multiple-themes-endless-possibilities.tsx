@@ -95,9 +95,9 @@ export function ScMultipleThemesEndlessPossibilities(data: Props) {
                                     className="m-0 w-full data-[state=inactive]:hidden data-[state=active]:block"
                                 >
                                     {/* Big rounded tinted backdrop */}
-                                    <div className="rounded-[40px] p-3 md:p-14 md:py-28" style={{ background: bg }}>
+                                    <div className="rounded-[40px] p-3 md:p-14 md:py-24" style={{ background: bg }}>
                                         <div className="rounded-[24px] overflow-hidden bg-white shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
-                                            <div className="relative aspect-[16/9]">
+                                            <div className="relative aspect-[3/2]">
                                                 {imgUrl ? (
                                                     <Image
                                                         src={imgUrl}
